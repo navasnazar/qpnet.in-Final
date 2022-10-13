@@ -1,0 +1,400 @@
+<%- include('../partials/admin-header.ejs') %> 
+
+
+        <div class="row g-3 g-md-4">
+            <div class="col-12 col-xl-6">
+              <div class="address-box add-new d-flex flex-column gap-2 align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#addNewAddress">
+                <h4 class="theme-color font-xl fw-500">Add New Product</h4>
+              </div>
+            </div>
+        </div>
+
+    
+
+<!-- Collection Section Start -->
+<section style="padding-bottom: 0%;">
+    <div class="container-lg">
+      <div class="title-box7 side-by-side">
+        <div>
+          <h2 class="heading">OUR <span>COLLECTIONS </span></h2>
+          <svg>
+            <use xlink:href="../assets/svg/sprite.svg#shape2"></use>
+          </svg>
+          
+        </div>
+
+        <!-- <ul class="nav nav-tabs nav-tabs5 round-tab row-tab" id="myTab" role="tablist">
+          
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="casual-tab" data-bs-toggle="tab" data-bs-target="#casual" type="button" role="tab" aria-controls="casual" aria-selected="true">Casual</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="athletic-tab" data-bs-toggle="tab" data-bs-target="#athletic" type="button" role="tab" aria-controls="athletic" aria-selected="false">Athletic</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="sport-tab" data-bs-toggle="tab" data-bs-target="#sport" type="button" role="tab" aria-controls="sport" aria-selected="false">Sport</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="man-tab" data-bs-toggle="tab" data-bs-target="#man" type="button" role="tab" aria-controls="man" aria-selected="false">Man</button>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+</section>
+      <!-- loop start -->
+    <!-- {{#each products}} -->
+    
+<section style="padding-top: 0%;">
+        <div>
+          
+            <div class="container">   
+                <table id="myTable" class="table mt-5">
+                <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                <div>
+                    <button class="btn btn-outline rounded-pill" style="width:200px; height: 30px; margin-left: 1095px; margin-top:10px ;" type="submit" data-bs-toggle="modal" data-bs-target="#addCategory" >Add Category</button>
+                </div>
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col" style="width: 150px; ">Product Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col" style="width: 20px; " >Quantity</th>
+            <th scope="col" style="width: 20px; " >Size</th>
+            <th scope="col">Color</th>
+            <th scope="col" style="width: 20px; ">Description</th>
+            <th scope="col" style="width: 20px; ">Item Details</th>
+            <th scope="col" style="width: 20px; ">Font View</th>
+            <th scope="col" style="width: 20px; ">Top View</th>
+            <th scope="col" style="width: 20px; ">Side View</th>
+
+            <!-- <th>Image</th> -->
+            <th>       Edit      / Delete</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <!-- {{#each products}} -->
+          <% for(let i=0;i<products.length;i++) { %>
+           
+          <tr>
+            <th scope="row"><%= i+1  %> </th>
+            
+            <td><%= products[i].pname %> </td>
+            <td><%= products[i].category %> </td>
+            <td><%= products[i].price %> </td>
+            <td><%= products[i].quantity %> </td>
+            <td><%= products[i].size %> </td>
+            <td><%= products[i].color %> </td>
+            <td><%= products[i].description %> </td>
+            <td><%= products[i].itemDetails %> </td>
+            <td><img style="width: 20px; height: 20px;" src="/assets/images/upload-images/<%= products[i].imageFront %>" alt=""></td>
+            <td><img style="width: 20px; height: 20px;" src="/assets/images/upload-images/<%= products[i].imageTop %>" alt=""></td>
+            <td><img style="width: 20px; height: 20px;" src="/assets/images/upload-images/<%= products[i].imageSide %>" alt=""></td>
+  
+            <td> 
+              <a href="/admin/edit-pro<%= products[i]._id %>"  class="btn btn-outline rounded-pill" style="height: 25px;" >Edit</a>
+              <a href="/admin/delete-product/<%= products[i]._id %>" class="btn btn-solid line-none rounded-pill" style="height: 25px;" onclick="return confirm('Are you want delete <%= products[i].pname %>?')">Delete</a>
+            </td>
+            
+          </tr>
+
+          
+          <% }%> 
+
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </section>
+
+
+ 
+<!-- Edit Product Modal Start -->
+
+<div class="modal fade addnew-address" id="editProduct" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addNewAddressLabel">Edit Product</h5>
+        <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
+
+      </div>
+
+      <div class="modal-body full-grid-mobile">
+        <form action="/admin1/edit-products/<%= products._id %>" class="custom-form form-pill" method="post">
+          <div class="row g-3 g-md-4">
+            <div class="col-12">
+              <div class="input-box">
+                <label for="pname">Product Name</label>
+                <input class="form-control" type="text" required name="pname" value="<%= products.pname %>" id="pname" />
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="input-box">
+                <label for="price">Price</label>
+                <input class="form-control" type="text" required name="price" value="<%= products.price %>" id="price" />
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="input-box">
+                <label for="quantity">Quantity</label>
+                <input class="form-control" maxlength="100" type="number" required name="quantity" maxlength="100" value="<%= products.quantity %>" id="quantity" />
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="input-box">
+                <label for="description">Description</label>
+                <input class="form-control" type="text" required name="description" value="<%= products.description %>" id="description" />
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="input-box">
+                <label for="itemDetails">Item Details</label>
+                <input class="form-control" type="text" name="itemDetails" value="<%= products.itemDetails %>" id="itemDetails" />
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-4">
+              <div class="input-box">
+                <label for="category">Category</label>
+                <select class="form-select form-control" value="<%= products.category %>" id="category" name="category">
+                  <option selected disabled value="">Choose...</option>
+                  <option>Men Shoes</option>
+                  <option>Women Shoes</option>
+                  <option>Child Shoes</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-4">
+              <div class="input-box">
+                <label for="size">Size</label>
+                <select class="form-select form-control" value="<%= products.size %>" id="size" name="size">
+                  <option selected disabled value="">Choose...</option>
+                  <option>S</option>
+                  <option>M</option>
+                  <option>L</option>
+                  <option>XL</option>
+                  <option>XXL</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="input-box">
+                <label for="color">Color</label>
+                <input class="form-control" type="text" required name="color" value="<%= products.color %>" id="color" />
+              </div>
+            </div>
+          </div>
+        
+      
+
+      <div class="modal-footer">
+        <div class="btn-box">
+          <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
+          <button type="submit" class="btn btn-solid line-none rounded-pill">Update Product <i class="arrow"></i></button>
+        </div>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Edit Product Modal End -->
+
+
+  <!-- Add New Product Modal Start -->
+  <div class="modal fade addnew-address" id="addNewAddress" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addNewAddressLabel">Add New Product</h5>
+          <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
+        </div>
+        
+
+        <div class="modal-body full-grid-mobile">
+          <form action="/admin/add-products" enctype="multipart/form-data" class="custom-form form-pill" method="post">
+            <div class="row g-3 g-md-4">
+              <div class="col-12">
+                <div class="input-box">
+                  <label for="pname">Product Name</label>
+                  <input class="form-control" type="text" required name="pname" id="pname" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="price">Price</label>
+                  <input class="form-control" type="text" required name="price" id="price" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="quantity">Quantity</label>
+                  <input class="form-control" maxlength="100" type="number" required name="quantity" minlength="1" id="quantity" />
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="input-box">
+                  <label for="description">Description</label>
+                  <input class="form-control" type="text" required name="description" id="description" />
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="input-box">
+                  <label for="itemDetails">Item Details</label>
+                  <input class="form-control" type="text" name="itemDetails" id="itemDetails" />
+                </div>
+              </div>
+
+              <div class="col-6 col-sm-4">
+                <div class="input-box">
+                  <label for="category">Category</label>
+                  <select class="form-select form-control"  id="category" name="category">
+                    <option selected disabled value="">Choose...</option>
+                    <% for(let j=0; j<categories.length; j++){ %> 
+                    <option><%= categories[j] %> </option>
+                    <% } %> 
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-6 col-sm-4">
+                <div class="input-box">
+                  <label for="size">Size</label>
+                  <select class="form-select form-control" id="size" name="size">
+                    <option selected disabled value="">Choose...</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="input-box">
+                  <label for="color">Color</label>
+                  <input class="form-control" type="text" required name="color" id="color" />
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 mt-4">
+              <div class="input-box">
+                <label for="imageFront">Image Upload (Font View)</label>
+                <input class="form-control" type="file" name="imageFront" accept="image/*"  id="imageFront" />
+              </div>
+            </div>
+
+
+            <div class="col-sm-6 mt-4">
+              <div class="input-box">
+                <label for="imageTop">Image Upload (Top View)</label>
+                <input class="form-control" type="file" name="imageTop" accept="image/*"  id="imageTop" />
+              </div>
+            </div>
+
+            <div class="col-sm-6 mt-4">  
+              <div class="input-box">
+                <label for="imageSide">Image Upload (Side View)</label>
+                <input class="form-control" type="file" name="imageSide" accept="image/*"  id="imageSide" />
+              </div>
+              </div>
+
+            </div>
+
+
+        <div class="modal-footer">
+          <div class="btn-box">
+            <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
+            <button type="submit" class="btn btn-solid line-none rounded-pill">Save Product <i class="arrow"></i></button>
+          </div>
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add New Product Modal End -->
+
+  <!-- Add New category Modal Start -->
+  <div class="modal fade addnew-address" id="addCategory" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addNewAddressLabel">Add New Category</h5>
+          <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
+        </div>
+        
+
+        <div class="modal-body full-grid-mobile">
+          <form action="/admin/add-category" class="custom-form form-pill" method="post">
+            <div class="row g-3 g-md-4">
+              <div class="col-12">
+                <div class="input-box">
+                  <label for="categoryName">Category Name</label>
+                  <input class="form-control" type="text" required name="categoryName" id="categoryName" />
+                </div>
+              </div>
+
+            </div>
+
+
+        <div class="modal-footer">
+          <div class="btn-box">
+            <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
+            <button type="submit" class="btn btn-solid line-none rounded-pill">Save<i class="arrow"></i></button>
+          </div>
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add New Category Modal End -->
+
+
+
+  
+
+<!-- search script -->
+  <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+<!-- search script end -->

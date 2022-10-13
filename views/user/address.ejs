@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<!-- Html start -->
+<html lang="en">
+  <!-- Head Start -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="oslo" />
+    <meta name="keywords" content="oslo" />
+    <meta name="author" content="oslo" />
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../assets/images/favicon/favicon.png" />
+    <meta name="theme-color" content="#0f8fac" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Oslo" />
+    <meta name="msapplication-TileImage" content="../assets/images/favicon/favicon.png" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Oslo | Address</title>
+
+    <!-- Google Jost Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Google Monsterrat Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+
+    <!-- Google Leckerli Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap Css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css" />
+
+    <!-- Style Css -->
+    <link id="change-link" rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+  </head>
+  <!-- Head End -->
+
+  <!-- Body Start -->
+  <body>
+    <!-- Loader Start -->
+    <div class="loader-wrapper">
+      <div class="loader animate">
+        <!-- <span>O</span>
+        <span>S</span>
+        <span>L</span>
+        <span>O</span> -->
+      </div>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Overlay -->
+    <a href="javascript:void(0)" class="overlay-general"></a>
+    <!-- Header Start -->
+    <%- include('../partials/user-header.ejs') %> 
+    <!-- Header End -->
+
+    <!-- Main Start -->
+    <main class="main">
+      <!-- Breadcrumb Start -->
+      <div class="breadcrumb-wrap">
+        <div class="banner">
+          <img class="bg-img bg-top" src="../assets/images/inner-page/banner-p.jpg" alt="banner" />
+
+          <div class="container-lg">
+            <div class="breadcrumb-box">
+              <div class="heading-box">
+                <h1>Checkout</h1>
+              </div>
+              <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>
+                  <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+                </li>
+                <li><a href="/cart">Cart</a></li>
+                <li>
+                  <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+                </li>
+                <li class="current"><a href="/address">Checkout</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Breadcrumb End -->
+
+      <!-- Checkout Section Start -->
+      <section class="checkout">
+       <form action="/payment" method="post">
+        <div class="container-lg">
+          <div class="row g-3 g-sm-4 cart">
+            <div class="col-md-7 col-lg-8 col-xl-9">
+              <div class="address-wrap">
+                <div class="title-box2">
+                  <h2 class="heading-2">Select Delivery Address</h2>
+                </div>
+
+                <div class="row g-3 g-md-4">
+                  <div class="col-12 col-xl-6">
+                    <div class="address-box add-new d-flex flex-column gap-2 align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#addNewAddress">
+                      <span class="plus-icon"><i data-feather="plus"></i></span>
+                      <h4 class="theme-color font-xl fw-500">Add New Address</h4>
+                    </div>
+                  </div>
+
+                <% for(let i=0; i<address.length; i++){ %> 
+                  <div class="col-12 col-xl-6">
+                    <div class="address-box checked">
+                      <div class="row">
+                        <div>
+                          <input class="radio-input" value="<%= address[i]._id %> " type="radio" checked id="radio" name="radio" />
+                          <label class="radio-label" style="font-size:20px; font-weight:bold ;" for="radio"><%= address[i].name %> </label>
+                        </div>
+                        <span class="badges badges-pill badges-theme" >Home</span>
+                        <div class="option-wrap">
+                          <!-- <span class="edit" data-bs-toggle="modal" data-bs-target="#edditAddress"><i data-feather="edit"></i></span> -->
+                          <div >
+                            <a href="/deleteAddress<%= address[i]._id %>" class="delet ms-0"><i data-feather="trash"></i></a>
+                            <!-- <span class="delet ms-0" data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="address-detail">
+                        <p class="content-color font-default"><%= address[i].address %></p>
+                        <p class="content-color font-default"><%= address[i].landmark %></p>
+                        <span class="content-color font-default">Mobile: <span class="title-color font-default fw-500"> <%= address[i].mobile %></span></span>
+                        <span class="content-color font-default">Email: <span class="title-color font-default fw-500"> <%= address[i].email %></span></span>
+                        <span class="content-color font-default mt-1">City: <span class="title-color font-default fw-500"> <%= address[i].city %></span></span>
+                        <span class="content-color font-default mt-1">District: <span class="title-color font-default fw-500"> <%= address[i].district %></span></span>
+                        <span class="content-color font-default mt-1">Pin Code: <span class="title-color font-default fw-500"> <%= address[i].pincode %></span></span>
+                      </div>
+                    </div>
+                  </div>
+                <% } %> 
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5 col-lg-4 col-xl-3">
+              <div class="summery-wrap">
+                <div class="coupon-box">
+                  <h5 class="cart-title">Coupon</h5>
+                  <div class="text-wrap">
+                    <h4><i data-feather="tag"></i> Apply Coupon</h4>
+                    <a href="javascript:void(0)" class="btn btn-outline btn-sm">Apply</a>
+                  </div>
+
+                  <p class="content-color font-md mb-0"><a href="login.html" class="theme-color">Login</a> to see best coupon for you</p>
+                </div>
+                <div class="cart-wrap grand-total-wrap">
+                  <div>
+                    <div class="order-summery-box">
+                      <h5 class="cart-title">Price Details (<%= cartLength %>  Items)</h5>
+                      <ul class="order-summery">
+                        <li>
+                          <span>Bag total</span>
+                          <span>₹ <%= userCart[0].finalAmount %> </span>
+                        </li>
+
+                        <!-- <li>
+                          <span>Bag savings</span>
+                          <span class="theme-color">-$20.00</span>
+                        </li> -->
+
+                        <li>
+                          <span>Coupon Discount</span>
+                          <a href="javascript:void(0)" class="font-danger">Apply Coupon</a>
+                        </li>
+
+                        <li>
+                          <span>Delivery</span>
+                          <span>₹ <%= userCart[0].deliveryCost %></span>
+                        </li>
+
+                        <li class="pb-0">
+                          <span>Total Amount</span>
+                          <span>₹ <%= userCart[0].checkoutAmount %></span>
+                        </li>
+                      </ul>
+                      <div class="row g-3 mt-2">
+                        <div class="col-6 col-md-12">
+                            <button class="btn-solid checkout-btn" type="submit">Proceed To Pay</button>
+                          <!-- <a href="payment.html" class="btn-solid checkout-btn">Proceed To Pay <i class="arrow"></i></a> -->
+                        </form>
+                        </div>
+
+                        <div class="col-6 col-md-12">
+                          <a href="/" class="btn-outline w-100 justify-content-center checkout-btn"> Back To Shop </a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Checkout Section End -->
+    </main>
+    <!-- Main End -->
+
+    <!-- Document Footer Start -->
+    <footer class="footer-document ratio_asos mb-xxl">
+      <div class="bg-footer-l">
+        <img src="../assets/images/fashion/banner/bg-footer-l.png" alt="banner" />
+      </div>
+      <div class="bg-footer-r">
+        <img src="../assets/images/fashion/banner/bg-footer-r.png" alt="banner" />
+      </div>
+      <div>
+        <div class="container-lg">
+          <div class="main-footer">
+            <div class="row gy-3 gy-md-4 gy-xl-0">
+              <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="content-box">
+                  <img class="logo" src="../assets/images/logos/logo-w.png" alt="logo-white" />
+                  <ul>
+                    <li><i data-feather="map-pin"></i> <span> 1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States </span></li>
+                    <li>
+                      <i data-feather="phone"></i><a class="nav" href="tel:185659635"><span> + 185659635 </span></a>
+                    </li>
+                    <li>
+                      <i data-feather="mail"></i><a class="nav" href="mailto:fashion098@gmail.com"><span> fashion098@gmail.com </span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="nav-footer col-lg-2 col-md-4 order-md-3 order-lg-2">
+                <div class="nav content-box d-md-block">
+                  <h5 class="heading-footer">Shop By</h5>
+                  <ul>
+                    <li><a class="nav" href="shop-left-sidebar.html">New In </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Women </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Men </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Shoes</a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Bags & Accessories </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Top Brands </a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-4 order-lg-3">
+                <div class="nav d-md-block content-box">
+                  <h5 class="heading-footer">Information</h5>
+                  <ul>
+                    <li><a class="nav" href="index.html">Home </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Shop </a></li>
+                    <li><a class="nav" href="about-us.html">About Us</a></li>
+                    <li><a class="nav" href="blog-detail.html">Blog </a></li>
+                    <li><a class="nav" href="contact-us.html">Contact </a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-5 order-lg-4">
+                <div class="nav d-md-block content-box">
+                  <h5 class="heading-footer">Get Help</h5>
+                  <ul>
+                    <li><a class="nav" href="user-dashboard.html">Your Orders </a></li>
+                    <li><a class="nav" href="user-dashboard.html">Your Account </a></li>
+                    <li><a class="nav" href="user-dashboard.html">Track Order</a></li>
+                    <li><a class="nav" href="wishlist.html">Your Wishlist</a></li>
+                    <li><a class="nav" href="search.html">Search</a></li>
+                    <li><a class="nav" href="faqs.html">Faqs</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-lg-4 order-md-2 order-lg-5">
+                <div class="content-box">
+                  <h5 class="heading-footer">Follow Us</h5>
+                  <div class="follow-wrap">
+                    <ul>
+                      <li>
+                        <a href="https://www.facebook.com/"> <img src="../assets/icons/svg/social/fb.svg" alt="fb" /> </a>
+                      </li>
+                      <li>
+                        <a href="https://www.instagram.com/accounts/login/?source=auth_switcher"> <img src="../assets/icons/svg/social/inta.svg" alt="fb" /> </a>
+                      </li>
+                      <li>
+                        <a href="https://twitter.com/i/flow/login"> <img src="../assets/icons/svg/social/tw.svg" alt="fb" /> </a>
+                      </li>
+                      <li>
+                        <a href="https://in.pinterest.com/"> <img src="../assets/icons/svg/social/pint.svg" alt="fb" /> </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="subscribe-box">
+                    <h5>Newsletter Sign Up</h5>
+                    <p>Receive our latest updates about our products & promotions.</p>
+                  </div>
+
+                  <form action="javascript:void(0)" class="footer-form">
+                    <input required type="email" class="form-control" placeholder="Your email address" />
+                    <button type="submit" class="btn-solid">SUBMIT <i class="arrow"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-footer">
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <ul>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/1.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/2.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/3.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/4.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-0">© 2022, OSLO Template. Made with heart by Pixelstrap</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Document Footer End -->
+
+<!-- Action Conformation Start -->
+    <!-- <form action="" method="post">   -->
+    <div class="modal fade action-conform" id="conformation" tabindex="-1" aria-labelledby="conformationLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+        <div class="modal-header">
+        <h5 class="modal-title" id="conformationLabel">Are You Sure?</h5>
+        <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
+        </div>
+        <div class="modal-body">
+        <p class="font-md">zzz</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-outline btn-sm" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-solid btn-sm line-none">Remove </button>
+        </div>
+    <!-- </form> -->
+    </div>
+    </div>
+    </div>
+        <!-- Action Conformation End -->
+
+
+    <!-- Mobile Menu Footer Start -->
+    <footer class="mobile-menu-footer d-sm-none">
+      <ul>
+        <li>
+          <a href="index.html">
+            <i data-feather="home"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="search.html" class="search-link">
+            <i data-feather="search"></i>
+            <span>Search</span>
+          </a>
+        </li>
+        <li>
+          <a href="cart.html">
+            <i data-feather="shopping-bag"></i>
+            <span>Cart</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html">
+            <i data-feather="heart"></i>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a href="user-dashboard.html">
+            <i data-feather="user"></i>
+            <span>Account</span>
+          </a>
+        </li>
+      </ul>
+    </footer>
+    <!-- Mobile Menu Footer End -->
+
+    <!-- Notification Start -->
+    <div class="notification-wrap addToCart">
+      <div class="notification">
+        <img src="../assets/images/fashion/product/front/1.jpg" alt="product" />
+        <div>
+          <h5>Added To Cart</h5>
+        </div>
+      </div>
+    </div>
+    <!-- Notification End -->
+
+    <!-- Add New Address Modal Start -->
+
+
+    
+    <div class="modal fade addnew-address" id="addNewAddress" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addNewAddressLabel">Add New Address</h5>
+            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
+          </div>
+
+          <div class="modal-body full-grid-mobile">
+            <form action="/addAddress" class="custom-form form-pill" method="post">
+              <div class="row g-3 g-md-4">
+                <div class="col-12">
+                  <div class="input-box">
+                    <label for="name">Full Name</label>
+                    <input class="form-control" type="text" required name="name" id="name" />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="input-box">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" required name="email" id="email" />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="input-box">
+                    <label for="mobile">Mobile No:</label>
+                    <input class="form-control" maxlength="10" type="text" required name="mobile" maxlength="10" id="mobile" />
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="input-box">
+                    <label for="address">Address</label>
+                    <input class="form-control" type="text" required name="address" id="address" />
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="input-box">
+                    <label for="landmark">Land Mark</label>
+                    <input class="form-control" type="text" required name="landmark" id="landmark" />
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="input-box">
+                    <label for="district">District</label>
+                    <select class="form-select form-control" required name="district" id="district">
+                      <option selected disabled value="">Choose...</option>
+                      <option>Thiruvanandapuram</option>
+                      <option>Kollam</option>
+                      <option>Pathanamthitta</option>
+                      <option>Alappuzha</option>
+                      <option>Kottayam</option>
+                      <option>Idukki</option>
+                      <option>Ernakulam</option>
+                      <option>Trissure</option>
+                      <option>Palakadu</option>
+                      <option>Malappuram</option>
+                      <option>Kozhicodu</option>
+                      <option>Vayanadu</option>
+                      <option>Kannur</option>
+                      <option>Kasaragodu</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="input-box">
+                      <label for="city">City</label>
+                      <input class="form-control" maxlength="50" type="text" required name="city" id="city" />
+                    </div>
+                  </div>
+
+                <div class="col-sm-4">
+                  <div class="input-box">
+                    <label for="pincode">Pin Code</label>
+                    <input class="form-control" maxlength="6" type="text" required name="pincode" id="pincode" />
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="modal-footer">
+            <div class="btn-box">
+              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
+              <button type="submit" class="btn btn-solid line-none rounded-pill">Save Address <i class="arrow"></i></button>
+            </div>
+          </div>
+         </form>
+        </div>
+      </div>
+    </div>
+    <!-- Add New Address Modal End -->
+
+    <!-- Edit Address Modal Start -->
+    <div class="modal fade addnew-address" id="edditAddress" tabindex="-1" aria-labelledby="edditAddressLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="edditAddressLabel">Edit Address</h5>
+            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
+          </div>
+
+          <div class="modal-body full-grid-mobile">
+            <form action="javascript:void(0)" class="custom-form form-pill">
+              <div class="row g-3 g-md-4">
+                <div class="col-12">
+                  <div class="input-box">
+                    <label for="name2">Full Name</label>
+                    <input class="form-control" type="text" value="Nadine Vogt" required name="name2" id="name2" />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="input-box">
+                    <label for="email2">Email</label>
+                    <input class="form-control" type="email" value="nadinevogt@roze.come" required name="email2" id="email2" />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="input-box">
+                    <label for="mobile2">Mobile No:</label>
+                    <input maxlength="9" class="form-control" type="number" value="4237720570" required name="mobile2" id="mobile2" />
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="input-box">
+                    <label for="address3">Address1</label>
+                    <input class="form-control" type="text" value="385 Happy Hollow Road" required name="address3" id="address3" />
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="input-box">
+                    <label for="address4">Address2</label>
+                    <input class="form-control" type="text" value="Wilmington, NC 28412" required name="address4" id="address4" />
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="input-box">
+                    <label for="country2">Country</label>
+                    <select class="form-select form-control" id="country2">
+                      <option selected disabled value="">United State</option>
+                      <option>United States</option>
+                      <option>India</option>
+                      <option>America</option>
+                      <option>South America</option>
+                      <option>Dubai</option>
+                      <option>Hong Kong</option>
+                      <option>Indonesia</option>
+                      <option>Pakistan</option>
+                      <option>Saudi Arabia</option>
+                      <option>China</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="input-box">
+                    <label for="city2">City</label>
+                    <select class="form-select form-control" id="city2">
+                      <option selected disabled value="">Los Angeles</option>
+                      <option>Almaty</option>
+                      <option>India</option>
+                      <option>America</option>
+                      <option>South America</option>
+                      <option>Dubai</option>
+                      <option>Hong Kong</option>
+                      <option>Indonesia</option>
+                      <option>Pakistan</option>
+                      <option>Saudi Arabia</option>
+                      <option>China</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-box">
+                    <label for="zip2">Zip Code</label>
+                    <input class="form-control" maxlength="6" type="number" value="32525" required name="zip2" id="zip2" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <div class="btn-box">
+              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
+              <button type="button" class="btn btn-solid line-none rounded-pill">Save Changes <i class="arrow"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Edit Address Modal End -->
+
+    
+
+    <!-- Tap To Top Button Start -->
+    <div class="tap-to-top-box hide">
+      <button class="tap-to-top-button"><i data-feather="chevrons-up"></i></button>
+    </div>
+    <!-- Tap To Top Button End -->
+
+    <!-- Bootstrap Js -->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Feather Icon -->
+    <script src="../assets/js/feather/feather.min.js"></script>
+
+    <!-- Header Sticky js  -->
+    <script src="../assets/js/sticky-header.js"></script>
+
+    <!-- Script Js -->
+    <script src="../assets/js/script.js"></script>
+  </body>
+  <!-- Body End -->
+</html>
+<!-- Html End -->

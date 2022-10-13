@@ -1,0 +1,114 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name: OSLO Theme
+    Template URI: themes.pixelstrap.com/Oslo-Theme
+    Description: This is Ecommerce Html Template
+    Author: Pixelstrap
+    Author URL: https://themeforest.net/user/pixelstrap
+
+----------------------------------------------------------------------------------- */
+
+////* 1 Base Files *////
+/* 1.1 Reset CSS */
+/* 1.2 Typography CSS */
+
+////* 2 Component File *////
+/* 2.1 Accordion CSS */
+/* 2.2 Button CSS */
+/* 2.3 Comment-Box CSS */
+/* 2.4 Breadcrumb CSS */
+/* 2.5 Dropdown CSS */
+/* 2.6 Form CSS */
+/* 2.7 Grid Masonry CSS */
+/* 2.8 Instagram-Card CSS */
+/* 2.9 Modal CSS */
+/* 2.10 Nav Tabs CSS */
+/* 2.11 Nav CSS */
+/* 2.12 Notification CSS */
+/* 2.13 Pagination CSS */
+/* 2.14 Product Card CSS */
+/* 2.15 Progress Bar CSS */
+/* 2.16 Range Slider CSS */
+/* 2.17 Ratio CSS */
+/* 2.18 Sale Box CSS */
+/* 2.19 Swiper Slider Pagination CSS */
+/* 2.20 Switch CSS */
+/* 2.21 Table CSS */
+/* 2.22 Title Unique CSS */
+
+////* 3 Layout CSS *////
+/* 3.1 Header CSS */
+/* 3.2 Sidebar CSS */
+/* 3.3 Home Slider CSS */
+/* 3.4 Categories Section CSS */
+/* 3.5 Offer Section CSS */
+/* 3.6 Special Product Card CSS */
+/* 3.7 Detail Card Section CSS */
+/* 3.8 Best Seller Section CSS */
+/* 3.9 Sub Banner Section CSS */
+/* 3.10 Decoration Section CSS */
+/* 3.11 Brand Section CSS */
+/* 3.12 Instagram Section CSS */
+/* 3.13 Service Section CSS */
+/* 3.14 Footer CSS */
+
+////* 4 Pages CSS *////
+/* 4.1 Authentic Pages CSS */
+/* 4.2 Blog Pages CSS */
+/* 4.3 Inner Pages CSS */
+/* 4.4 Element Page CSS */
+
+/// Utility ///
+@import "utils/variables";
+@import "utils/mixin/common";
+@import "utils/mixin/animation";
+
+/// Basic Reset Css ///
+@import "base/reset";
+@import "base/typography";
+
+/// Components Css ///
+@import "components/accordian";
+@import "components/button";
+@import "components/comment-box";
+@import "components/breadcumb";
+@import "components/dropdown";
+@import "components/form";
+@import "components/grid-masonry";
+@import "components/intagram-card";
+@import "components/modal";
+@import "components/nav-tabs";
+@import "components/nav";
+@import "components/notification";
+@import "components/pagination";
+@import "components/product-card";
+@import "components/progress-bar";
+@import "components/range-slider";
+@import "components/ratio";
+@import "components/sale-box";
+@import "components/swiper-slider-pagination";
+@import "components/switch";
+@import "components/table";
+@import "components/title-unique";
+
+/// Layout Css ///
+@import "layout/header";
+@import "layout/sidebar";
+@import "layout/home-slider";
+@import "layout/category-section";
+@import "layout/offer-section";
+@import "layout/special-product-section";
+@import "layout/detail-card-section";
+@import "layout/best-seller-section";
+@import "layout/sub-banner-section";
+@import "layout/decoration-section";
+@import "layout/brand-section";
+@import "layout/intagram-section";
+@import "layout/service-section";
+@import "layout/footer";
+
+/// Pages Css ///
+@import "pages/authentic-page";
+@import "pages/blog-pages";
+@import "pages/inner_pages";
+@import "pages/element-pages";

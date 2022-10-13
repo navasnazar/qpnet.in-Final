@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!-- Html start -->
+<html lang="en">
+  <!-- Head Start -->
+  <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="oslo" />
+    <meta name="keywords" content="oslo" />
+    <meta name="author" content="oslo" />
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../assets/images/favicon/favicon.png" />
+    <meta name="theme-color" content="#0f8fac" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Oslo" />
+    <meta name="msapplication-TileImage" content="../assets/images/favicon/favicon.png" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Oslo | Cart</title>
+
+    <!-- Google Jost Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Google Monsterrat Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+
+    <!-- Google Leckerli Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap Css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css" />
+
+    <!-- Style Css -->
+    <link id="change-link" rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+  </head>
+  <!-- Head End -->
+
+  <!-- Body Start -->
+  <body>
+    <!-- Loader Start -->
+    <!-- <div class="loader-wrapper"> -->
+      <div class="loader ">
+        <!-- <span>N</span>
+        <span>a</span>
+        <span>N</span>
+        <span>a</span>
+        <span>S</span>
+        <span>h</span>
+        <span>o</span>
+        <span>p</span>
+        <span>p</span>
+        <span>i</span> -->
+      </div>
+    <!-- </div> -->
+    <!-- Loader End -->
+
+    <!-- Overlay -->
+    <a href="javascript:void(0)" class="overlay-general"></a>
+    <!-- Header Start -->
+    
+    <%- include('../partials/user-header.ejs') %> 
+
+
+    <!-- Header End -->
+
+    <!-- Main Start -->
+    <main class="main">
+      <!-- Breadcrumb Start -->
+      <div class="breadcrumb-wrap">
+        <div class="banner">
+          <img class="bg-img bg-top" src="../assets/images/inner-page/banner-p.jpg" alt="banner" />
+
+          <div class="container-lg">
+            <div class="breadcrumb-box">
+              <div class="heading-box">
+                <h1>Cart</h1>
+              </div>
+              <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>
+                  <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+                </li>
+                <li class="current"><a href="cart.html">Cart</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Breadcrumb End -->
+
+      <!-- Cart Section Start -->
+      <section class="section-b-space card-page">
+        <div class="container-lg">
+          <div class="row g-3 g-md-4 cart">
+            <div class="col-md-7 col-lg-8">
+              <div class="cart-wrap">
+                <div class="items-list">
+                  <table class="table cart-table m-md-0">
+                    <% if(validation.outOfStock) { %> 
+                      <p style="color: red;">! Out of Stock </p>
+                    <% } %> 
+                    <% if(validation.qtyZeroErr) { %> 
+                      <p style="color: red;">! Below Zero is not possible </p>
+                    <% } %> 
+                    <thead>
+                      <tr>
+                        <th class="d-none d-sm-table-cell">PRODUCT</th>
+                        <th class="d-none d-sm-table-cell">PRICE</th>
+                        <th class="d-none d-lg-table-cell">QUANTITY</th>
+                        <th class="d-none d-xl-table-cell">TOTAL</th>
+                        <th class="d-none d-xl-table-cell"></th>
+                      </tr>
+                    </thead>
+
+                    <% for(let i=0;i<cartProd.length;i++) { %>
+                      <% let totalPrice =  cartProd[i].prodQty * cartProd[i].prodPrice %>
+                      
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="product-detail">
+                            <img class="pr-img" src="/assets/images/upload-images/<%= cartProd[i].prodImageFront %>" alt="image" />
+                            <div class="details">
+                              <h4 class="title-color font-default2"><%= cartProd[i].prodName %></h4>
+                              <span class="sold-by">Category : <span><%= cartProd[i].prodCategory %></span> </span>
+                              <span class="size gap-2 d-flex">Size : <span><%= cartProd[i].prodSize %></span> </span>
+                              <span class="size gap-2 d-flex d-sm-none">Price : <span><%= cartProd[i].prodPrice %></span> </span>
+                              <div class="plus-minus mt-2 d-inline-flex d-lg-none">
+                                <i class="sub" data-feather="minus"></i>
+                                <input type="number" value="1" min="1" max="10" />
+                                <i class="add" data-feather="plus"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td class="price d-none d-sm-table-cell">₹<%= cartProd[i].prodPrice %></td>
+                        <td class="d-none d-lg-table-cell">
+                          <div class="plus-minus">
+                            <i class="sub" data-feather="minus" onclick="prodQtyChange('<%= userID %>', '<%= cartProd[i].prodId %>', '<%= cartProd[i].prodQty %>',  -1)"></i>
+                            <input type="number" value="<%= cartProd[i].prodQty %>" min="1" max="100" />
+                            <i class="add" data-feather="plus" onclick="prodQtyChange('<%= userID %>', '<%= cartProd[i].prodId %>','<%= cartProd[i].prodQty %>', 1)"></i>
+                          </div>
+                          
+
+                        </td>
+                        <td class="total d-none d-xl-table-cell">₹<%= totalPrice %></td>
+                  <td>
+                    <!-- <form action="deleteCart<%= cartProd[i].prodId %>"  method="post">  -->
+                      <a href="/deleteCart<%= cartProd[i].prodId %>"><button  type="submit">X</button></a>
+                    <!-- </form> -->
+                  </td>
+                      </tr>
+                    </tbody>
+
+                  <% }%> 
+
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5 col-lg-4">
+              <div class="summery-wrap">
+                <div class="coupon-box">
+                  <h5 class="cart-title">Coupon</h5>
+                  <div class="text-wrap">
+                    <h4><i data-feather="tag"></i> Apply Coupon</h4>
+                    <a href="javascript:void(0)" class="btn btn-outline btn-sm">Apply</a>
+                  </div>
+
+                  <p class="content-color font-md mb-0"><a href="login.html" class="theme-color">Login</a> to see best coupon for you</p>
+                </div>
+                <div class="cart-wrap grand-total-wrap">
+                  <div>
+                    <div class="order-summery-box">
+                      <h5 class="cart-title">Price Details (<%= cartLength %>  Items)</h5>
+                      <ul class="order-summery">
+                        <li>
+                          <span>Bag total</span>
+                          <span>₹ <%= finalAmount %>  </span>
+                        </li>
+
+                        <!-- <li>
+                          <span>Bag savings</span>
+                          <span class="theme-color">-$20.00</span>
+                        </li> -->
+
+                        <li>
+                          <span>Coupon Discount</span>
+                          <a href="javascript:void(0)" class="font-danger">Apply Coupon</a>
+                        </li>
+
+                        <li>
+                          <span>Delivery</span>
+                          <span>₹ <%= deliveryCost %> </span>
+                        </li>
+
+                        <li class="pb-0">
+                          <span>Total Amount</span>
+                          <span>₹ <%= checkoutAmount %> </span>
+                        </li>
+                      </ul>
+                      <div class="row g-3 mt-2">
+                        <div class="col-6 col-md-12">
+                          <a href="/address" class="btn-solid checkout-btn">Checkout <i class="arrow"></i></a>
+                        </div>
+                        <div class="col-6 col-md-12">
+                          <a href="/" class="btn-outline w-100 justify-content-center checkout-btn"> Back To Shop </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Cart Section End -->
+    </main>
+    <!-- Main End -->
+
+    <!-- Document Footer Start -->
+    <footer class="footer-document ratio_asos mb-xxl">
+      <div class="bg-footer-l">
+        <img src="../assets/images/fashion/banner/bg-footer-l.png" alt="banner" />
+      </div>
+      <div class="bg-footer-r">
+        <img src="../assets/images/fashion/banner/bg-footer-r.png" alt="banner" />
+      </div>
+      <div>
+        <div class="container-lg">
+          <div class="main-footer">
+            <div class="row gy-3 gy-md-4 gy-xl-0">
+              <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="content-box">
+                  <img class="logo" src="../assets/images/logos/logo-w.png" alt="logo-white" />
+                  <ul>
+                    <li><i data-feather="map-pin"></i> <span> 1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States </span></li>
+                    <li>
+                      <i data-feather="phone"></i><a class="nav" href="tel:185659635"><span> + 185659635 </span></a>
+                    </li>
+                    <li>
+                      <i data-feather="mail"></i><a class="nav" href="mailto:fashion098@gmail.com"><span> fashion098@gmail.com </span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="nav-footer col-lg-2 col-md-4 order-md-3 order-lg-2">
+                <div class="nav content-box d-md-block">
+                  <h5 class="heading-footer">Shop By</h5>
+                  <ul>
+                    <li><a class="nav" href="shop-left-sidebar.html">New In </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Women </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Men </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Shoes</a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Bags & Accessories </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Top Brands </a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-4 order-lg-3">
+                <div class="nav d-md-block content-box">
+                  <h5 class="heading-footer">Information</h5>
+                  <ul>
+                    <li><a class="nav" href="index.html">Home </a></li>
+                    <li><a class="nav" href="shop-left-sidebar.html">Shop </a></li>
+                    <li><a class="nav" href="about-us.html">About Us</a></li>
+                    <li><a class="nav" href="blog-detail.html">Blog </a></li>
+                    <li><a class="nav" href="contact-us.html">Contact </a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-5 order-lg-4">
+                <div class="nav d-md-block content-box">
+                  <h5 class="heading-footer">Get Help</h5>
+                  <ul>
+                    <li><a class="nav" href="user-dashboard.html">Your Orders </a></li>
+                    <li><a class="nav" href="user-dashboard.html">Your Account </a></li>
+                    <li><a class="nav" href="user-dashboard.html">Track Order</a></li>
+                    <li><a class="nav" href="wishlist.html">Your Wishlist</a></li>
+                    <li><a class="nav" href="search.html">Search</a></li>
+                    <li><a class="nav" href="faqs.html">Faqs</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-lg-4 order-md-2 order-lg-5">
+                <div class="content-box">
+                  <h5 class="heading-footer">Follow Us</h5>
+                  <div class="follow-wrap">
+                    <ul>
+                      <li>
+                        <a href="https://www.facebook.com/"> <img src="../assets/icons/svg/social/fb.svg" alt="fb" /> </a>
+                      </li>
+                      <li>
+                        <a href="https://www.instagram.com/accounts/login/?source=auth_switcher"> <img src="../assets/icons/svg/social/inta.svg" alt="fb" /> </a>
+                      </li>
+                      <li>
+                        <a href="https://twitter.com/i/flow/login"> <img src="../assets/icons/svg/social/tw.svg" alt="fb" /> </a>
+                      </li>
+                      <li>
+                        <a href="https://in.pinterest.com/"> <img src="../assets/icons/svg/social/pint.svg" alt="fb" /> </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="subscribe-box">
+                    <h5>Newsletter Sign Up</h5>
+                    <p>Receive our latest updates about our products & promotions.</p>
+                  </div>
+
+                  <form action="javascript:void(0)" class="footer-form">
+                    <input required type="email" class="form-control" placeholder="Your email address" />
+                    <button type="submit" class="btn-solid">SUBMIT <i class="arrow"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-footer">
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <ul>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/1.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/2.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/3.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/4.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-0">© 2022, OSLO Template. Made with heart by Pixelstrap</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Document Footer End -->
+
+    <!-- Mobile Menu Footer Start -->
+    <footer class="mobile-menu-footer d-sm-none">
+      <ul>
+        <li>
+          <a href="index.html">
+            <i data-feather="home"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="search.html" class="search-link">
+            <i data-feather="search"></i>
+            <span>Search</span>
+          </a>
+        </li>
+        <li>
+          <a href="cart.html" class="active">
+            <i data-feather="shopping-bag"></i>
+            <span>Cart</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html">
+            <i data-feather="heart"></i>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a href="user-dashboard.html">
+            <i data-feather="user"></i>
+            <span>Account</span>
+          </a>
+        </li>
+      </ul>
+    </footer>
+    <!-- Mobile Menu Footer End -->
+
+    <!-- Notification Start -->
+    <div class="notification-wrap addToCart">
+      <div class="notification">
+        <img src="../assets/images/fashion/product/front/1.jpg" alt="product" />
+        <div>
+          <h5>Added To Cart</h5>
+        </div>
+      </div>
+    </div>
+    <!-- Notification End -->
+
+    <!-- Tap To Top Button Start -->
+    <div class="tap-to-top-box hide">
+      <button class="tap-to-top-button"><i data-feather="chevrons-up"></i></button>
+    </div>
+    <!-- Tap To Top Button End -->
+
+    <!-- Bootstrap Js -->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Feather Icon -->
+    <script src="../assets/js/feather/feather.min.js"></script>
+
+    <!-- Header Sticky js  -->
+    <script src="../assets/js/sticky-header.js"></script>
+
+    <!-- Script Js -->
+    <script src="../assets/js/script.js"></script>
+
+
+    <script>
+      function prodQtyChange(userID, ProdId, qtyNow, count){
+        count = parseInt(count)
+        $.ajax({
+          url:'/changeQuantity',
+          data:{
+            user: userID,
+            product: ProdId,
+            qtyNow: qtyNow,
+            count: count
+          },
+          method: 'post',
+          success:(response)=>{
+            if(response.change){
+              location.reload()
+            }
+          }
+        })
+      }
+
+    </script>
+
+  </body>
+  <!-- Body End -->
+</html>
+<!-- Html End -->

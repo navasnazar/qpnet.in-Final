@@ -1,0 +1,242 @@
+<%- include('../partials/admin-header.ejs') %> 
+
+
+
+
+
+
+<!-- Collection Section Start -->
+<section style="padding-bottom: 0%;">
+    <div class="container-lg">
+      <div class="title-box7 side-by-side">
+        <div>
+          <h2 class="heading">NaNaShoppi <span>ORDERS </span></h2>
+          <svg>
+            <use xlink:href="../assets/svg/sprite.svg#shape2"></use>
+          </svg>
+        </div>
+        <ul class="nav nav-tabs nav-tabs5 round-tab row-tab" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active"  id="casual-tab" data-bs-toggle="tab" data-bs-target="#casual" type="button" role="tab" aria-controls="casual" aria-selected="true">New Orders</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="athletic-tab" data-bs-toggle="tab" data-bs-target="#athletic" type="button" role="tab" aria-controls="athletic" aria-selected="false">Confired</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="sport-tab" data-bs-toggle="tab" data-bs-target="#sport" type="button" role="tab" aria-controls="sport" aria-selected="false">Delivered</button>
+          </li>
+        </ul>
+      </div>
+    
+
+    <!-- proceed orders start -->
+    <div class="tab-content ratio_40" id="myTabContent">
+        <div class="tab-pane fade" id="casual" role="tabpanel" aria-labelledby="casual-tab">
+        <div class="casual-content">
+        <div>
+            <div class="container">   
+                <table id="myTable" class="table mt-5">
+                <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for user ID..">
+        <thead>
+          <tr >
+            <th scope="col">No</th>
+            <th scope="col">Order Id</th>
+            <th scope="col">User ID</th>
+            <th scope="col" style="width: 150px;">Date</th>
+            <th scope="col">Total Amount</th>
+            <th scope="col">Payment Method</th>
+            <th scope="col">Status</th>
+            <th scope="col">Details</th>
+            <th scope="col">Action</th>
+            <th scope="col">Cancel Order</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- {{#each orders}} -->
+          <% for(let i=0;i<allOrders.length;i++) { %>
+          <% if(allOrders[i].orderBilled){ %> 
+           
+          <tr>
+            <td scope="row"><%= i+1  %> </td>
+            
+            <td><%= allOrders[i]._id %> </td>
+            <td><%= allOrders[i].userId %> </td>
+            <td><%= allOrders[i].orderDate %> </td>
+            <td>₹ <%= allOrders[i].checkoutAmount %>/- </td>
+            <td><%= allOrders[i].paymentOption %> </td>
+            <td><%= allOrders[i].shippingStatus %> </td>
+            <td><a href="/admin/OrderDetails<%= allOrders[i]._id %>"><button style="color: blue;"  type="submit">View</button></a></td>
+            <td> 
+                <form action="/admin/confirmOrder<%= allOrders[i]._id %>" method="post">
+                    <button class="btn btn-outline rounded-pill" style="height: 25px;" type="submit" >Confirm</button>
+                </form>
+            </td>
+            <td>
+                <form action="/admin/cancellOrder<%= allOrders[i]._id %>" method="post">
+                    <button class="btn btn-solid line-none rounded-pill" style="height: 25px;" onclick="return confirm('Are you want delete <%= allOrders[i].userId %> order?')" type="submit" >Delete</button>
+                </form>
+            </td>
+          </tr>
+
+          
+          <% }%> 
+          <% }%> 
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- proceed orders end -->
+
+<!-- proceed orders start -->
+
+<div class="tab-pane fade" id="athletic" role="tabpanel" aria-labelledby="athletic-tab">
+    <div class="athletic-content">
+      <div>
+          <div class="container">   
+              <table id="myTable" class="table mt-5">
+              <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for user ID..">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Order Id</th>
+          <th scope="col">User ID</th>
+          <th scope="col" style="width: 150px;">Date</th>
+          <th scope="col">Total Amount</th>
+          <th scope="col">Payment Method</th>
+          <th scope="col">Status</th>
+          <th scope="col">Details</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- {{#each products}} -->
+        <% for(let i=0;i<allOrders.length;i++) { %>
+            <% if(allOrders[i].orderConfirmed){ %> 
+             
+            <tr>
+              <td scope="row"><%= i+1  %> </td>
+              
+              <td><%= allOrders[i]._id %> </td>
+              <td><%= allOrders[i].userId %> </td>
+              <td><%= allOrders[i].orderDate %> </td>
+              <td>₹ <%= allOrders[i].checkoutAmount %>/- </td>
+              <td><%= allOrders[i].paymentOption %> </td>
+              <td><%= allOrders[i].shippingStatus %> </td>
+              <td><a href="/admin/OrderDetails<%= allOrders[i]._id %>"><button style="color: blue;"  type="submit">View</button></a></td>
+
+              <td> 
+                  <form action="/admin/deliveredOrder<%= allOrders[i]._id %>" method="post">
+                      <button class="btn btn-outline rounded-pill" style="height: 25px;" type="submit" >Delivered</button>
+                  </form>
+              </td>
+            </tr>
+  
+            
+            <% }%> 
+            <% }%> 
+
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- proceed orders end -->
+
+
+<!-- proceed orders start -->
+
+<div class="tab-pane fade" id="sport" role="tabpanel" aria-labelledby="sport-tab">
+    <div class="sport-content">
+      <div>
+          <div class="container">   
+              <table id="myTable" class="table mt-5">
+              <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for user ID..">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Order Id</th>
+          <th scope="col">User ID</th>
+          <th scope="col" style="width: 150px;">Date</th>
+          <th scope="col">Total Amount</th>
+          <th scope="col">Payment Method</th>
+          <th scope="col">Status</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- {{#each products}} -->
+        <% for(let i=0;i<allOrders.length;i++) { %>
+            <% if(allOrders[i].orderDelivered){ %> 
+             
+            <tr>
+              <td scope="row"><%= i+1  %> </td>
+              
+              <td><%= allOrders[i]._id %> </td>
+              <td><%= allOrders[i].userId %> </td>
+              <td><%= allOrders[i].orderDate %> </td>
+              <td>₹ <%= allOrders[i].checkoutAmount %>/- </td>
+              <td><%= allOrders[i].paymentOption %> </td>
+              <td><%= allOrders[i].shippingStatus %> </td>
+              <td><a href="/admin/OrderDetails<%= allOrders[i]._id %>"><button style="color: blue;"  type="submit">View</button></a></td>
+
+            </tr>
+  
+            
+            <% }%> 
+            <% }%> 
+
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- proceed orders end -->
+
+  </div>
+</section>
+
+
+
+    
+ 
+
+
+
+
+
+
+
+
+  
+
+<!-- search script -->
+  <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+<!-- search script end -->

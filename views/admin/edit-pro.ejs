@@ -1,0 +1,113 @@
+<%- include('../partials/admin-header.ejs') %> 
+
+
+<!-- Reply From Section Start -->
+<div class="replay-form round-wrap-content top-space" id="replaySection">
+    <div class="title-box4">
+      <h4 class="heading">Edit Product<span class="bg-theme-blue"></span></h4>
+    </div>
+
+    <form action="/admin/edit-pro<%= product[0]._id %>" enctype="multipart/form-data" class="custom-form form-pill" method="post">
+      <div class="row g-3 g-sm-4">
+        <div class="col-sm-6">
+          <div class="input-box">
+            <label for="pname">Product Name</label>
+            <input name="pname" id="pname" type="text" value="<%= product[0].pname %> " class="form-control" />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="input-box">
+            <label for="price">Price</label>
+            <input name="price" id="price" type="text" value="<%= product[0].price %>" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="input-box">
+            <label for="quantity">Quantity</label>
+            <input name="quantity" id="quantity" type="number" value="<%= product[0].quantity %>" minlength="0" maxlength="100" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="input-box">
+            <label for="color">Color</label>
+            <input name="color" id="color" type="text" value="<%= product[0].color %>" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="input-box">
+              <label for="category">Category</label>
+              <select class="form-select form-control"   id="category" name="category">
+                <option selected disabled value=""><%= product[0].category %></option>
+                <% for(let j=0; j<categories.length; j++){ %> 
+                  <option><%= categories[j] %> </option>
+                  <% } %> 
+              </select>
+              
+            </div>
+          </div>
+        
+          <div class="col-sm-6">
+            <div class="input-box">
+              <label for="size">Size</label>
+              <select class="form-select form-control"  id="size" name="size">
+                <option selected disabled value=""><%= product[0].size %></option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="input-box">
+              <label for="description">Description</label>
+              <input name="description" id="description" type="text" value="<%= product[0].description %>" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="input-box">
+              <label for="itemDetails">Item Details</label>
+              <input name="itemDetails" id="itemDetails" type="text" value="<%= product[0].itemDetails %>" class="form-control" />
+            </div>
+          </div>
+          <!-- <div class="col-12 text-end">
+            <button type="submit" class="post-button btn btn-solid btn-sm mb-line">Update Data <i class="arrow"></i></button>
+          </div> -->
+          <!-- </form> -->
+          <!-- <form action="/admin/edit-img<%= product[0]._id %>" class="custom-form form-pill" method="post"> -->
+
+          <div class="col-sm-12 d-flex" >
+            
+            <div class="ml-5">
+                <label for="imageFront">Front View</label>
+                <img style="width: 100px; height: 100px;" src="/assets/images/upload-images/<%= product[0].imageFront %>" alt=""> 
+                <input class="form-control" type="file" name="imageFront" accept="image/*"  id="imageFront" />
+    
+            </div>
+            <div style="margin-left: 50px ;">
+                <label for="imageTop">Top View</label>
+                <img style="width: 100px; height: 100px;" src="/assets/images/upload-images/<%= product[0].imageTop %>" alt="">
+                <input class="form-control" value="<%= product[0].imageTop %>" type="file" name="imageTop" accept="image/*"  id="imageTop" />
+
+            </div>
+            <div style="margin-left: 50px ;">
+                <label for="imageSide">Side View</label>
+                <img style="width: 100px; height: 100px;" src="/assets/images/upload-images/<%= product[0].imageSide %>" alt="">
+                <input class="form-control"  type="file" name="imageSide" accept="image/*"  id="imageSide" />
+
+            </div>
+              
+          </div>
+          <div class="col-12 text-end">
+            <button type="submit" class="post-button btn btn-solid btn-sm mb-line">Update Data <i class="arrow"></i></button>
+          </div>
+        </form>
+      </div>
+  </div>
+  <!-- Reply From Section End -->

@@ -1,0 +1,103 @@
+<%- include('../partials/admin-header.ejs') %> 
+
+<!-- Collection Section Start -->
+<section style="padding-bottom: 0%;">
+    <div class="container-lg">
+      <div class="title-box7 side-by-side">
+        <div>
+          <h2 class="heading">OUR <span>USERS </span></h2>
+          <svg>
+            <use xlink:href="../assets/svg/sprite.svg#shape2"></use>
+          </svg>
+          
+        </div>
+      </div>
+    </div>
+</section>
+      <!-- loop start -->
+    <!-- {{#each products}} -->
+    
+<section style="padding-top: 0%;">
+        <div>
+            <div class="container">   
+                <table id="myTable" class="table mt-5">
+                <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email ID</th>
+            <th scope="col">Mobile Number</th>
+            
+            <!-- <th>Image</th> -->
+            <th> Block / Unblock</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <!-- {{#each products}} -->
+          <% for(let i=0;i<users.length;i++) { %>
+           
+          <tr>
+            <th scope="row"><%= i+1  %> </th>
+            
+            <td><%= users[i].name %> </td>
+            <td><%= users[i].email %> </td>
+            <td><%= users[i].mobileNo %> </td>
+  
+            <td> 
+                <% if(users[i].blockStatus) { %>
+
+                    <form action="/admin/unblock-user<%= users[i]._id %>" method="post">
+                    <button class="btn btn-solid line-none rounded-pill" style="height: 25px; width: 125px;" type="submit" onclick="return confirm('Are you want Unblock <%= users[i].name %>?')">Unblock</button>
+                    </form>
+
+                <% } else { %> 
+                    <form action="/admin/block-user<%= users[i]._id %>" method="post">
+                    <button class="btn btn-outline rounded-pill" style="height: 25px; width: 125px;" type="submit" onclick="return confirm('Are you want Block <%= users[i].name %>?')">Block</button>
+                    </form>
+
+                <% } %> 
+            </td>
+            
+          </tr>
+
+          
+          <% }%> 
+
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </section>
+
+
+
+<!-- search script -->
+  <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+<!-- search script end -->
+
+ 

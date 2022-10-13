@@ -1,0 +1,99 @@
+/// Utility ///
+@import "utils/variables";
+
+/// Font color ///
+$title-color: #f0f0f0;
+$title-color2: #f0f0f0;
+$title-color3: #f0f0f0;
+$content-color: #a9a9a9;
+$content-color2: #a9a9a9;
+
+/// Main Color ///
+$black: #f0f0f0;
+$black-light: #f0f0f0;
+$black-light-dark: #262834;
+$white: #22282c;
+$white-light: #2e343b;
+
+$gray-light: #2e343b;
+$gray-light2: #2e343b;
+$gray-light3: #2e343b;
+
+$border-color: #404040;
+$border-color2: #404040;
+$border-color3: #404040;
+$border-color4: #404040;
+$border-color5: #404040;
+/// Box Shadow ///
+$box-shadow: #404040;
+
+$box-shadow-blog: 0 0 5px #404040;
+$border-blog: 1px solid $border-color5;
+
+$bg-gradient: linear-gradient(165.23deg, #e5e6e9 8.65%, #eaebed 87.81%);
+$bg-gradient2: linear-gradient(180deg, rgba(248, 247, 247, 0.7) 0%, #f8f7f7 53.93%);
+$dark-gradient: linear-gradient(90deg, #1b2023 6.15%, #131618 50%);
+
+@import "utils/mixin/common";
+@import "utils/mixin/animation";
+
+/// Basic Reset Css ///
+@import "base/reset";
+@import "base/typography";
+
+/// Components Css ///
+@import "components/accordian";
+@import "components/button";
+@import "components/comment-box";
+@import "components/breadcumb";
+@import "components/dropdown";
+@import "components/form";
+@import "components/grid-masonry";
+@import "components/modal";
+@import "components/nav-tabs";
+@import "components/nav";
+@import "components/notification";
+@import "components/pagination";
+@import "components/product-card";
+@import "components/progress-bar";
+@import "components/range-slider";
+@import "components/ratio";
+@import "components/sale-box";
+@import "components/swiper-slider-pagination";
+@import "components/switch";
+@import "components/table";
+@import "components/title-unique";
+
+/// Layout Css ///
+@import "layout/header";
+@import "layout/sidebar";
+
+@import "layout/category-section";
+@import "layout/offer-section";
+@import "layout/special-product-section";
+@import "layout/detail-card-section";
+@import "layout/best-seller-section";
+@import "layout/brand-section";
+@import "layout/decoration-section";
+@import "layout/service-section";
+
+/// Pages Css ///
+@import "pages/authentic-page";
+@import "pages/blog-pages";
+@import "pages/inner_pages";
+@import "pages/page-list";
+@import "pages/element-pages";
+
+/// Theme Css ///
+
+@import "utils/variables";
+@import "layout/home-slider";
+
+$bg-gradient: linear-gradient(165.23deg, #e5e6e9 8.65%, #eaebed 87.81%);
+$bg-gradient2: linear-gradient(180deg, rgba(248, 247, 247, 0.7) 0%, #f8f7f7 53.93%);
+$dark-gradient: linear-gradient(90deg, #1b2023 6.15%, #131618 50%);
+
+@import "layout/sub-banner-section";
+@import "layout/intagram-section";
+@import "components/intagram-card";
+@import "layout/footer";

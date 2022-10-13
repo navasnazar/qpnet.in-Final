@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- Html start -->
+<html lang="en">
+  <!-- Head Start -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="oslo" />
+    <meta name="keywords" content="oslo" />
+    <meta name="author" content="oslo" />
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../assets/images/favicon/favicon.png" />
+    <meta name="theme-color" content="#0f8fac" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Oslo" />
+    <meta name="msapplication-TileImage" content="../assets/images/favicon/favicon.png" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Oslo | Otp</title>
+
+    <!-- Google Jost Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Google Monsterrat Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+
+    <!-- Google Leckerli Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap Css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css" />
+
+    <!-- Style Css -->
+    <link id="change-link" rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+  </head>
+  <!-- Head End -->
+
+  <!-- Body Start -->
+  <body>
+    <!-- Loader Start -->
+    <div class="loader-wrapper">
+      <div class="loader animate">
+        <span>N</span>
+        <span>a</span>
+        <span>N</span>
+        <span>a</span>
+        <span>S</span>
+        <span>h</span>
+        <span>o</span>
+        <span>p</span>
+        <span>p</span>
+        <span>i</span>
+      </div>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Main Start -->
+    <div class="main">
+      <!-- Otp Section Start -->
+      <section class="page-body p-0">
+        <div class="row g-0 ratio_asos">
+          <div class="order-2 order-lg-1 col-lg-5">
+            <div class="content-box">
+              <div>
+                <h5>VERIFICATION CODE <span class="bg-theme-blue"></span></h5>
+                <p class="font-md content-color">We have sent the code verification to your Mobile Number</p>
+                
+                <form action="/otp" class="custom-form form-pill" method="post">
+                    <span class="font-md edit">
+                        <%= userNumber %>  <a href="forgot-password.html"> <i data-feather="edit-3"></i></a
+                    ></span>
+                  <div class="input-box otp-input">
+                    <input class="otp form-control" name="otp" id="otp" placeholder="000000" type="text" required oninput="digitValidate(this)" onkeyup="tabChange(1)" maxlength="6" />
+                  </div>
+
+                  <button type="submit" class="btn-solid rounded-pill line-none">Submit Otp <i class="arrow"></i></button>
+                  <a href="/" class="btn-solid rounded-pill line-none btn-outline mt-3 d-flex justify-content-center">Home <i class="arrow"></i></a>
+                </form>
+
+                <!-- Count Down Start -->
+                <div class="otp-countdown text-center">
+                  <div class="content-color d-flex gap-2">
+                    <a href="" class="resend-otp">Resend OTP </a> <span class="time d-flex gap-2"> In <span id="timer"></span></span>
+                  </div>
+                </div>
+                <!-- Count Down End -->
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 order-lg-2 col-lg-7">
+            <div class="img-box">
+              <img class="bg-img" src="../assets/images/inner-page/banner.jpg" alt="banner" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Otp Section End -->
+    </div>
+    <!-- Main End -->
+
+    <!-- Bootstrap Js -->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Feather Icon -->
+    <script src="../assets/js/feather/feather.min.js"></script>
+
+    <!-- Password Show-Hide js -->
+    <script src="../assets/js/password-showhide.js"></script>
+
+    <!-- Otp  js -->
+    <script src="../assets/js/otp.js"></script>
+
+    <!-- Script js -->
+    <script src="../assets/js/script.js"></script>
+  </body>
+  <!-- Body End -->
+</html>
+<!-- Html End -->
