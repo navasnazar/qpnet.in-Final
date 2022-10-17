@@ -17,8 +17,11 @@ let validation =
     matchPassErr: false,
     wishMsg: false,
     outOfStock: false,
-    qtyZeroErr: false
+    qtyZeroErr: false,
+    couponErr: false,
   }
+
+let couponValue = 0; 
 
 let sessions;
 const verifyLogin=(req,res,next)=>{
@@ -205,6 +208,7 @@ router.post('/addToWish:id',(req, res)=>{
 })
 
 router.get('/cart',verifyLogin,(req, res)=>{
+  console.log(couponValue);
   userID = sessions.userid
     productHandles.getCart2(userID).then((cartProd)=>{
       let finalAmount = 0
@@ -213,13 +217,39 @@ router.get('/cart',verifyLogin,(req, res)=>{
         finalAmount += totalPrice
       }
         let deliveryCost = 50;
-        let checkoutAmount = finalAmount + deliveryCost
+        let checkoutAmount = finalAmount + deliveryCost - couponValue
         let cartLength = cartProd.length
-        productHandles.addChAmt(checkoutAmount, deliveryCost, finalAmount, userID)
-        res.render('user/cart',{cartProd, userID, finalAmount, deliveryCost, checkoutAmount, cartLength, validation})
-        validation = { outOfStock: false }
+        console.log('chq amnt: ',checkoutAmount);
+        productHandles.addChAmt(checkoutAmount, deliveryCost, finalAmount, userID, couponValue).then(()=>{
+          res.render('user/cart',{cartProd, userID, finalAmount, deliveryCost, checkoutAmount, cartLength, validation, couponValue})
+          validation = { outOfStock: false }
+          couponValue = 0;
+        }).catch((e)=>{
+          console.log('ERR',e);
+        })
     })
 })
+
+router.post('/applycoupon',(req, res)=>{
+  userID = sessions.userid
+  couponId = req.body.res
+  totalAmount = req.body.totalAmount
+  productHandles.applyCoupon(userID, couponId, totalAmount).then((response)=>{
+    if(response.couponErr){
+      response.change=true
+      validation.couponErr=true;
+      res.send(response)
+
+    }else if(response.done){
+      couponValue = response.offer
+      console.log('tttt',couponValue)
+      response.change=true
+      res.send(response)
+    }
+  })
+})
+
+
 
 router.get('/wishlist',verifyLogin, (req, res)=>{
   userID = sessions.userid

@@ -48,6 +48,19 @@
               
             </div>
           </div>
+
+          <div class="col-sm-6">
+            <div class="input-box">
+              <label for="subCategory">Sub Category</label>
+              <select class="form-select form-control"   id="subCategory" name="subCategory">
+                <option selected disabled value=""><%= product[0].category %></option>
+                <% for(let j=0; j<categories.length; j++){ %> 
+                  <option><%= categories[j] %> </option>
+                  <% } %> 
+              </select>
+              
+            </div>
+          </div>
         
           <div class="col-sm-6">
             <div class="input-box">
@@ -70,17 +83,13 @@
             </div>
           </div>
 
-          <div class="col-sm-6">
+          <div class="col-sm-12">
             <div class="input-box">
               <label for="itemDetails">Item Details</label>
-              <input name="itemDetails" id="itemDetails" type="text" value="<%= product[0].itemDetails %>" class="form-control" />
+              <textarea name="itemDetails" type="text"  class="form-control" id="itemDetails" cols="30" rows="2"></textarea>
             </div>
           </div>
-          <!-- <div class="col-12 text-end">
-            <button type="submit" class="post-button btn btn-solid btn-sm mb-line">Update Data <i class="arrow"></i></button>
-          </div> -->
-          <!-- </form> -->
-          <!-- <form action="/admin/edit-img<%= product[0]._id %>" class="custom-form form-pill" method="post"> -->
+          
 
           <div class="col-sm-12 d-flex" >
             
@@ -109,5 +118,5 @@
           </div>
         </form>
       </div>
-  </div>
+  
   <!-- Reply From Section End -->

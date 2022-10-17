@@ -58,18 +58,27 @@ router.post('/login',(req,res)=>{
 })
 
 router.get('/view-products',verifyAdminLogin, (req, res)=>{
+  let subCat =[]
   productHandles.getProducts().then((products)=>{
     productHandles.findCategory().then((categories)=>{
-      res.render('admin/view-products',{admin:true, products, categories})
+      res.render('admin/view-products',{admin:true, products, categories, subCat})
     })
   })
 })
 
 router.post('/add-category',(req, res)=>{
   catergory = req.body.categoryName
-  console.log(catergory)
-  productHandles.addCategory(catergory).then(()=>{
+  subCategory = req.body.subCategoryName
+  productHandles.addCategory(catergory, subCategory).then(()=>{
     res.redirect('/admin/view-products')
+  })
+})
+
+router.post('/findSubCategory',(req, res)=>{
+  category = req.body
+  console.log(category);
+  productHandles.findSubcategory(category).then((subCat)=>{
+    res.send(subCat)
   })
 })
 
@@ -173,6 +182,27 @@ router.get('/OrderDetails:id',verifyAdminLogin,(req, res)=>{
     let orderItems = order.items
     let orderAddress = order.shippingAddress[0]
     res.render('admin/view-orderDetails',{order, orderItems, orderAddress})
+  })
+})
+
+router.get('/view-coupons',verifyAdminLogin, (req, res)=>{
+  productHandles.findCoupon().then((coupons)=>{
+    res.render('admin/view-coupons',{coupons})
+  })
+})
+
+router.post('/add-coupon',(req, res)=>{
+  coupon = req.body
+  console.log(coupon);
+  productHandles.addCoupon(coupon).then(()=>{
+    res.redirect('/admin/view-coupons')
+  })
+})
+
+router.post('/delete-coupon/:id',(req, res)=>{
+  couponId = req.params.id
+  productHandles.deleteCoupon(couponId).then(()=>{
+    res.redirect('/admin/view-coupons')
   })
 })
 

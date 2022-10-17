@@ -10,7 +10,8 @@ let cartShema = require('../config/cartSchema')
 const { TrustProductsEvaluationsContext } = require('twilio/lib/rest/trusthub/v1/trustProducts/trustProductsEvaluations')
 const { response } = require('../app')
 let categorydb = require('../config/categorydb')
-
+let coupondb = require('../config/coupondb')
+const { AddOnResultContext } = require('twilio/lib/rest/api/v2010/account/recording/addOnResult')
 
 
 module.exports={
@@ -24,6 +25,7 @@ module.exports={
                 description: product.description,
                 price: product.price,
                 category: product.category,
+                subCategory: product.subCategory,
                 color: product.color,
                 size: product.size,
                 quantity: product.quantity,
@@ -35,17 +37,29 @@ module.exports={
             })
             new_product.save().then((response)=>{
                 resolve(response)
-                // console.log(response)
             })
         })
     },
-    addCategory:(catergory)=>{
+    addCategory:(category, subCategory)=>{
         return new Promise(async(resolve, reject)=>{
-            var new_category = new categorydb({
-                Category: catergory
-            })
-            new_category.save().then((response)=>{
-                resolve(response)
+           categorydb.findOne({Category:category}).then((res)=>{
+            if(res){
+                categorydb.updateOne({Category:category},
+                    {
+                        $push:{subCategory: subCategory}
+                    }).then((response)=>{
+                        resolve(response)
+                    })  
+                
+            }else{
+                    var new_category = new categorydb({
+                        Category: category,
+                        subCategory: subCategory,
+                    })
+                    new_category.save().then((response)=>{
+                        resolve(response)
+                    })
+                }    
             })
         })
     },
@@ -56,9 +70,18 @@ module.exports={
                 for(let i=0; i<result.length; i++){
                     categories[i] = result[i].Category
                 }
-                console.log(categories);
                 resolve(categories)
             })
+        })
+    },
+    findSubcategory:(category)=>{
+        return new Promise(async(resolve, reject)=>{
+           categorydb.findOne({Category:category.category}).then((res)=>{
+            subCat = res.subCategory
+            resolve(subCat)
+           }).catch((e)=>{
+            console.log(e);
+           })
         })
     },
     getProducts:()=>{
@@ -172,7 +195,10 @@ module.exports={
                         prodSize: product[0].size,
                         prodImageFront: product[0].imageFront,
                     }],
-                    checkoutAmount: 0
+                    finalAmount:0,
+                    couponOffer:0,
+                    deliveryCost:0,
+                    checkoutAmount:0
                 })
                 cart_product.save().then((response)=>{
                     resolve(response)
@@ -305,11 +331,11 @@ module.exports={
             })
         })
     },
-    addChAmt:(checkoutAmount, deliveryCost, finalAmount, userID)=>{
+    addChAmt:(checkoutAmount, deliveryCost, finalAmount, userID, couponValue)=>{
         return new Promise(async (resolve, reject)=>{
             await cartShema.updateOne({userId:userID},
             {
-                $set:{finalAmount: finalAmount, deliveryCost: deliveryCost, checkoutAmount: checkoutAmount}
+                $set:{finalAmount: finalAmount, deliveryCost: deliveryCost, checkoutAmount: checkoutAmount, couponOffer: couponValue}
             }).then((response)=>{
                 resolve(response)
             })
@@ -348,6 +374,81 @@ module.exports={
                 })
             }
             resolve()
+        })
+    },
+    addCoupon:(coupon)=>{
+        return new Promise(async(resolve, reject)=>{
+            var new_coupon = new coupondb({
+                couponId: coupon.couponId,
+                offer: coupon.offer,
+                minAmount: coupon.minAmount,
+                maxAmount: coupon.maxAmount,
+                actDate: coupon.actDate,
+                endDate: coupon.endDate,
+            })
+            new_coupon.save().then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    findCoupon:()=>{
+        let coupons=[]
+        return new Promise(async(resolve, reject)=>{
+            coupondb.find().then((res)=>{
+                coupons = res
+                resolve(coupons)
+            })
+        })
+    },
+    deleteCoupon:(couponId)=>{
+        return new Promise(async(resolve, reject)=>{
+            await coupondb.deleteOne({_id:objectId(couponId)}).then(()=>{
+                resolve()
+            })
+        })
+    },
+    applyCoupon:(userID, addCoupon, totalAmount)=>{
+        let couponValidity = { couponErr:false, done:false}
+        let coupon ;
+        return new Promise(async(resolve, reject)=>{
+            coupondb.findOne({couponId: addCoupon}).then((res)=>{
+                console.log(res);
+                coupon = res
+                if(res){
+                    coupondb.findOne({couponId: addCoupon, used_customers: {$elemMatch: {userId:userID}}}).then((result)=>{
+                            console.log('XXXX',result);
+                            if(result){
+                                console.log("already used");
+                                couponValidity.couponErr = true;
+                                resolve(couponValidity)
+                            }else{
+                                if(res.minAmount > totalAmount || res.maxAmount < totalAmount){
+                                    console.log("total amount not match");
+                                    couponValidity.couponErr = true;
+                                    resolve(couponValidity)
+                                }else if(res.actDate > Date.now() || res.endDate < Date.now()){
+                                    console.log("date not match");
+                                    couponValidity.couponErr = true;
+                                    resolve(couponValidity)
+                                }else{
+                                    coupondb.updateOne({couponId: addCoupon},
+                                        {
+                                            $push: {used_customers: {userId: userID}}
+        
+                                        }).then((response)=>{
+                                            coupon.done = true;
+                                            console.log('hiiii', coupon.offer);
+                                            resolve(coupon)
+                                        })
+                                }
+                            }
+                        })
+                }else{
+                    console.log('coupon not valid');
+                    couponValidity.couponErr = true;
+                    resolve(couponValidity)
+                }
+            })
         })
     }
 }

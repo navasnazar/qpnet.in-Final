@@ -151,15 +151,7 @@
 
             <div class="col-md-5 col-lg-4 col-xl-3">
               <div class="summery-wrap">
-                <div class="coupon-box">
-                  <h5 class="cart-title">Coupon</h5>
-                  <div class="text-wrap">
-                    <h4><i data-feather="tag"></i> Apply Coupon</h4>
-                    <a href="javascript:void(0)" class="btn btn-outline btn-sm">Apply</a>
-                  </div>
-
-                  <p class="content-color font-md mb-0"><a href="login.html" class="theme-color">Login</a> to see best coupon for you</p>
-                </div>
+               
                 <div class="cart-wrap grand-total-wrap">
                   <div>
                     <div class="order-summery-box">
@@ -170,14 +162,9 @@
                           <span>₹ <%= userCart[0].finalAmount %> </span>
                         </li>
 
-                        <!-- <li>
-                          <span>Bag savings</span>
-                          <span class="theme-color">-$20.00</span>
-                        </li> -->
-
                         <li>
                           <span>Coupon Discount</span>
-                          <a href="javascript:void(0)" class="font-danger">Apply Coupon</a>
+                          <span>- ₹ <%= userCart[0].couponOffer %> </span>
                         </li>
 
                         <li>

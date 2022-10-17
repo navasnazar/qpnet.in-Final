@@ -61,7 +61,7 @@
             
             <td><%= allOrders[i]._id %> </td>
             <td><%= allOrders[i].userId %> </td>
-            <td><%= allOrders[i].orderDate %> </td>
+            <td><%= allOrders[i].orderDate.toISOString().split('T')[0]; %></td>
             <td>₹ <%= allOrders[i].checkoutAmount %>/- </td>
             <td><%= allOrders[i].paymentOption %> </td>
             <td><%= allOrders[i].shippingStatus %> </td>
@@ -121,7 +121,7 @@
               
               <td><%= allOrders[i]._id %> </td>
               <td><%= allOrders[i].userId %> </td>
-              <td><%= allOrders[i].orderDate %> </td>
+              <td><%= allOrders[i].orderDate.toISOString().split('T')[0]; %> </td>
               <td>₹ <%= allOrders[i].checkoutAmount %>/- </td>
               <td><%= allOrders[i].paymentOption %> </td>
               <td><%= allOrders[i].shippingStatus %> </td>
@@ -177,7 +177,7 @@
               
               <td><%= allOrders[i]._id %> </td>
               <td><%= allOrders[i].userId %> </td>
-              <td><%= allOrders[i].orderDate %> </td>
+              <td><%= allOrders[i].orderDate.toISOString().split('T')[0]; %></td>
               <td>₹ <%= allOrders[i].checkoutAmount %>/- </td>
               <td><%= allOrders[i].paymentOption %> </td>
               <td><%= allOrders[i].shippingStatus %> </td>

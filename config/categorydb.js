@@ -3,6 +3,8 @@ const mongoose = require('mongoose'),
 
       const Category = mongoose.model('Category', {
         Category: { type: String },
+        subCategory: [{ type: String }],
+
         
     });
  

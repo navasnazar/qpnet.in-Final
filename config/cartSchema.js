@@ -17,6 +17,7 @@ const mongoose = require('mongoose'),
             }
         ],
         finalAmount:{type: Number},
+        couponOffer:{type: Number},
         deliveryCost:{type: Number},
         checkoutAmount:{type: Number},
         })
