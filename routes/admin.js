@@ -9,6 +9,8 @@ var objectId=require('mongodb').ObjectId
 let upload = require('../handles/multer')
 
 let AdminSession;
+let offers =[]
+
 let verifyAdminLogin=(req,res,next)=>{
   AdminSession=req.session
   if(AdminSession.adminId){
@@ -24,7 +26,9 @@ let validation={
 
 /* GET home page. */
 router.get('/', verifyAdminLogin, function(req, res, next) {
-  res.render('admin/dashboard');
+  productHandles.findCategory().then((categories)=>{
+    res.render('admin/dashboard',{categories})
+  })
 });
 
 router.get('/login',(req, res)=>{
@@ -74,9 +78,24 @@ router.post('/add-category',(req, res)=>{
   })
 })
 
+router.post('/chartView',(req, res)=>{
+  productHandles.findCategory().then((categories)=>{
+    userHandles.getAllSalesDetails(categories).then((allSalesProd)=>{
+      res.send({categories, allSalesProd})
+    })
+  })
+})
+
+router.post('/chartViewBar',(req, res)=>{
+  console.log('barrrrr');
+  userHandles.getAllOrders().then((allOrders)=>{
+    console.log(allOrders);
+    res.send(allOrders)
+  })
+})
+
 router.post('/findSubCategory',(req, res)=>{
   category = req.body
-  console.log(category);
   productHandles.findSubcategory(category).then((subCat)=>{
     res.send(subCat)
   })
@@ -84,7 +103,6 @@ router.post('/findSubCategory',(req, res)=>{
 
 
 router.post('/add-products', upload.any(), (req, res)=>{
-  console.log(req.files)
   productHandles.addProduct(req.body , req.files).then((response)=>{
     res.redirect('/admin/view-products')
   })
@@ -92,7 +110,6 @@ router.post('/add-products', upload.any(), (req, res)=>{
 
 router.get('/delete-product/:id',verifyAdminLogin, (req, res)=>{
   let proId = req.params.id
-
   productHandles.deleteProduct(proId).then((response)=>{
     res.redirect('/admin/view-products')
   })
@@ -101,11 +118,12 @@ router.get('/delete-product/:id',verifyAdminLogin, (req, res)=>{
 
 router.get('/edit-pro:id', verifyAdminLogin, (req, res)=>{
   let id = req.params.id
+  let subCat =[]
   console.log(id)
   productHandles.getProDetails(id).then((product)=>{
     productHandles.findCategory().then((categories)=>{
     console.log('product :', product)   
-    res.render('admin/edit-pro',{product, categories})
+    res.render('admin/edit-pro',{product, categories, subCat})
     })
   })
 })
@@ -204,6 +222,10 @@ router.post('/delete-coupon/:id',(req, res)=>{
   productHandles.deleteCoupon(couponId).then(()=>{
     res.redirect('/admin/view-coupons')
   })
+})
+
+router.get('/view-offers', (req, res)=>{
+  res.render('admin/view-offers',{offers})
 })
 
 router.get('/logout',(req,res)=>{

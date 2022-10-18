@@ -19,6 +19,8 @@ let validation =
     outOfStock: false,
     qtyZeroErr: false,
     couponErr: false,
+    couponuserErr: false,
+    couponAmtErr: false,
   }
 
 let couponValue = 0; 
@@ -192,7 +194,7 @@ router.post('/addToCart:id',(req, res)=>{
   userID = sessions.userid
   productHandles.getProDetails(prodId).then((product)=>{
     productHandles.addToCart2(prodId, userID, product, qty).then(()=>{
-      res.redirect('/')
+      res.redirect('')
     })
   }) 
 })
@@ -222,7 +224,7 @@ router.get('/cart',verifyLogin,(req, res)=>{
         console.log('chq amnt: ',checkoutAmount);
         productHandles.addChAmt(checkoutAmount, deliveryCost, finalAmount, userID, couponValue).then(()=>{
           res.render('user/cart',{cartProd, userID, finalAmount, deliveryCost, checkoutAmount, cartLength, validation, couponValue})
-          validation = { outOfStock: false }
+          validation = { outOfStock: false, }
           couponValue = 0;
         }).catch((e)=>{
           console.log('ERR',e);
@@ -240,13 +242,24 @@ router.post('/applycoupon',(req, res)=>{
       validation.couponErr=true;
       res.send(response)
 
-    }else if(response.done){
+    }else if(response.userErr){
+      response.change=true
+      validation.couponuserErr=true;
+      res.send(response)
+      validation.couponuserErr=false;
+    }else if(response.AmtErr){
+      response.change=true
+      validation.couponAmtErr=true;
+      res.send(response)
+    }
+    else if(response.done){
       couponValue = response.offer
       console.log('tttt',couponValue)
       response.change=true
       res.send(response)
     }
   })
+
 })
 
 

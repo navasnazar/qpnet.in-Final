@@ -1,0 +1,188 @@
+<%- include('../partials/admin-header.ejs') %> 
+
+
+
+
+        <div class="row g-3 g-md-4">
+            <div class="col-12 col-xl-12">
+              <div class="address-box add-new d-flex flex-column gap-2 align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#addNewCoupon">
+                <h4 class="theme-color font-xl fw-500">Add New Offers</h4>
+              </div>
+            </div>
+        </div>
+
+    
+
+<!-- Collection Section Start -->
+<section style="padding-bottom: 0%;">
+    <div class="container-lg">
+      <div class="title-box7 side-by-side">
+        <div>
+          <h2 class="heading">OUR <span>OFFERS </span></h2>
+          <svg>
+            <use xlink:href="../assets/svg/sprite.svg#shape2"></use>
+          </svg>
+          
+        </div>
+      </div>
+    </div>
+</section>
+      <!-- loop start -->
+    <!-- {{#each products}} -->
+    
+<section style="padding-top: 0%;">
+        <div>
+          
+            <div class="container">   
+                <table id="myTable" class="table mt-5">
+                <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for Coupon ID..">
+        <thead style="text-align:center ;">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Offer ID</th>
+            <th scope="col">Offer Value</th>
+            <th scope="col">Apply for</th>
+            <th scope="col">Activeted Date<br>(YYYY/MM/DD)</th>
+            <th scope="col">Ending Date<br>(YYYY/MM/DD)</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody style="text-align:center ;">
+          <!-- {{#each products}} -->
+          <% for(let i=0;i<offers.length;i++) { %>
+           
+            <tr>
+              <td scope="row"><%= i+1  %> </td>
+              
+              <td><%= offers[i].offerId %> </td>
+              <td>₹ <%= offers[i].offerValue %>/-</td>
+              <td>₹ <%= offers[i].offerApply %>/-</td>
+              <td><%= offers[i].actDate.toISOString().split('T')[0]; %></td>
+              <td><%= offers[i].endDate.toISOString().split('T')[0]; %></td>
+              <td> 
+                <form action="/admin/delete-offer/<%= offers[i]._id %>" method="post">
+                    <button type="submit" class="btn btn-solid line-none rounded-pill" style="height: 25px;" onclick="return confirm('Are you want delete <%= offers[i].offerId %>?')">Delete</button>
+                </form>
+              </td>
+            </tr>
+            
+            <% }%> 
+
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </section>
+
+
+ 
+<!-- Edit Product Modal Start -->
+
+
+<!-- Edit Product Modal End -->
+
+
+  <!-- Add New Coupon Modal Start -->
+  <div class="modal fade addnew-address" id="addNewCoupon" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addNewAddressLabel">Add New Coupon</h5>
+          <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
+        </div>
+        
+
+        <div class="modal-body full-grid-mobile">
+          <form action="/admin/add-coupon" class="custom-form form-pill" method="post">
+            <div class="row g-3 g-md-4">
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="couponId">Coupon ID</label>
+                  <input class="form-control" type="text" required name="couponId" id="couponId" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="offer">Offer</label>
+                  <input class="form-control" type="text" required name="offer" id="offer" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="minAmount">Minimum Amount Limit</label>
+                  <input class="form-control"  type="number" required name="minAmount" id="minAmount" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="maxAmount">Maximum Amount Limit</label>
+                  <input class="form-control"  type="number" required name="maxAmount" id="maxAmount" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="actDate">Active Date</label>
+                  <input class="form-control" type="date" required name="actDate" id="actDate" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div  class="input-box">
+                  <label  for="endDate">Ending Date</label>
+                  <input class="form-control" type="date" required name="endDate" id="endDate" />
+                </div>
+              </div>
+
+        <div class="modal-footer">
+          <div class="btn-box">
+            <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
+            <button type="submit" class="btn btn-solid line-none rounded-pill">Save Coupon <i class="arrow"></i></button>
+          </div>
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add New Coupon Modal End -->
+
+
+
+
+  
+
+<!-- search script -->
+  <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+
+
+
+
+
+<!-- search script end -->

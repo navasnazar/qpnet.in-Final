@@ -188,7 +188,13 @@
                   </div>
                   <% if(validation.couponErr){ %> 
                     <p style="color: red;">! This coupon not Valid</p>
-                    <% } %> 
+                  <% } %> 
+                  <% if(validation.couponuserErr){ %> 
+                    <p style="color: red;">! This coupon already used</p>
+                  <% } %>
+                  <% if(validation.couponAmtErr){ %> 
+                    <p style="color: red;">! Coupon amount doesn't match</p>
+                  <% } %> 
                 </form>
                 </div>
                 <div class="cart-wrap grand-total-wrap">

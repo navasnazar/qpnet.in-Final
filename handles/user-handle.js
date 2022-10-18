@@ -234,6 +234,8 @@ module.exports={
         })
     },
     addOrders:(userId, paymentOption, billAddress, cartProds, addressId, ChOutAmnt)=>{
+        let ddate = new Date();
+        let month = ddate.getMonth()+1;
         console.log(ChOutAmnt)
         return new Promise(async(resolve, reject)=>{
         orderDetails = new ordersdb({
@@ -250,6 +252,7 @@ module.exports={
         orderBilled: true,
         orderConfirmed: false,
         orderDelivered: false,
+        orderMonth: month,
         orderDate: Date.now()
         })
 
@@ -362,5 +365,58 @@ module.exports={
                     resolve()
             })
         })
-    }
+    },
+    getAllSalesDetails:(categories)=>{
+        let prod = []
+        let allSales =[]
+        let allSalesProd = []
+
+        return new Promise(async(resolve, reject)=>{
+            
+            for(let j=0;j<categories.length;j++){    
+              await ordersdb.aggregate([
+                                    {
+                                        $match: {
+                                            "items.prodCategory": categories[j]
+                                        }
+                                    },
+                                    {
+                                        $project: {
+                                            data: {
+                                                $filter: {
+                                                    input: "$items",
+                                                    as: "arr",
+                                                    cond: { $eq: ["$$arr.prodCategory", categories[j]] }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ]).then((result)=>{
+                                    
+                                        prod.push(result)
+
+                                    })
+
+            }
+           for(let y=0;y<prod.length;y++){
+                prod[y].forEach(element => {
+                    allSales.push(element.data)
+                });
+           }
+
+            allSales.forEach(element =>{
+                    allSalesProd.push(element[0])
+            })   
+
+            // filter -->
+
+            // let testMen = allSalesProd.filter((elem)=>{
+            //     return elem.prodCategory=='Child'
+            // })
+
+            // console.log(testMen);
+            resolve(allSalesProd)
+
+        })
+    },
 }

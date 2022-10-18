@@ -39,26 +39,31 @@
         <div class="col-sm-6">
             <div class="input-box">
               <label for="category">Category</label>
-              <select class="form-select form-control"   id="category" name="category">
+              <select class="form-select form-control findSubCategory"  id="category" name="category">
                 <option selected disabled value=""><%= product[0].category %></option>
                 <% for(let j=0; j<categories.length; j++){ %> 
                   <option><%= categories[j] %> </option>
                   <% } %> 
               </select>
-              
             </div>
           </div>
 
-          <div class="col-sm-6">
-            <div class="input-box">
-              <label for="subCategory">Sub Category</label>
-              <select class="form-select form-control"   id="subCategory" name="subCategory">
-                <option selected disabled value=""><%= product[0].category %></option>
-                <% for(let j=0; j<categories.length; j++){ %> 
-                  <option><%= categories[j] %> </option>
-                  <% } %> 
+          <div class="col-6">
+            <div  class="input-box">
+              <label  for="subCategory">Sub Category</label>
+              <select  class="form-select form-control "  id="subCategory" name="subCategory">
+                <option selected disabled >Choose...</option>
+                <option id="result0"><%= subCat[0] %> </option>
+                <option id="result1"><%= subCat[1] %> </option>
+                <option id="result2"><%= subCat[2] %> </option>
+                <option id="result3"><%= subCat[3] %> </option>
+                <option id="result4"><%= subCat[4] %> </option>
+                <option id="result5"><%= subCat[5] %> </option>
+                <option id="result6"><%= subCat[6] %> </option>
+                <option id="result7"><%= subCat[7] %> </option>
+                <option id="result8"><%= subCat[8] %> </option>
+                <option id="result9"><%= subCat[9] %> </option>
               </select>
-              
             </div>
           </div>
         
@@ -120,3 +125,54 @@
       </div>
   
   <!-- Reply From Section End -->
+
+  <script>
+    $(".findSubCategory").change(function() {
+        var val = $(".findSubCategory").val();
+        let cat0 = document.getElementById("result0")
+        let cat1 = document.getElementById("result1")
+        let cat2 = document.getElementById("result2")
+        let cat3 = document.getElementById("result3")
+        let cat4 = document.getElementById("result4")
+        let cat5 = document.getElementById("result5")
+        let cat6 = document.getElementById("result6")
+        let cat7 = document.getElementById("result7")
+        let cat8 = document.getElementById("result8")
+        let cat9 = document.getElementById("result9")
+  
+        console.log(val);
+        console.log('category ajax working');
+      $.ajax({
+        url:'/admin/findSubCategory',
+        data:{
+          category: val,
+        },
+        method: 'post',
+        success:(result)=>{
+          subCat = result
+          console.log('haii', subCat);
+            cat0.innerHTML = '';
+            cat1.innerHTML = '';
+            cat2.innerHTML = '';
+            cat3.innerHTML = '';
+            cat4.innerHTML = '';
+            cat5.innerHTML = '';
+            cat6.innerHTML = '';
+            cat7.innerHTML = '';
+            cat8.innerHTML = '';
+            cat9.innerHTML = '';
+  
+            $("#result0").html(subCat[0]);
+            $("#result1").html(subCat[1]);
+            $("#result2").html(subCat[2]);
+            $("#result3").html(subCat[3]);
+            $("#result4").html(subCat[4]);
+            $("#result5").html(subCat[5]);
+            $("#result6").html(subCat[6]);
+            $("#result7").html(subCat[7]);
+            $("#result8").html(subCat[8]);
+            $("#result9").html(subCat[9]);
+        }
+      })
+  });
+  </script>

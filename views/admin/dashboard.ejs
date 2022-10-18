@@ -27,4 +27,178 @@
       </div>
     </div>
 
+    <div class="col-12 col-xl-6">
+      <div class="address-box add-new d-flex flex-column gap-2 align-items-center justify-content-center" >
+        <h4 ><a class="theme-color font-xl fw-500" href="/admin/view-offers">View Offers</a></h4>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-12">
+
+      <div class="address-box add-new d-flex flex-column gap-2 align-items-center justify-content-center" >
+        <h4 ><button onclick="salesReport(),salesReport1()"  class="theme-color font-xl fw-500" >View Sales Report</button></h4>
+      </div>
+    </div>
 </div>
+
+<div>
+  
+    <input id="categories"  type="text" style="display: none;" disabled value="<%= categories  %>">
+  
+</div>
+
+<div style="display: flex;">
+  <div  style="width: 40vw; height: 40vh; margin-left: 5vw;" class="mt-5 row">
+    <canvas id="myChart" width="200" height="400" aria-label="chart" role="img"></canvas>
+  </div>
+  
+  <div style="width: 40vw; height: 10vh; margin-left: 5vw; margin-top:17vh ;">
+    <canvas id="myChart1" width="500" height="400" aria-label="chart" role="img"></canvas>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function salesReport1(){
+        $.ajax({
+          url:'/admin/chartViewBar',
+          data:{},
+          method: 'post',
+          success:(result)=>{
+            orderDetails = result
+            if(result){
+
+            let month =[1,2,3,4,5,6,7,8,9,10,11,12]
+            let monthSales = []
+
+            for(let i=0;i<month.length;i++){
+                    let testMonth = result.filter((elem)=>{
+                      return elem.orderMonth== month[i]
+                    })
+              monthSales.push(testMonth.length);
+            }
+            
+            console.log('kkkk',monthSales);
+
+              let ctx1 = document.getElementById('myChart1').getContext('2d');
+              let myChart1 = new Chart(ctx1, {
+                type: 'bar',    
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Sales Quantity based on Month',
+                        data: monthSales,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+              });
+            }
+          }
+        })
+      }
+  </script>
+
+  <script>
+    function salesReport(){
+        $.ajax({
+          url:'/admin/chartView',
+          data:{},
+          method: 'post',
+          success:(result)=>{
+            console.log('xxx:',result);
+            let categories = result.categories
+            let allSalesProd = result.allSalesProd
+          
+              let catg = []
+                  categories.forEach(element => {
+                    let catgr = allSalesProd.filter(elem => {
+                      return elem.prodCategory.includes(element)
+                    })
+                    catg.push(catgr.length);
+                  });
+            
+             
+            console.log('yyy:',catg);
+
+
+            if(result){
+              
+              let ctx = document.getElementById('myChart').getContext('2d');
+              let myChart = new Chart(ctx, {
+              type: 'pie',  
+              
+              data: {
+                  labels: categories ,
+                  datasets: [{
+                      label: 'Sales Quantity based on Category',
+
+                      data: catg ,
+
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                  }]
+                  },
+                  options: {
+                      scales: {
+                          y: {
+                              beginAtZero: true
+                          }
+                      }
+                  }
+              });
+              
+                        }
+
+
+                      }
+                    })
+                  }
+
+  </script>

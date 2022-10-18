@@ -14,9 +14,10 @@ const mongoose = require('mongoose'),
         shippingAddress: { },
         shippingCarrier: {type: String},
         shippingStatus: {type: String},
-        orderBilled:{type: Boolean},
+        orderBilled: {type: Boolean},
         orderConfirmed: {type: Boolean},
         orderDelivered: {type: Boolean},
+        orderMonth: {type: Number},
         orderDate: {type: Date},
 
         })

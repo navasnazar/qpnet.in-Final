@@ -74,6 +74,14 @@ module.exports={
             })
         })
     },
+    findCategory1:()=>{
+        return new Promise(async(resolve, reject)=>{
+            await categorydb.find().then((result)=>{
+                console.log(result);
+                resolve(result)
+            })
+        })
+    },
     findSubcategory:(category)=>{
         return new Promise(async(resolve, reject)=>{
            categorydb.findOne({Category:category.category}).then((res)=>{
@@ -112,6 +120,7 @@ module.exports={
                 description: product.description,
                 price: product.price,
                 category: product.category,
+                subCategory: product.subCategory,
                 color: product.color,
                 size: product.size,
                 quantity: product.quantity,
@@ -407,8 +416,8 @@ module.exports={
             })
         })
     },
-    applyCoupon:(userID, addCoupon, totalAmount)=>{
-        let couponValidity = { couponErr:false, done:false}
+        applyCoupon:(userID, addCoupon, totalAmount)=>{
+        let couponValidity = { couponErr:false, done:false, userErr:false, AmtErr: false}
         let coupon ;
         return new Promise(async(resolve, reject)=>{
             coupondb.findOne({couponId: addCoupon}).then((res)=>{
@@ -419,17 +428,20 @@ module.exports={
                             console.log('XXXX',result);
                             if(result){
                                 console.log("already used");
-                                couponValidity.couponErr = true;
+                                couponValidity.userErr = true;
                                 resolve(couponValidity)
+
                             }else{
                                 if(res.minAmount > totalAmount || res.maxAmount < totalAmount){
                                     console.log("total amount not match");
-                                    couponValidity.couponErr = true;
+                                    couponValidity.AmtErr = true;
                                     resolve(couponValidity)
+
                                 }else if(res.actDate > Date.now() || res.endDate < Date.now()){
                                     console.log("date not match");
                                     couponValidity.couponErr = true;
                                     resolve(couponValidity)
+                                
                                 }else{
                                     coupondb.updateOne({couponId: addCoupon},
                                         {
