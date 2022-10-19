@@ -9,7 +9,7 @@
 
     <form action="/admin/edit-pro<%= product[0]._id %>" enctype="multipart/form-data" class="custom-form form-pill" method="post">
       <div class="row g-3 g-sm-4">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <div class="input-box">
             <label for="pname">Product Name</label>
             <input name="pname" id="pname" type="text" value="<%= product[0].pname %> " class="form-control" />
@@ -17,8 +17,15 @@
         </div>
         <div class="col-sm-6">
           <div class="input-box">
-            <label for="price">Price</label>
-            <input name="price" id="price" type="text" value="<%= product[0].price %>" class="form-control" />
+            <label for="originalPrice">Original Price</label>
+            <input name="originalPrice" id="originalPrice" type="text" value="<%= product[0].originalPrice %>" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="input-box">
+            <label for="sellingPrice">Selling Price</label>
+            <input name="sellingPrice" id="sellingPrice" type="text" value="<%= product[0].sellingPrice %>" class="form-control" />
           </div>
         </div>
 
@@ -120,9 +127,10 @@
           </div>
           <div class="col-12 text-end">
             <button type="submit" class="post-button btn btn-solid btn-sm mb-line">Update Data <i class="arrow"></i></button>
+          </form>
           </div>
-        </form>
       </div>
+      
   
   <!-- Reply From Section End -->
 

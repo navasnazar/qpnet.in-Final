@@ -21,7 +21,8 @@ let verifyAdminLogin=(req,res,next)=>{
 }
 
 let validation={
-    loginErr: false
+    loginErr: false,
+    appliedOffer : false
     }
 
 /* GET home page. */
@@ -87,7 +88,6 @@ router.post('/chartView',(req, res)=>{
 })
 
 router.post('/chartViewBar',(req, res)=>{
-  console.log('barrrrr');
   userHandles.getAllOrders().then((allOrders)=>{
     console.log(allOrders);
     res.send(allOrders)
@@ -225,7 +225,32 @@ router.post('/delete-coupon/:id',(req, res)=>{
 })
 
 router.get('/view-offers', (req, res)=>{
-  res.render('admin/view-offers',{offers})
+  productHandles.findCategory().then((categories)=>{
+    productHandles.findOffers().then((offers)=>{
+      res.render('admin/view-offers',{offers, categories, validation, offers})
+      validation.appliedOffer=false
+    })
+  })
+})
+
+router.post('/add-offer',(req, res)=>{
+  offer = req.body
+  console.log(offer);
+  productHandles.addOffer(offer).then((result)=>{
+    if(result.alreadyUsed){
+      validation.appliedOffer=true
+    res.redirect('/admin/view-offers')
+    }
+    res.redirect('/admin/view-offers')
+  })
+})
+
+router.post('/delete-offer/:id',(req, res)=>{
+  offerId = req.params.id
+  console.log(offerId);
+  productHandles.deleteOffer(offerId).then(()=>{
+    res.redirect('/admin/view-offers')
+  })
 })
 
 router.get('/logout',(req,res)=>{

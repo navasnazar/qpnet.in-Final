@@ -66,18 +66,20 @@
             <th scope="col" style="width: 150px;">Product Name</th>
             <th scope="col">Category</th>
             <th scope="col">Sub Category</th>
-            <th scope="col">Price</th>
+            <th scope="col">Original Price</th>
+            <th scope="col">Selling Price</th>
+            <th scope="col">Offer</th>
             <th scope="col" style="width: 20px; " >Quantity</th>
             <th scope="col" style="width: 20px; " >Size</th>
             <th scope="col">Color</th>
-            <th scope="col" style="width: 150px; ">Description</th>
+            <th scope="col" style="width: 120px; ">Description</th>
             <!-- <th scope="col" style="width: 20px; ">Item Details</th> -->
             <th scope="col" style="width: 20px; ">Font View</th>
             <th scope="col" style="width: 20px; ">Top View</th>
             <th scope="col" style="width: 20px; ">Side View</th>
 
             <!-- <th>Image</th> -->
-            <th>       Edit      / Delete</th>
+            <th style="width: 300px; ">       Edit      / Delete</th>
             
           </tr>
         </thead>
@@ -91,12 +93,14 @@
             <td style=" text-align: start !important;"><%= products[i].pname %> </td>
             <td style=" text-align: start !important;"><%= products[i].category %> </td>
             <td style=" text-align: start !important;"><%= products[i].subCategory %> </td>
-            <td><%= products[i].price %> </td>
-            <td><%= products[i].quantity %> </td>
-            <td><%= products[i].size %> </td>
-            <td style=" text-align: start !important;"><%= products[i].color %> </td>
-            <td style=" text-align: start !important;"><%= products[i].description %> </td>
-            <!-- <td><%= //products[i].itemDetails %> </td> -->
+            <td><%= products[i].originalPrice %></td>
+            <td><%= products[i].sellingPrice %></td>
+            <td><%= products[i].offer %></td>
+            <td><%= products[i].quantity %></td>
+            <td><%= products[i].size %></td>
+            <td style=" text-align: start !important;"><%= products[i].color %></td>
+            <td style=" text-align: start !important;"><%= products[i].description %></td>
+            
             <td><img style="width: 20px; height: 20px;" src="/assets/images/upload-images/<%= products[i].imageFront %>" alt=""></td>
             <td><img style="width: 20px; height: 20px;" src="/assets/images/upload-images/<%= products[i].imageTop %>" alt=""></td>
             <td><img style="width: 20px; height: 20px;" src="/assets/images/upload-images/<%= products[i].imageSide %>" alt=""></td>
@@ -147,8 +151,15 @@
 
               <div class="col-6">
                 <div class="input-box">
-                  <label for="price">Price</label>
-                  <input class="form-control" type="text" required name="price" id="price" />
+                  <label for="originalPrice">Original Price</label>
+                  <input class="form-control" type="text" required name="originalPrice" id="originalPrice" />
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-box">
+                  <label for="sellingPrice">Selling Price</label>
+                  <input class="form-control" type="text" required name="sellingPrice" id="sellingPrice" />
                 </div>
               </div>
 

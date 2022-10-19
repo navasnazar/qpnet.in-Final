@@ -194,7 +194,7 @@ router.post('/addToCart:id',(req, res)=>{
   userID = sessions.userid
   productHandles.getProDetails(prodId).then((product)=>{
     productHandles.addToCart2(prodId, userID, product, qty).then(()=>{
-      res.redirect('')
+      res.redirect('/')
     })
   }) 
 })

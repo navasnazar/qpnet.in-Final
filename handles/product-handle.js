@@ -12,7 +12,7 @@ const { response } = require('../app')
 let categorydb = require('../config/categorydb')
 let coupondb = require('../config/coupondb')
 const { AddOnResultContext } = require('twilio/lib/rest/api/v2010/account/recording/addOnResult')
-
+let offerdb = require('../config/offerdb')
 
 module.exports={
 
@@ -23,7 +23,10 @@ module.exports={
             var new_product = new productdb({
                 pname: product.pname,
                 description: product.description,
-                price: product.price,
+                originalPrice: product.originalPrice,
+                sellingPriceFirst: product.sellingPrice,
+                sellingPrice: product.sellingPrice,
+                offer: 0,
                 category: product.category,
                 subCategory: product.subCategory,
                 color: product.color,
@@ -118,7 +121,8 @@ module.exports={
             {$set:{
                 pname: product.pname,
                 description: product.description,
-                price: product.price,
+                originalPrice: product.originalPrice,
+                sellingPrice: product.sellingPrice,
                 category: product.category,
                 subCategory: product.subCategory,
                 color: product.color,
@@ -180,7 +184,7 @@ module.exports={
                                 products: [{
                                     prodId: prodId,
                                     prodName: product[0].pname,
-                                    prodPrice: product[0].price,
+                                    prodPrice: product[0].sellingPrice,
                                     prodQty: qty,
                                     prodCategory: product[0].category,
                                     prodSize: product[0].size,
@@ -198,7 +202,7 @@ module.exports={
                     products: [{
                         prodId: prodId,
                         prodName: product[0].pname,
-                        prodPrice: product[0].price,
+                        prodPrice: product[0].sellingPrice,
                         prodQty: qty,
                         prodCategory: product[0].category,
                         prodSize: product[0].size,
@@ -285,7 +289,7 @@ module.exports={
                             products: [{
                                 prodId: prodId,
                                 prodName: product[0].pname,
-                                prodPrice: product[0].price,
+                                prodPrice: product[0].sellingPrice,
                                 prodQty: 1,
                                 prodCategory: product[0].category,
                                 prodSize: product[0].size,
@@ -301,7 +305,7 @@ module.exports={
                     products: [{
                         prodId: prodId,
                         prodName: product[0].pname,
-                        prodPrice: product[0].price,
+                        prodPrice: product[0].sellingPrice,
                         prodQty: 1,
                         prodCategory: product[0].category,
                         prodSize: product[0].size,
@@ -420,7 +424,7 @@ module.exports={
         let couponValidity = { couponErr:false, done:false, userErr:false, AmtErr: false}
         let coupon ;
         return new Promise(async(resolve, reject)=>{
-            coupondb.findOne({couponId: addCoupon}).then((res)=>{
+            await coupondb.findOne({couponId: addCoupon}).then((res)=>{
                 console.log(res);
                 coupon = res
                 if(res){
@@ -460,6 +464,71 @@ module.exports={
                     couponValidity.couponErr = true;
                     resolve(couponValidity)
                 }
+            })
+        })
+    },
+    addOffer:(offer)=>{
+        let validation = {alreadyUsed: false}
+        return new Promise(async(resolve, reject)=>{
+            offerdb.findOne({offerId:offer.offerId}).then((result)=>{
+                if(result){
+                    console.log('This offer already applied');
+                    validation.alreadyUsed = true
+                    resolve(validation)
+
+                }else{
+                    var new_offer = new offerdb(offer)
+                    new_offer.save().then((response)=>{
+                       
+                        productdb.updateMany({category:offer.offerApply},
+                            {$set:{offer: offer.offerValue}}).then((response)=>{
+                                productdb.find({category:offer.offerApply}).then((res)=>{
+                                    
+                                    for(let i=0; i<res.length; i++){
+                                        offerPrice = res[i].sellingPrice * offer.offerValue / 100
+                                        productdb.updateOne({category:offer.offerApply, pname:res[i].pname},{
+                                            $inc: {sellingPrice: -offerPrice }
+                                        }).then(()=>{
+                                            console.log('update Offer');
+                                        })
+                                    }
+                                    resolve(response)
+                                })
+                        })
+                    })
+                }
+            })
+        })
+    },
+    findOffers:()=>{
+        return new Promise(async(resolve, reject)=>{
+            await offerdb.find().then((offers)=>{
+                resolve(offers)
+            })
+        })
+    },
+    deleteOffer:(offerId)=>{
+        return new Promise(async(resolve, reject)=>{
+            offerdb.findOne({_id:objectId(offerId)}).then((result)=>{
+                console.log(result);
+                productdb.updateMany({category:result.offerApply},
+                    {$set:{offer: 0}}).then((response)=>{
+                        productdb.find({category:result.offerApply}).then((res)=>{
+                            
+                            for(let i=0; i<res.length; i++){
+                                productdb.updateOne({category:result.offerApply, pname:res[i].pname},{
+                                    $set: {sellingPrice: res[i].sellingPriceFirst }
+                                }).then(()=>{
+                                    offerdb.deleteOne({_id:objectId(offerId)}).then(()=>{
+                                        console.log('delete Offer');
+                                    })
+                                })
+                            }
+                            resolve(response)
+                        })
+
+
+                })
             })
         })
     }

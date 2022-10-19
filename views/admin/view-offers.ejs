@@ -22,7 +22,9 @@
           <svg>
             <use xlink:href="../assets/svg/sprite.svg#shape2"></use>
           </svg>
-          
+          <% if(validation.appliedOffer){ %> 
+            <p style="color: red;">! This offer already applied</p>
+          <% } %> 
         </div>
       </div>
     </div>
@@ -35,7 +37,7 @@
           
             <div class="container">   
                 <table id="myTable" class="table mt-5">
-                <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for Coupon ID..">
+                <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for Offer ID..">
         <thead style="text-align:center ;">
           <tr>
             <th scope="col">No</th>
@@ -55,8 +57,8 @@
               <td scope="row"><%= i+1  %> </td>
               
               <td><%= offers[i].offerId %> </td>
-              <td>₹ <%= offers[i].offerValue %>/-</td>
-              <td>₹ <%= offers[i].offerApply %>/-</td>
+              <td><%= offers[i].offerValue %>%</td>
+              <td><%= offers[i].offerApply %></td>
               <td><%= offers[i].actDate.toISOString().split('T')[0]; %></td>
               <td><%= offers[i].endDate.toISOString().split('T')[0]; %></td>
               <td> 
@@ -65,7 +67,7 @@
                 </form>
               </td>
             </tr>
-            
+
             <% }%> 
 
                 </tbody>
@@ -82,44 +84,42 @@
 <!-- Edit Product Modal End -->
 
 
-  <!-- Add New Coupon Modal Start -->
+  <!-- Add New Offer Modal Start -->
   <div class="modal fade addnew-address" id="addNewCoupon" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addNewAddressLabel">Add New Coupon</h5>
+          <h5 class="modal-title" id="addNewAddressLabel">Add New Offer</h5>
           <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
         </div>
         
 
         <div class="modal-body full-grid-mobile">
-          <form action="/admin/add-coupon" class="custom-form form-pill" method="post">
+          <form action="/admin/add-offer" class="custom-form form-pill" method="post">
             <div class="row g-3 g-md-4">
               <div class="col-6">
                 <div class="input-box">
-                  <label for="couponId">Coupon ID</label>
-                  <input class="form-control" type="text" required name="couponId" id="couponId" />
+                  <label for="offerId">Offer ID</label>
+                  <input class="form-control" type="text" required name="offerId" id="offerId" />
                 </div>
               </div>
 
               <div class="col-6">
                 <div class="input-box">
-                  <label for="offer">Offer</label>
-                  <input class="form-control" type="text" required name="offer" id="offer" />
+                  <label for="offerValue">Offer Value (%)</label>
+                  <input class="form-control" type="number" required name="offerValue" id="offerValue" />
                 </div>
               </div>
 
-              <div class="col-6">
+              <div class="col-12">
                 <div class="input-box">
-                  <label for="minAmount">Minimum Amount Limit</label>
-                  <input class="form-control"  type="number" required name="minAmount" id="minAmount" />
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="input-box">
-                  <label for="maxAmount">Maximum Amount Limit</label>
-                  <input class="form-control"  type="number" required name="maxAmount" id="maxAmount" />
+                  <label for="offerApply">Offer Apply Category</label>
+                  <select class="form-select form-control"  id="offerApply" name="offerApply" >
+                    <option  selected disabled value="">Choose...</option>
+                    <% for(let j=0; j<categories.length; j++){ %>
+                    <option name="offerApply" ><%= categories[j] %></option>
+                    <% } %> 
+                  </select>
                 </div>
               </div>
 
@@ -140,7 +140,7 @@
         <div class="modal-footer">
           <div class="btn-box">
             <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
-            <button type="submit" class="btn btn-solid line-none rounded-pill">Save Coupon <i class="arrow"></i></button>
+            <button type="submit" class="btn btn-solid line-none rounded-pill">Save Offer <i class="arrow"></i></button>
           </div>
         </div>
         </form>
@@ -148,7 +148,7 @@
       </div>
     </div>
   </div>
-  <!-- Add New Coupon Modal End -->
+  <!-- Add New Offer Modal End -->
 
 
 

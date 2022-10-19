@@ -198,7 +198,10 @@
                             
                           </div>
                           <h5><%= products[i].category %></h5>
-                          <span class="color-theme">₹<%= products[i].price %></span> <del class="fw-500 content-color">₹5000</del>
+                          <span class="color-theme">₹<%= products[i].sellingPrice %></span> 
+                          <% if(products[i].sellingPrice != products[i].originalPrice){ %> 
+                          <del class="fw-500 content-color">₹ <%= products[i].originalPrice %></del>
+                          <% } %> 
                         </a>
                       </div>
                     </div>
@@ -250,7 +253,10 @@
                               
                             </div>
                             <h5><%= products[i].category %></h5>
-                            <span class="color-theme">₹<%= products[i].price %></span> <del class="fw-500 content-color">₹5000</del>
+                            <span class="color-theme">₹<%= products[i].sellingPrice %></span> 
+                          <% if(products[i].sellingPrice != products[i].originalPrice){ %> 
+                          <del class="fw-500 content-color">₹ <%= products[i].originalPrice %></del>
+                          <% } %> 
                           </a>
                         </div>
                       </div>
@@ -301,7 +307,10 @@
                               
                             </div>
                             <h5><%= products[i].category %></h5>
-                            <span class="color-theme">₹<%= products[i].price %></span> <del class="fw-500 content-color">₹5000</del>
+                            <span class="color-theme">₹<%= products[i].sellingPrice %></span> 
+                          <% if(products[i].sellingPrice != products[i].originalPrice){ %> 
+                          <del class="fw-500 content-color">₹ <%= products[i].originalPrice %></del>
+                          <% } %> 
                           </a>
                         </div>
                       </div>
@@ -352,7 +361,14 @@
                               
                             </div>
                             <h5><%= products[i].category %></h5>
-                            <span class="color-theme">₹<%= products[i].price %></span> <del class="fw-500 content-color">₹5000</del>
+                            <span class="color-theme">₹<%= products[i].sellingPrice %></span> 
+                          <% if(products[i].sellingPrice != products[i].originalPrice){ %> 
+                          <del class="fw-500 content-color">₹ <%= products[i].originalPrice %></del>
+                          <% } %> 
+                          <br>
+                          <% if(products[i].offer != 0){ %> 
+                            <span style="color: red;">Offer Now: <%= products[i].offer %> %</span> 
+                          <% } %> 
                           </a>
                         </div>
                       </div>

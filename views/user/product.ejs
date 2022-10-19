@@ -142,6 +142,7 @@
                 <div class="product-option">
                   <form action="/addToCart<%= product[0]._id %>" method="post">
                   <h2><%= product[0].pname %></h2>
+                  <h3 class="color-theme"><%= product[0].category %></h3>
                   <div class="option rating-option">
                     <ul class="rating p-0">
                       <li>
@@ -163,7 +164,15 @@
                     <span>120 Rating</span>
                   </div>
 
-                  <div class="option price"><span>₹<%= product[0].price %></span> <del>₹5000</del></div>
+                  <div class="option price"><span>₹<%= product[0].sellingPrice %></span>
+                    <% if(product[0].originalPrice != product[0].sellingPrice){ %> 
+                      <del>₹<%= product[0].originalPrice %></del>
+                    <% } %> 
+                    
+                    <% if(product[0].offer != 0){ %> 
+                      <span style="color: red; margin-left: 20px;">Offer Now: <%= product[0].offer %> %</span> 
+                    <% } %> 
+                    </div>
 
                   <div class="option">
                     <p class="content-color">
@@ -814,7 +823,14 @@
                     <a href="product.html">
                       <p><%= Allproducts[i].pname %></p>
                       <h5><%= Allproducts[i].category %></h5>
-                      <span>₹<%= Allproducts[i].price %></span> <del>₹5000</del>
+                      <span class="color-theme">₹<%= Allproducts[i].sellingPrice %></span> 
+                          <% if(Allproducts[i].sellingPrice != Allproducts[i].originalPrice){ %> 
+                          <del class="fw-500 content-color">₹ <%= Allproducts[i].originalPrice %></del>
+                          <% } %> 
+                          <br>
+                          <% if(Allproducts[i].offer != 0){ %> 
+                            <span style="color: red;">Offer Now: <%= Allproducts[i].offer %> %</span> 
+                          <% } %> 
                     </a>
                   </div>
                 </div>
