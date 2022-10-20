@@ -51,7 +51,7 @@
   <!-- Body Start -->
   <body>
     <!-- Loader Start -->
-    <!-- <div class="loader-wrapper"> -->
+    <div class="loader-wrapper">
       <div class="loader ">
         <!-- <span>N</span>
         <span>a</span>
@@ -64,7 +64,7 @@
         <span>p</span>
         <span>i</span> -->
       </div>
-    <!-- </div> -->
+    </div>
     <!-- Loader End -->
 
     <!-- Overlay -->
@@ -106,6 +106,7 @@
 
     <!-- Cart Section Start -->
     <section class="section-b-space card-page">
+      <div>
       <div class="container-lg">
         <div class="row g-3 g-md-4 cart">
           <div class="col-md-7 col-lg-8">
@@ -241,9 +242,9 @@
           </div>
         </div>
       </div>
+    </div>
     </section>
     <!-- Cart Section End -->
-
     </main>
     <!-- Main End -->
 
@@ -381,31 +382,26 @@
     <footer class="mobile-menu-footer d-sm-none">
       <ul>
         <li>
-          <a href="index.html">
+          <a href="/" class="active">
             <i data-feather="home"></i>
             <span>Home</span>
           </a>
         </li>
+        
         <li>
-          <a href="search.html" class="search-link">
-            <i data-feather="search"></i>
-            <span>Search</span>
-          </a>
-        </li>
-        <li>
-          <a href="cart.html" class="active">
+          <a href="/cart">
             <i data-feather="shopping-bag"></i>
             <span>Cart</span>
           </a>
         </li>
         <li>
-          <a href="wishlist.html">
+          <a href="/wishlist">
             <i data-feather="heart"></i>
             <span>Wishlist</span>
           </a>
         </li>
         <li>
-          <a href="user-dashboard.html">
+          <a href="/user_dashboard">
             <i data-feather="user"></i>
             <span>Account</span>
           </a>
@@ -413,6 +409,7 @@
       </ul>
     </footer>
     <!-- Mobile Menu Footer End -->
+
 
     <!-- Notification Start -->
     <div class="notification-wrap addToCart">
@@ -475,8 +472,11 @@
       method:'post',
       data:{res: $('#couponId').val(), totalAmount: $('#totalAmount').val()},
       success:(response)=>{
+        console.log(response);
         if(response.change){
           console.log('RELOADED');
+              location.reload()
+            }else if(response.couponId){
               location.reload()
             }
       }

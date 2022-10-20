@@ -27,6 +27,9 @@
           </svg>
           
         </div>
+        <li>
+          <button class="btn btn-outline rounded-pill" style="height: 30px;" onclick="myfun('pt')"> download Pdf</button>
+        </li>
 
         <!-- <ul class="nav nav-tabs nav-tabs5 round-tab row-tab" id="myTab" role="tablist">
           
@@ -50,17 +53,16 @@
     <!-- {{#each products}} -->
     
 <section style="padding-top: 0%;">
-        <div>
-          
             <div class="container">   
-                <table id="myTable" class="table mt-5">
                 <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
                 <div>
                 <input type="text" class="form-control search-type" id="myInput1" onkeyup="myFunction1()" placeholder="Search for category..">
 
-                    <button class="btn btn-outline rounded-pill" style="width:200px; height: 30px; margin-left: 1095px; margin-top:10px ;" type="submit" data-bs-toggle="modal" data-bs-target="#addCategory" >Add Category</button>
+                <button class="btn btn-outline rounded-pill" style="width:200px; height: 30px;  margin-top:10px ;" type="submit" data-bs-toggle="modal" data-bs-target="#addCategory" >Add Category</button>
                 </div>
-        <thead style="text-align:center ;">
+        <div id="pt">
+          <table id="myTable" class="table mt-5">
+          <thead  style="text-align:center ;">
           <tr>
             <th scope="col">No</th>
             <th scope="col" style="width: 150px;">Product Name</th>
@@ -79,7 +81,7 @@
             <th scope="col" style="width: 20px; ">Side View</th>
 
             <!-- <th>Image</th> -->
-            <th style="width: 300px; ">       Edit      / Delete</th>
+            <th style="width: 300px; ">Edit / Delete</th>
             
           </tr>
         </thead>
@@ -423,6 +425,22 @@
 });
 </script>
 
+<!-- pdf download -->
+<script>
+  console.log("pdf dounload script working")
+  function myfun(pt) {
+      var bk = document.body.innerHTML;
+      var dv = document.getElementById('pt').innerHTML;
+      document.body.innerHTML = dv;
+      document.body.style.padding = "20px"
+      window.print();
+      location.reload();
+  }
+  $(document).ready(function () {
+      $('#myTable').DataTable()
+  });
+</script>
+<!-- pdf download -->
 
 
 

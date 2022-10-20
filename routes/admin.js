@@ -7,6 +7,7 @@ let userHandles = require('../handles/user-handle')
 let productdb = require('../config/productdb')
 var objectId=require('mongodb').ObjectId
 let upload = require('../handles/multer')
+let downloads = require('../handles/downloads-handles')
 
 let AdminSession;
 let offers =[]
@@ -224,7 +225,7 @@ router.post('/delete-coupon/:id',(req, res)=>{
   })
 })
 
-router.get('/view-offers', (req, res)=>{
+router.get('/view-offers',verifyAdminLogin, (req, res)=>{
   productHandles.findCategory().then((categories)=>{
     productHandles.findOffers().then((offers)=>{
       res.render('admin/view-offers',{offers, categories, validation, offers})
@@ -252,6 +253,12 @@ router.post('/delete-offer/:id',(req, res)=>{
     res.redirect('/admin/view-offers')
   })
 })
+
+router.get('/downloads', verifyAdminLogin, (req, res)=>{
+  res.render('admin/downloads')
+})
+
+router.post('/export_to_excel', downloads.OrderDetails)
 
 router.get('/logout',(req,res)=>{
   session.destroy()

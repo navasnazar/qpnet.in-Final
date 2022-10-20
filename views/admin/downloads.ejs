@@ -1,0 +1,13 @@
+<%- include('../partials/admin-header.ejs') %> 
+
+
+        <div class="row g-3 g-md-4">
+            <div class="col-6 col-xl-6">
+              <div class="address-box add-new d-flex flex-column gap-2 align-items-center justify-content-center" >
+                <form action="/admin/export_to_excel" method="post">
+                    <button type="submit" class="btn btn-outline rounded-pill" >Download Order Details</button>
+                </form>
+              </div>
+            </div>
+        </div>
+    

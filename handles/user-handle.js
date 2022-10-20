@@ -8,6 +8,7 @@ let ordersdb = require('../config/ordersdb')
 
 
 
+
 module.exports={
     doSignup:(userData)=>{
         let passwordErr = false
@@ -419,4 +420,52 @@ module.exports={
 
         })
     },
+    getReport:()=>{
+        return new Promise((resolve, reject)=>{ 
+            ordersdb.find()
+                .then((SalesReport)=>{
+                    console.log(SalesReport);
+                    try {
+                        const workbook = new excelJs.Workbook();
+                        const worksheet = workbook.addWorksheet("Sales Report");
+
+                        worksheet.columns = [
+                        { header: "S no.", key: "s_no" },
+                        { header: "OrderID", key: "_id" },
+                        { header: "Date", key: "Date" },
+                        { header: "Products", key: "products" },
+                        { header: "Method", key: "payment" },
+                        { header: "status", key: "status" },
+                        { header: "Amount", key: "amount" },
+                        ];
+                        let counter = 1;
+                        SalesReport.forEach((report) => {
+                        report.s_no = counter;
+                        report.products = report.items;
+                        report.name = report.userId;
+                        report.products.forEach((eachProduct) => {
+                            report.products += eachProduct.prodName + ",";
+                        });
+                        worksheet.addRow(report);
+                        counter++;
+                        });
+
+                        worksheet.getRow(1).eachCell((cell) => {
+                        cell.font = { bold: true };
+                        });
+                        res.header(
+                            "Content-Type",
+                            "application/vnd.oppenxmlformats-officedocument.spreadsheatml.sheet"
+                            );
+                            res.header("Content-Disposition", "attachment; filename=report.xlsx");
+                      
+                            workbook.xlsx.write(res);
+                        
+                    } catch (err) {
+                        console.log(err.message);
+                    }
+                    })
+                    resolve()
+        })
+    }
 }

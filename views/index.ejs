@@ -84,8 +84,8 @@
       <!-- Home Banner Section Start -->
       <section class="home-slider-common home-slider6 p-0 ratio_40">
         <div class="banner">
-          <div>
-            <img class="bg-img img-fluid" src="/assets/images/upload-images/bannerfront.jpg" alt="banner" />
+          <div >
+            <img class="bg-img "  src="/assets/images/upload-images/bannerfront.jpg" alt="banner" />
           </div>
           <!-- Banner Image Left -->
           <!-- <img class="img-fluid banner-left-img" src="/assets/images/upload-images/bannerfront.jpg" alt="banner img" /> -->
@@ -141,16 +141,16 @@
 
             <ul class="nav nav-tabs nav-tabs5 round-tab row-tab" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="casual-tab" data-bs-toggle="tab" data-bs-target="#casual" type="button" role="tab" aria-controls="casual" aria-selected="true">Casual</button>
+                <button class="nav-link active" id="casual-tab" data-bs-toggle="tab" data-bs-target="#casual" type="button" role="tab" aria-controls="casual" aria-selected="true">All Products</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="athletic-tab" data-bs-toggle="tab" data-bs-target="#athletic" type="button" role="tab" aria-controls="athletic" aria-selected="false">Athletic</button>
+                <button class="nav-link" id="athletic-tab" data-bs-toggle="tab" data-bs-target="#athletic" type="button" role="tab" aria-controls="athletic" aria-selected="false">Men</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="sport-tab" data-bs-toggle="tab" data-bs-target="#sport" type="button" role="tab" aria-controls="sport" aria-selected="false">Sport</button>
+                <button class="nav-link" id="sport-tab" data-bs-toggle="tab" data-bs-target="#sport" type="button" role="tab" aria-controls="sport" aria-selected="false">Women</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="man-tab" data-bs-toggle="tab" data-bs-target="#man" type="button" role="tab" aria-controls="man" aria-selected="false">Man</button>
+                <button class="nav-link" id="man-tab" data-bs-toggle="tab" data-bs-target="#man" type="button" role="tab" aria-controls="man" aria-selected="false">Child</button>
               </li>
             </ul>
           </div>
@@ -159,7 +159,7 @@
           <!-- Tab Content Start -->
           <div class="tab-content ratio_40" id="myTabContent">
             <!-- Casual Tab Content Start -->
-            <div class="tab-pane fade" id="casual" role="tabpanel" aria-labelledby="casual-tab">
+            <div class="tab-pane fade show active" id="casual" role="tabpanel" aria-labelledby="casual-tab">
               <div class="casual-content">
                 <div class="row gy-3 g-2 g-sm-3 g-xl-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5">
                   
@@ -206,6 +206,10 @@
                           <% if(products[i].sellingPrice != products[i].originalPrice){ %> 
                           <del class="fw-500 content-color">₹ <%= products[i].originalPrice %></del>
                           <% } %> 
+                          <br>
+                                <% if(products[i].offer != 0){ %> 
+                                    <span style="color: red;">Offer Now: <%= products[i].offer %> %</span> 
+                                <% } %> 
                         </a>
                       </div>
                     </div>
@@ -223,7 +227,7 @@
               <div class="athletic-content">
                 <div class="row gy-3 g-2 g-sm-3 g-xl-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5">
                   <% for(let i=0;i<products.length;i++) { %>
-                  
+                    <% if(products[i].category =="Men"){ %> 
                     <div class="col wow fadeInUp" data-wow-delay="0.4s">
                       <div class="product-card option-bottom">
                         <div class="img-box">
@@ -260,11 +264,15 @@
                           <% if(products[i].sellingPrice != products[i].originalPrice){ %> 
                           <del class="fw-500 content-color">₹ <%= products[i].originalPrice %></del>
                           <% } %> 
+                          <br>
+                                <% if(products[i].offer != 0){ %> 
+                                    <span style="color: red;">Offer Now: <%= products[i].offer %> %</span> 
+                                <% } %> 
                           </a>
                         </div>
                       </div>
                     </div>
-                    
+                    <% } %> 
                     <% }%> 
                 </div>
               </div>
@@ -276,7 +284,8 @@
               <div class="sport-content">
                 <div class="row gy-3 g-2 g-sm-3 g-xl-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5">
                   <% for(let i=0;i<products.length;i++) { %>
-                  
+                    <% if(products[i].category =="Women"){ %> 
+                
                     <div class="col wow fadeInUp" data-wow-delay="0.4s">
                       <div class="product-card option-bottom">
                         <div class="img-box">
@@ -313,11 +322,15 @@
                           <% if(products[i].sellingPrice != products[i].originalPrice){ %> 
                           <del class="fw-500 content-color">₹ <%= products[i].originalPrice %></del>
                           <% } %> 
+                          <br>
+                                <% if(products[i].offer != 0){ %> 
+                                    <span style="color: red;">Offer Now: <%= products[i].offer %> %</span> 
+                                <% } %> 
                           </a>
                         </div>
                       </div>
                     </div>
-                    
+                    <% } %> 
                     <% }%> 
                 </div>
               </div>
@@ -325,11 +338,12 @@
             <!-- Sport Tab Content End -->
 
             <!-- Man Content Tab Start -->
-            <div class="tab-pane fade show active" id="man" role="tabpanel" aria-labelledby="man-tab">
+            <div class="tab-pane fade " id="man" role="tabpanel" aria-labelledby="man-tab">
               <div class="man-content">
                 <div class="row gy-3 g-2 g-sm-3 g-xl-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5">
                   <% for(let i=0;i<products.length;i++) { %>
-                  
+                    <% if(products[i].category =="Child"){ %> 
+                
                     <div class="col wow fadeInUp" data-wow-delay="0.4s">
                       <div class="product-card option-bottom">
                         <div class="img-box">
@@ -374,7 +388,7 @@
                         </div>
                       </div>
                     </div>
-                    
+                    <% } %> 
                     <% }%> 
                 </div>
               </div>
@@ -703,31 +717,26 @@
     <footer class="mobile-menu-footer d-sm-none">
       <ul>
         <li>
-          <a href="index.html" class="active">
+          <a href="/" class="active">
             <i data-feather="home"></i>
             <span>Home</span>
           </a>
         </li>
+        
         <li>
-          <a href="search.html" class="search-link">
-            <i data-feather="search"></i>
-            <span>Search</span>
-          </a>
-        </li>
-        <li>
-          <a href="cart.html">
+          <a href="/cart">
             <i data-feather="shopping-bag"></i>
             <span>Cart</span>
           </a>
         </li>
         <li>
-          <a href="wishlist.html">
+          <a href="/wishlist">
             <i data-feather="heart"></i>
             <span>Wishlist</span>
           </a>
         </li>
         <li>
-          <a href="user-dashboard.html">
+          <a href="/user_dashboard">
             <i data-feather="user"></i>
             <span>Account</span>
           </a>
@@ -870,7 +879,7 @@
     <!-- View Product Modal End -->
 
     <!-- Cookies Section Start -->
-    <div class="cookie-bar cookies-bar-1 left-cookies">
+    <!-- <div class="cookie-bar cookies-bar-1 left-cookies">
       <img src="../assets/png/cookie.png" alt="cookies" />
       <div class="content">
         <h5>Cookies Consent</h5>
@@ -880,7 +889,7 @@
           <a href="javascript:void(0)" class="btn-solid btn-sm btn-outline cookies-accept">Learn more</a>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Cookie Section End -->
 
     <!-- Tap To Top Button Start -->
