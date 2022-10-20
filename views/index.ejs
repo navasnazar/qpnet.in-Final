@@ -173,20 +173,24 @@
                         <!-- Option -->
                         <ul class="option-wrap">
                           <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                            <a href="javascript:void(0)" class="wishlist-btn">
-                              <i data-feather="heart"></i>
-                            </a>
+                            <form action="/addToWish<%= products[i]._id%>" method="post">
+                              <button type="submit" class="wishlist-btn">
+                                <i data-feather="heart"></i>
+                              </button>
+                              </form>
                           </li>
-                          <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                            <a href="compare.html"><i data-feather="repeat"></i></a>
-                          </li>
-                          <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                          
+                          <!-- <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal">
                               <i data-feather="eye"></i>
                             </a>
-                          </li>
+                          </li> -->
                           <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart">
-                            <a href="javascript:void(0)" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
+                            <form action="/addToCart<%= products[i]._id%>" method="post">
+                              <button type="submit" class="addtocart-btn"> 
+                                <i data-feather="shopping-bag"></i>
+                              </button>
+                            </form>
                           </li>
                         </ul>
                       </div>
@@ -228,20 +232,19 @@
                           <!-- Option -->
                           <ul class="option-wrap">
                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                              <a href="javascript:void(0)" class="wishlist-btn">
+                              <form action="/addToWish<%= products[i]._id%>" method="post">
+                              <button type="submit" class="wishlist-btn">
                                 <i data-feather="heart"></i>
-                              </a>
+                              </button>
+                              </form>
                             </li>
-                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                              <a href="compare.html"><i data-feather="repeat"></i></a>
-                            </li>
-                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                              <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                <i data-feather="eye"></i>
-                              </a>
-                            </li>
+                            
                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart">
-                              <a href="javascript:void(0)" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
+                              <form action="/addToCart<%= products[i]._id%>" method="post">
+                                <button type="submit" class="addtocart-btn"> 
+                                  <i data-feather="shopping-bag"></i>
+                                </button>
+                              </form>
                             </li>
                           </ul>
                         </div>
@@ -282,20 +285,19 @@
                           <!-- Option -->
                           <ul class="option-wrap">
                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                              <a href="javascript:void(0)" class="wishlist-btn">
-                                <i data-feather="heart"></i>
-                              </a>
+                              <form action="/addToWish<%= products[i]._id%>" method="post">
+                                <button type="submit" class="wishlist-btn">
+                                  <i data-feather="heart"></i>
+                                </button>
+                                </form>
                             </li>
-                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                              <a href="compare.html"><i data-feather="repeat"></i></a>
-                            </li>
-                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                              <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                <i data-feather="eye"></i>
-                              </a>
-                            </li>
+                            
                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart">
-                              <a href="javascript:void(0)" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
+                              <form action="/addToCart<%= products[i]._id%>" method="post">
+                                <button type="submit" class="addtocart-btn"> 
+                                  <i data-feather="shopping-bag"></i>
+                                </button>
+                              </form>
                             </li>
                           </ul>
                         </div>
@@ -336,20 +338,19 @@
                           <!-- Option -->
                           <ul class="option-wrap">
                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                              <a href="javascript:void(0)" class="wishlist-btn">
-                                <i data-feather="heart"></i>
-                              </a>
+                              <form action="/addToWish<%= products[i]._id%>" method="post">
+                                <button type="submit" class="wishlist-btn">
+                                  <i data-feather="heart"></i>
+                                </button>
+                                </form>
                             </li>
-                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                              <a href="compare.html"><i data-feather="repeat"></i></a>
-                            </li>
-                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                              <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                <i data-feather="eye"></i>
-                              </a>
-                            </li>
+                            
                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart">
-                              <a href="javascript:void(0)" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
+                              <form action="/addToCart<%= products[i]._id%>" method="post">
+                                <button type="submit" class="addtocart-btn"> 
+                                  <i data-feather="shopping-bag"></i>
+                                </button>
+                              </form>
                             </li>
                           </ul>
                         </div>

@@ -801,19 +801,20 @@
                     <ul class="option-wrap">
                       <li>
                         <a href="javascript:void(0)" class="wishlist-btn">
-                          <i data-feather="heart"></i>
+                          <form action="/addToWish<%= Allproducts[i]._id%>" method="post">
+                            <button type="submit" class="wishlist-btn">
+                              <i data-feather="heart"></i>
+                            </button>
+                            </form>
                         </a>
                       </li>
+                      
                       <li>
-                        <a href="compare.html"><i data-feather="repeat"></i></a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal">
-                          <i data-feather="eye"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
+                       <form action="/addToCart<%= Allproducts[i]._id%>" method="post">
+                                <button type="submit" class="addtocart-btn"> 
+                                  <i data-feather="shopping-bag"></i>
+                                </button>
+                              </form>
                       </li>
                     </ul>
                   </div>

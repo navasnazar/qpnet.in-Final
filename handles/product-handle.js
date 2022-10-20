@@ -349,8 +349,10 @@ module.exports={
             await cartShema.updateOne({userId:userID},
             {
                 $set:{finalAmount: finalAmount, deliveryCost: deliveryCost, checkoutAmount: checkoutAmount, couponOffer: couponValue}
-            }).then((response)=>{
-                resolve(response)
+            }).then(()=>{
+                resolve()
+            }).catch((e)=>{
+                console.log(e);
             })
         })
     },
@@ -421,7 +423,7 @@ module.exports={
         })
     },
         applyCoupon:(userID, addCoupon, totalAmount)=>{
-        let couponValidity = { couponErr:false, done:false, userErr:false, AmtErr: false}
+        let couponValidity = { couponErr:false, done:false, userErr:false, AmtErr: false, dateErr: false}
         let coupon ;
         return new Promise(async(resolve, reject)=>{
             await coupondb.findOne({couponId: addCoupon}).then((res)=>{
@@ -443,7 +445,7 @@ module.exports={
 
                                 }else if(res.actDate > Date.now() || res.endDate < Date.now()){
                                     console.log("date not match");
-                                    couponValidity.couponErr = true;
+                                    couponValidity.dateErr = true;
                                     resolve(couponValidity)
                                 
                                 }else{
@@ -526,10 +528,19 @@ module.exports={
                             }
                             resolve(response)
                         })
-
-
                 })
             })
         })
+    },
+    finalAmountCal:(cartProd)=>{
+        return new Promise((resolve, reject)=>{
+            let finalAmount = 0
+            for(let i=0;i<cartProd.length;i++){
+              totalPrice = cartProd[i].prodQty * cartProd[i].prodPrice
+              finalAmount += totalPrice
+            }
+            console.log(finalAmount);
+            resolve(finalAmount)
+          })
     }
 }

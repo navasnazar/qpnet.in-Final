@@ -19,8 +19,9 @@ let validation =
     outOfStock: false,
     qtyZeroErr: false,
     couponErr: false,
-    couponuserErr: false,
+    couponUserErr: false,
     couponAmtErr: false,
+    couponDateErr: false,
   }
 
 let couponValue = 0; 
@@ -189,7 +190,9 @@ router.post('/signup',(req, res)=>{
 
 router.post('/addToCart:id',(req, res)=>{
   qty = (req.body.quantity)
-  console.log(qty)
+  if(!qty){
+    qty=1
+  }
   prodId = req.params.id
   userID = sessions.userid
   productHandles.getProDetails(prodId).then((product)=>{
@@ -209,19 +212,24 @@ router.post('/addToWish:id',(req, res)=>{
   }) 
 })
 
+router.get('/shop',verifyLogin,(req, res)=>{
+  productHandles.getProducts().then((products)=>{
+    userID = sessions.userid
+    productHandles.getCart2(userID).then((cartProd)=>{
+    res.render('user/shop-view',{products, cartProd})
+    })
+  })
+})
+
 router.get('/cart',verifyLogin,(req, res)=>{
   console.log(couponValue);
   userID = sessions.userid
     productHandles.getCart2(userID).then((cartProd)=>{
-      let finalAmount = 0
-      for(let i=0;i<cartProd.length;i++){
-        totalPrice = cartProd[i].prodQty * cartProd[i].prodPrice
-        finalAmount += totalPrice
-      }
+      productHandles.finalAmountCal(cartProd).then((finalAmount)=>{
         let deliveryCost = 50;
-        let checkoutAmount = finalAmount + deliveryCost - couponValue
+        var checkoutAmount = finalAmount+deliveryCost-couponValue;
         let cartLength = cartProd.length
-        console.log('chq amnt: ',checkoutAmount);
+        console.log('chq amnt:',checkoutAmount);
         productHandles.addChAmt(checkoutAmount, deliveryCost, finalAmount, userID, couponValue).then(()=>{
           res.render('user/cart',{cartProd, userID, finalAmount, deliveryCost, checkoutAmount, cartLength, validation, couponValue})
           validation = { outOfStock: false, }
@@ -229,8 +237,21 @@ router.get('/cart',verifyLogin,(req, res)=>{
         }).catch((e)=>{
           console.log('ERR',e);
         })
+      })
     })
 })
+
+
+
+router.get('/wishlist',verifyLogin, (req, res)=>{
+  userID = sessions.userid
+  productHandles.getCart2(userID).then((cartProd)=>{
+    productHandles.getWishlist(userID).then((wishProd)=>{
+        res.render('user/wishlist',{cartProd, wishProd})
+      })
+  })
+})
+
 
 router.post('/applycoupon',(req, res)=>{
   userID = sessions.userid
@@ -244,34 +265,25 @@ router.post('/applycoupon',(req, res)=>{
 
     }else if(response.userErr){
       response.change=true
-      validation.couponuserErr=true;
+      validation.couponUserErr=true;
       res.send(response)
-      validation.couponuserErr=false;
     }else if(response.AmtErr){
       response.change=true
       validation.couponAmtErr=true;
       res.send(response)
-    }
-    else if(response.done){
+    }else if(response.dateErr){
+      response.change=true
+      validation.couponDateErr=true;
+      res.send(response)
+    }else if(response.done){
       couponValue = response.offer
       console.log('tttt',couponValue)
       response.change=true
       res.send(response)
     }
   })
-
 })
 
-
-
-router.get('/wishlist',verifyLogin, (req, res)=>{
-  userID = sessions.userid
-  productHandles.getCart2(userID).then((cartProd)=>{
-    productHandles.getWishlist(userID).then((wishProd)=>{
-        res.render('user/wishlist',{cartProd, wishProd})
-      })
-  })
-})
 
 router.post('/moveToCart:id',(req, res)=>{
   userId = sessions.userid
