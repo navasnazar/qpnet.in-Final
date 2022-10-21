@@ -155,43 +155,45 @@ module.exports={
     },
     addUserAddress:(userId, address)=>{
         return new Promise(async (resolve, reject)=>{
-            addressdb.findOne({userId:userId}).then(()=>{
-                addressdb.updateOne({userId:userId},
-                    {
-                        $push:{
-                            address: [{
-                                    name: address.name,
-                                    email: address.email,
-                                    mobile: address.mobile,
-                                    address: address.address,
-                                    landmark: address.landmark,
-                                    district: address.district,
-                                    city: address.city,
-                                    pincode: address.pincode,
-                                }]
-                        }
-                    }).then((response)=>{
-                        resolve(response)
-                    })  
-            }).catch(()=>{
-                var user_address = new addressdb({
-                    userId: userId,
-                    address: [ 
+            addressdb.findOne({userId:userId}).then((res)=>{
+                if(res){
+                    addressdb.updateOne({userId:userId},
                         {
-                            name: address.name,
-                            email: address.email,
-                            mobile: address.mobile,
-                            address: address.address,
-                            landmark: address.landmark,
-                            district: address.district,
-                            city: address.city,
-                            pincode: address.pincode,
-                        }
-                    ]
-                })
-                user_address.save().then(()=>{
-                    resolve()
-                })
+                            $push:{
+                                address: [{
+                                        name: address.name,
+                                        email: address.email,
+                                        mobile: address.mobile,
+                                        address: address.address,
+                                        landmark: address.landmark,
+                                        district: address.district,
+                                        city: address.city,
+                                        pincode: address.pincode,
+                                    }]
+                            }
+                        }).then((response)=>{
+                            resolve(response)
+                        }) 
+                }else{
+                    var user_address = new addressdb({
+                        userId: userId,
+                        address: [ 
+                            {
+                                name: address.name,
+                                email: address.email,
+                                mobile: address.mobile,
+                                address: address.address,
+                                landmark: address.landmark,
+                                district: address.district,
+                                city: address.city,
+                                pincode: address.pincode,
+                            }
+                        ]
+                    })
+                    user_address.save().then(()=>{
+                        resolve()
+                    })
+                }
             })
         })
     },
