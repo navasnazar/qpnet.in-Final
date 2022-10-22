@@ -25,6 +25,7 @@ let validation =
   }
 
 let couponValue = 0; 
+let login ={user: false, guest: false}
 
 let sessions;
 const verifyLogin=(req,res,next)=>{
@@ -39,13 +40,26 @@ const verifyLogin=(req,res,next)=>{
     
 /* GET users listing. */
 
-router.get('/',verifyLogin,(req, res)=>{
-  productHandles.getProducts().then((products)=>{
-    userID = sessions.userid
-    productHandles.getCart2(userID).then((cartProd)=>{
-    res.render('index',{user:true, products, cartProd})
+router.get('/',(req, res)=>{
+  sessions=req.session
+  if(sessions.userid){
+    productHandles.getProducts().then((products)=>{
+      userID = sessions.userid
+      productHandles.getCart2(userID).then((cartProd)=>{
+        login.user = true
+      res.render('index',{login, products, cartProd})
+      login.user = false
+
+      })
     })
-  })
+  }else{
+    productHandles.getProducts().then((products)=>{
+      login.guest = true
+      res.render('index',{login, products })
+      login.guest = false
+
+    })
+  }
 })
 
 router.get('/login',(req, res)=>{

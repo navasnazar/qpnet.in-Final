@@ -16,8 +16,8 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <a href="/" class="logo-link">
-                <img class="logo logo-dark" src="../assets/images/logos/logo-6.png" alt="logo" />
-                <img class="logo logo-light" src="../assets/images/logos/logo-6-w.png" alt="logo" />
+                <img class="logo logo-dark" src="../assets/images/logos/qpnetlogoblue.png" alt="logo" />
+                <img class="logo logo-light" src="../assets/images/logos/qpnetlogoblue.png" alt="logo" />
               </a>
               <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
                 <div class="offcanvas-header navbar-shadow">
@@ -44,6 +44,16 @@
                       <a class="nav-link " href="/orders">Orders</a>
                     </li>
                     <!-- orders end -->
+
+                    <li class="user mt-3">
+                      <div class="dropdown user-dropdown">
+                        <a href="javascript:void(0)"><i data-feather="user"></i></a>
+                        <ul class="onhover-show-div">
+                          <li><a href="/user_dashboard">Dashboard</a></li>
+                          <li><a href="/logout">Logout</a></li>
+                        </ul>
+                      </div>
+                    </li>
 
                     
                   </ul>
@@ -79,15 +89,7 @@
           </div>
         </div>
 
-        <li class="user">
-          <div class="dropdown user-dropdown">
-            <a href="javascript:void(0)"><i data-feather="user"></i></a>
-            <ul class="onhover-show-div">
-              <li><a href="/user_dashboard">Dashboard</a></li>
-              <li><a href="/logout">Logout</a></li>
-            </ul>
-          </div>
-        </li>
+        
 
         <!-- Icon Menu Start -->
         <ul class="icon-menu">
@@ -174,17 +176,6 @@
           </li>
 
 
-           
-            <!-- <li class="user">
-            <div class="dropdown user-dropdown">
-              <a href="javascript:void(0)"><i data-feather="user"></i></a>
-              <ul class="onhover-show-div">
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">Register</a></li>
-              </ul>
-            </div>
-          </li> -->
-          
             <li>
               <div class="dropdown shopingbag">
                 <a href="javascript:void(0)" class="cart-button"><i data-feather="shopping-bag"></i> <span class="notification-label"><%= cartProd.length %></span></a>

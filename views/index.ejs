@@ -18,7 +18,7 @@
     <meta name="msapplication-TileImage" content="../assets/images/favicon/favicon.png" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>NaNa Shoppi | Home</title>
+    <title>qpnet.in | Home</title>
 
     <!-- Google Jost Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,16 +54,14 @@
     <!-- Loader Start -->
     <div class="loader-wrapper">
       <div class="loader animate">
-        <span>N</span>
-        <span>a</span>
-        <span>N</span>
-        <span>a</span>
-        <span>S</span>
-        <span>h</span>
-        <span>o</span>
+        <span>q</span>
         <span>p</span>
-        <span>p</span>
+        <span>n</span>
+        <span>e</span>
+        <span>t</span>
+        <span>.</span>
         <span>i</span>
+        <span>n</span>
       </div>
     </div>
     <!-- Loader End -->
@@ -72,10 +70,10 @@
     <a href="javascript:void(0)" class="overlay-general overlay-common"></a>
     <!-- Header Start -->
     
-      <% if(user){ %> 
-          
+      <% if(login.user){ %>        
             <%- include('./partials/user-header.ejs') %> 
-      <% }else{ %> 
+      <% } %> 
+      <% if(login.guest){ %> 
         <%- include('./partials/no-user-header.ejs') %> 
       <% } %> 
 
@@ -85,7 +83,7 @@
       <section class="home-slider-common home-slider6 p-0 ratio_40">
         <div class="banner">
           <div >
-            <img class="bg-img "  src="/assets/images/upload-images/bannerfront.jpg" alt="banner" />
+            <a href="/shop"><img class="bg-img "  src="/assets/images/upload-images/bannerfront.jpg" alt="banner" /></a>
           </div>
           <!-- Banner Image Left -->
           <!-- <img class="img-fluid banner-left-img" src="/assets/images/upload-images/bannerfront.jpg" alt="banner img" /> -->
@@ -477,7 +475,7 @@
               <span class="offer-span">Special Offer</span>
               <h2 class="sub-title">Delicious <strong> Shoes Collection </strong></h2>
               <p>Workweek bow detailing a slingback buckle strap stiletto heel timeless go-to shoe sophistication slipper shoe.</p>
-              <a href="shop-left-sidebar.html" class="btn btn-solid round-corner line-none btn-solid2 btn-sm">Shop Now </a>
+              <a href="/shop" class="btn btn-solid round-corner line-none btn-solid2 btn-sm">Shop Now </a>
             </div>
 
             <div class="img-box">
@@ -596,7 +594,7 @@
             <div class="row gy-3 gy-md-4 gy-xl-0">
               <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="content-box">
-                  <img class="logo" src="../assets/images/logos/logo-6-w.png" alt="logo-white" />
+                  <img class="logo" src="../assets/images/logos/qpnetlogowhite.png" alt="logo-white" />
                   <ul>
                     <li><i data-feather="map-pin"></i> <span> 1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States </span></li>
                     <li>
