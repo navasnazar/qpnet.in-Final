@@ -46,7 +46,7 @@ router.get('/',(req, res)=>{
     productHandles.getProducts().then((products)=>{
       userID = sessions.userid
       productHandles.getCart2(userID).then((cartProd)=>{
-        login.user = true
+      login.user = true
       res.render('index',{login, products, cartProd})
       login.user = false
 
@@ -140,23 +140,41 @@ router.post('/otp', (req, res)=>{
   })
 })
 
-router.get('/product:id',verifyLogin,(req, res)=>{
-  proId = req.params.id
+router.get('/product:id', (req, res)=>{
+  sessions=req.session
+  if(sessions.userid){
+    login.user = true
+    proId = req.params.id
     productHandles.productDetails(proId).then((product)=>{
       productHandles.getProducts().then((Allproducts)=>{
         productHandles.getCart2(userID).then((cartProd)=>{
           if(validation){
-          res.render('user/product',{product,Allproducts, cartProd, validation})
+          res.render('user/product',{login,product,Allproducts, cartProd, validation})
             validation = 
             { wishMsg : false, qtyZeroErr : false }
           }
+        login.user = false
         })
       })
     })
+  }else{
+    login.guest = true
+    proId = req.params.id
+    productHandles.productDetails(proId).then((product)=>{
+      productHandles.getProducts().then((Allproducts)=>{
+          if(validation){
+          res.render('user/product',{login, product,Allproducts, validation})
+            validation = 
+            { wishMsg : false, qtyZeroErr : false }
+          }
+        login.guest = false
+      })
+    })
+  }
   })
 
 
-router.get('/signup',(req, res)=>{
+router.get('/signup', verifyLogin,(req, res)=>{
   sessions=req.session
   if(sessions.userid){
     res.redirect('/')
@@ -202,7 +220,7 @@ router.post('/signup',(req, res)=>{
   }
 })
 
-router.post('/addToCart:id',(req, res)=>{
+router.post('/addToCart:id',verifyLogin,(req, res)=>{
   qty = (req.body.quantity)
   if(!qty){
     qty=1
@@ -216,7 +234,7 @@ router.post('/addToCart:id',(req, res)=>{
   }) 
 })
 
-router.post('/addToWish:id',(req, res)=>{
+router.post('/addToWish:id',verifyLogin,(req, res)=>{
   prodId = req.params.id
   userID = sessions.userid
   productHandles.getProDetails(prodId).then((product)=>{
@@ -226,16 +244,28 @@ router.post('/addToWish:id',(req, res)=>{
   }) 
 })
 
-router.get('/shop',verifyLogin,(req, res)=>{
-  productHandles.getProducts().then((products)=>{
-    userID = sessions.userid
-    productHandles.getCart2(userID).then((cartProd)=>{
-    res.render('user/shop-view',{products, cartProd})
+
+router.get('/shop',(req, res)=>{
+  sessions=req.session
+  if(sessions.userid){
+    login.user = true
+    productHandles.getProducts().then((products)=>{
+      userID = sessions.userid
+      productHandles.getCart2(userID).then((cartProd)=>{
+      res.render('user/shop-view',{login, products, cartProd})
+      login.user = false
+      })
     })
-  })
+  }else{
+    login.guest = true
+    productHandles.getProducts().then((products)=>{
+      res.render('user/shop-view',{login, products})
+      login.guest = false
+    })
+  }
 })
 
-router.get('/cart',verifyLogin,(req, res)=>{
+router.get('/cart', verifyLogin,(req, res)=>{
   console.log(couponValue);
   userID = sessions.userid
     productHandles.getCart2(userID).then((cartProd)=>{
@@ -299,7 +329,7 @@ router.post('/applycoupon',(req, res)=>{
 })
 
 
-router.post('/moveToCart:id',(req, res)=>{
+router.post('/moveToCart:id',verifyLogin,(req, res)=>{
   userId = sessions.userid
   prodId = req.params.id
   productHandles.getSingleProduct(prodId).then((product)=>{
@@ -430,7 +460,7 @@ router.post('/paypal_payment',(req, res)=>{
 })
 
 
-router.get('/OrderPaymentSucess', (req, res)=>{
+router.get('/OrderPaymentSucess', verifyLogin, (req, res)=>{
   paymentOption = req.query.id
   userId = sessions.userid
 
@@ -452,7 +482,7 @@ router.get('/OrderPaymentSucess', (req, res)=>{
   })
 })
 
-router.get('/orders',(req, res)=>{
+router.get('/orders',verifyLogin,(req, res)=>{
   userId = sessions.userid
   productHandles.getCart2(userId).then((cartProd)=>{
     userHandles.getOrderDetails(userId).then((orders)=>{

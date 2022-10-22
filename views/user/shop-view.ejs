@@ -63,7 +63,12 @@
     <a href="javascript:void(0)" class="overlay-general"></a>
     <!-- Header Start -->
     
-    <%- include('../partials/user-header.ejs') %> 
+    <% if(login.user){ %>        
+      <%- include('../partials/user-header.ejs') %> 
+    <% } %> 
+    <% if(login.guest){ %> 
+    <%- include('../partials/no-user-header.ejs') %> 
+    <% } %> 
 
     <!-- Header End -->
 
