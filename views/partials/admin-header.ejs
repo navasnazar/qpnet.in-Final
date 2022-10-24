@@ -71,9 +71,9 @@
                   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu" aria-controls="primaryMenu">
                     <span class="navbar-toggler-icon"></span>
                   </button>
-                  <a href="index.html" class="logo-link">
-                    <img class="logo logo-dark" src="../assets/images/logos/logo-6.png" alt="logo" />
-                    <img class="logo logo-light" src="../assets/images/logos/logo-6-w.png" alt="logo" />
+                  <a href="/" class="logo-link">
+                    <img class="logo logo-dark" src="../assets/images/logos/qpnetlogoblue.png" alt="logo" />
+                    <img class="logo logo-light" src="../assets/images/logos/qpnetlogoblue.png" alt="logo" />
                   </a>
                   <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
                     <div class="offcanvas-header navbar-shadow">
@@ -88,65 +88,21 @@
                           <a class="nav-link dropdown-toggle" href="/admin" >Home</a>  
                         </li>
 
-                        <!-- Sales report -->
+                        <!-- Product report -->
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Sales Report</a>
-                          <div class="dropdown-menu">
-                            <div class="dropdown-column">
-                              <a class="dropdown-item" href="shop-categories.html">Shop Categories</a>
-                              <a class="dropdown-item" href="shop-filter.html">Shop Filter</a>
-                              <a class="dropdown-item" href="shop-left-sidebar.html">Shop Left Sidebar</a>
-                              <a class="dropdown-item" href="shop-list.html">Shop List</a>
-                              <a class="dropdown-item" href="shop-masanory.html">Shop Masonry</a>
-                              <a class="dropdown-item" href="shop-no-sidebar.html">Shop No Sidebar</a>
-                              <a class="dropdown-item" href="shop-right-sidebar.html">Shop Right Sidebar</a>
-                              <a class="dropdown-item" href="shop-top-filter.html">Shop Top Filter</a>
-                            </div>
-                          </div>
+                          <a class="nav-link dropdown-toggle" href="/admin/view-products">Product Report</a>
                         </li>
 
-                        <!-- Product -->
+                        <!-- Orders -->
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Product</a>
-                          <div class="dropdown-menu">
-                            <div class="dropdown-column">
-                              <a class="dropdown-item" href="product-four-image.html">Product 4 Images</a>
-                              <a class="dropdown-item" href="product-slider.html">Product Slider </a>
-                              <a class="dropdown-item" href="product-sticky.html">Product Sticky</a>
-                              <a class="dropdown-item" href="product-three-column.html">Product 3 Column</a>
-                              <a class="dropdown-item" href="product-video-img.html">Product Video</a>
-                              <a class="dropdown-item" href="product.html">Product Simple</a>
-                            </div>
-                          </div>
+                          <a class="nav-link dropdown-toggle" href="/admin/view-orders">Orders</a>
                         </li>
 
-                        
+            
 
-                        <!-- Pages -->
+                        <!-- Users -->
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
-                          <div class="dropdown-menu">
-                            <div class="dropdown-column">
-                              <a class="dropdown-item" href="404.html">404</a>
-                              <a class="dropdown-item" href="about-us.html">About Us </a>
-                              <a class="dropdown-item" href="address.html">Address</a>
-                              <a class="dropdown-item" href="cart.html">Cart</a>
-                              <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
-                              <a class="dropdown-item" href="compare.html">Compare</a>
-                              <a class="dropdown-item" href="contact-us.html">Contact Us</a>
-                              <a class="dropdown-item" href="faqs.html">Faqs</a>
-                              <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-                              <a class="dropdown-item" href="login.html">Login</a>
-                              <a class="dropdown-item" href="order-success.html">Order Success</a>
-                              <a class="dropdown-item" href="otp.html">Otp</a>
-                              <a class="dropdown-item" href="payment.html">Payment</a>
-                              <a class="dropdown-item" href="register.html">Register</a>
-                              <a class="dropdown-item" href="reset-password.html">Reset Password</a>
-                              <a class="dropdown-item" href="search.html">Search</a>
-                              <a class="dropdown-item" href="user-dashboard.html">User Dashboard</a>
-                              <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                            </div>
-                          </div>
+                          <a class="nav-link dropdown-toggle" href="/admin/view-users" >User Details</a>
                         </li>
                       </ul>
                     </div>
@@ -164,37 +120,19 @@
                 <button id="languageSelected"><span>English</span> <i data-feather="chevron-down"></i></button>
                 <ul class="onhover-show-div">
                   <li class="lang">English</li>
-                  <li class="lang">Chinese</li>
-                  <li class="lang">Arabic</li>
-                  <li class="lang">Russian</li>
                 </ul>
               </div>
             </div>
 
             <!-- Icon Menu Start -->
             <ul class="icon-menu">
-              <li>
-                <button class="search-button"><i data-feather="search"></i></button>
-                <!-- Search Input Start -->
-                <div class="search-full">
-                  <div class="input-group">
-                    <span class="input-group-text">
-                      <i data-feather="search"></i>
-                    </span>
-                    <input type="text" class="form-control search-type" placeholder="Search here.." />
-                    <span class="input-group-text close-search">
-                      <i data-feather="x"></i>
-                    </span>
-                  </div>
-                </div>
-                <!-- Search Input End -->
-              </li>
-
               <li class="user">
                 <div class="dropdown user-dropdown">
                   <a href="javascript:void(0)"><i data-feather="user"></i></a>
                   <ul class="onhover-show-div">
-                    <li><a href="/admin/logout">Logout</a></li>
+                    <form action="/admin/logout" method="post">
+                    <li><button type="submit">Logout</button></li>
+                  </form>
                   </ul>
                 </div>
               </li>

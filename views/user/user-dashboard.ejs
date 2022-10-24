@@ -6,9 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="oslo" />
-    <meta name="keywords" content="oslo" />
-    <meta name="author" content="oslo" />
     <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
     <link rel="manifest" href="./manifest.json" />
@@ -143,20 +140,8 @@
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false">
-                      Saved Card
-                      <span><i data-feather="chevron-right"></i></span>
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
                       Profile
-                      <span><i data-feather="chevron-right"></i></span>
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">
-                      Security
                       <span><i data-feather="chevron-right"></i></span>
                     </button>
                   </li>
@@ -178,46 +163,32 @@
                     </div>
 
                     <div class="row g-0 option-wrap">
-                      <div class="col-sm-6 col-xl-4">
+                      <div class="col-sm-6 col-xl-6">
                         <a href="/orders" data-class="orders" class="tab-box">
                           <img src="../assets/icons/svg/1.svg" alt="shopping bag" />
                           <h5>Orders</h5>
                           <p>See order history of previous orders</p>
                         </a>
                       </div>
-                      <div class="col-sm-6 col-xl-4">
+                      <div class="col-sm-6 col-xl-6">
                         <a href="/wishlist" data-class="wishlist" class="tab-box">
                           <img src="../assets/icons/svg/2.svg" alt="wishlist" />
                           <h5>Wishlist</h5>
                           <p>Your Wishlist expire within 24h please complete Checkout</p>
                         </a>
                       </div>
-                      <div class="col-sm-6 col-xl-4">
+                      <div class="col-sm-6 col-xl-6">
                         <a href="javascript:void(0)" data-class="savedAddress" class="tab-box">
                           <img src="../assets/icons/svg/3.svg" alt="address" />
                           <h5>Saved Address</h5>
                           <p>You saved <%= address.length %>  address for delivery</p>
                         </a>
                       </div>
-                      <div class="col-sm-6 col-xl-4">
-                        <a href="javascript:void(0)" data-class="payment" class="tab-box">
-                          <img src="../assets/icons/svg/4.svg" alt="payment" />
-                          <h5>Payment</h5>
-                          <p>Check your payment option there are 3 option added</p>
-                        </a>
-                      </div>
-                      <div class="col-sm-6 col-xl-4">
+                      <div class="col-sm-6 col-xl-6">
                         <a href="javascript:void(0)" data-class="profile" class="tab-box">
                           <img src="../assets/icons/svg/5.svg" alt="profile" />
                           <h5>Profile</h5>
                           <p>Complete your profile details there are some Information missing</p>
-                        </a>
-                      </div>
-                      <div class="col-sm-6 col-xl-4">
-                        <a href="javascript:void(0)" data-class="security" class="tab-box">
-                          <img src="../assets/icons/svg/6.svg" alt="security" />
-                          <h5>Security</h5>
-                          <p>Please don't share any one your email or password</p>
                         </a>
                       </div>
                     </div>
@@ -225,298 +196,7 @@
                 </div>
                 <!-- User Dashboard End -->
 
-                <!-- Order Tabs Start -->
-                <div class="tab-pane" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                  <div class="cart-wrap order-content">
-                    <div class="title-box3">
-                      <h3>My Orders</h3>
-                      <p>H thanks for placing a delivery order with Oslo! Your order should be home with you in soon</p>
-                    </div>
-
-                    <div class="order-wraper">
-                      <div class="order-box">
-                        <div class="order-header">
-                          <span><i data-feather="box"></i></span>
-                          <div class="order-content">
-                            <h5 class="order-status success">Delivered</h5>
-                            <p>Place July 15 2022 and Delivered on July 18 2022</p>
-                          </div>
-                        </div>
-
-                        <div class="order-info">
-                          <div class="product-details" data-productDetail="product-detail">
-                            <div class="img-box"><img src="../assets/images/fashion/product/front/4.jpg" alt="product" /></div>
-                            <div class="product-content">
-                              <h5>Women’s long sleeve Jacket</h5>
-                              <p class="truncate-3">
-                                Versatile sporty slogans short sleeve quirky laid back orange lux hoodies vests pins badges. Versatile sporty slogans short sleeve quirky laid back orange lux hoodies
-                                vests pins badges. Cutting edge crops stone transparent.
-                              </p>
-                              <span>Prize : <span>$120.00</span></span>
-                              <span>Size : <span>M</span></span>
-                              <span>Order Id : <span>edf125qa1d35</span></span>
-                            </div>
-                          </div>
-
-                          <div class="rating-box">
-                            <span>Rate Product : </span>
-                            <ul class="rating p-0 mb">
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i data-feather="star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="order-box">
-                        <div class="order-header">
-                          <span><i data-feather="box"></i></span>
-                          <div class="order-content">
-                            <h5 class="order-status success">Delivered</h5>
-                            <p>Place July 15 2022 and Delivered on July 18 2022</p>
-                          </div>
-                        </div>
-
-                        <div class="order-info">
-                          <div class="product-details" data-productDetail="product-detail">
-                            <div class="img-box"><img src="../assets/images/fashion/product/front/5.jpg" alt="product" /></div>
-                            <div class="product-content">
-                              <h5>Women’s long sleeve Jacket</h5>
-                              <p class="truncate-3">
-                                Tunic knitted stretch leather spaghetti straps triangle top patterned panelled purple blush. Versatile sporty slogans short sleeve quirky laid back orange lux hoodies
-                                vests pins badges.
-                              </p>
-                              <span>Prize : <span>$120.00</span></span>
-                              <span>Size : <span>M</span></span>
-                              <span>Order Id : <span>edf125qa1d35</span></span>
-                            </div>
-                          </div>
-
-                          <div class="rating-box">
-                            <span>Rate Product : </span>
-                            <ul class="rating p-0 mb">
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i data-feather="star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="order-box">
-                        <div class="order-header">
-                          <span><i data-feather="box"></i></span>
-                          <div class="order-content">
-                            <h5 class="order-status success">Delivered</h5>
-                            <p>Place July 15 2022 and Delivered on July 18 2022</p>
-                          </div>
-                        </div>
-
-                        <div class="order-info">
-                          <div class="product-details" data-productDetail="product-detail">
-                            <div class="img-box"><img src="../assets/images/fashion/product/front/6.jpg" alt="product" /></div>
-                            <div class="product-content">
-                              <h5>Women’s long sleeve Jacket</h5>
-                              <p class="truncate-3">
-                                Pop top sporty stripe trims mesh inserts denim turtle neck casual white cotton button silver.Back print tattoo graphics printed expensive photos colors sun psychedelic
-                                super casual tag.
-                              </p>
-                              <span>Prize : <span>$120.00</span></span>
-                              <span>Size : <span>M</span></span>
-                              <span>Order Id : <span>edf125qa1d35</span></span>
-                            </div>
-                          </div>
-
-                          <div class="rating-box">
-                            <span>Rate Product : </span>
-                            <ul class="rating p-0 mb">
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i class="fill" data-feather="star"></i>
-                              </li>
-                              <li>
-                                <i data-feather="star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Order Tabs End -->
-
-                <!-- Order Detail Tab Start -->
-                <div class="tab-pane" id="orders-details" role="tabpanel" aria-labelledby="orders-details">
-                  <div class="order-detail-wrap order-content">
-                    <div class="row g-3 g-md-4">
-                      <div class="col-12">
-                        <div class="order-summery-wrap mt-0 order-data">
-                          <div class="banner-box">
-                            <div class="media">
-                              <div class="img">
-                                <i data-feather="package"></i>
-                              </div>
-                              <div class="media-body">
-                                <h2>Order Delivered</h2>
-                                <span class="font-sm">Delivered On July 15 2022</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="product-details">
-                          <div class="img-box"><img src="../assets/images/fashion/product/front/4.jpg" alt="product" /></div>
-                          <div class="product-content">
-                            <h5>Women’s long sleeve Jacket</h5>
-                            <p class="truncate-3">
-                              Versatile sporty slogans short sleeve quirky laid back orange lux hoodies vests pins badges. Versatile sporty slogans short sleeve quirky laid back orange lux hoodies
-                              vests pins badges. Cutting edge crops stone transparent.
-                            </p>
-                            <span>Prize : <span>$120.00</span></span>
-                            <span>Size : <span>M</span></span>
-                            <span>Order Id : <span>edf125qa1d35</span></span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="order-data summery-wrap">
-                          <div class="order-summery-box">
-                            <h5 class="cart-title">Price Details (1 Quantity)</h5>
-                            <ul class="order-summery">
-                              <li>
-                                <span>Bag total</span>
-                                <span>$220.00</span>
-                              </li>
-
-                              <li>
-                                <span>Bag savings</span>
-                                <span class="theme-color">-$20.00</span>
-                              </li>
-
-                              <li>
-                                <span>Coupon Discount</span>
-                                <a href="offer.html" class="font-danger">$120.00</a>
-                              </li>
-
-                              <li>
-                                <span>Delivery</span>
-                                <span>$50.00</span>
-                              </li>
-
-                              <li class="pb-0">
-                                <span>Total Amount</span>
-                                <span>$270.00</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="row gy-3 gy-sm-0 g-3 g-md-4">
-                          <div class="col-sm-6">
-                            <div class="order-data general-details">
-                              <!-- Payment Method Start -->
-                              <div class="payment-method mt-0">
-                                <h5 class="cart-title">Payment Method</h5>
-                                <div class="payment-box">
-                                  <img src="../assets/icons/png/1.png" alt="card" />
-                                  <span class="font-sm title-color"> **** **** **** 6502</span>
-                                </div>
-                              </div>
-                              <!-- Payment Method End -->
-
-                              <button class="btn-solid mb-line btn-sm mt-4">Get Invoice <i class="arrow"></i></button>
-                            </div>
-                          </div>
-
-                          <div class="col-sm-6">
-                            <div class="order-data general-details">
-                              <!-- Contact Start -->
-                              <div class="payment-method mt-0">
-                                <h5 class="cart-title">Contact Us</h5>
-
-                                <div class="payment-box">
-                                  <i data-feather="phone"></i>
-                                  <span class="font-sm title-color">
-                                    <a class="content-color fw-500" href="tel:2554-4454-5646">2554-4454-5646</a>
-                                  </span>
-                                </div>
-
-                                <div class="payment-box mt-3">
-                                  <i data-feather="phone"></i>
-                                  <span class="font-sm title-color">
-                                    <a class="content-color fw-500" href="tel:5452-2545-2154">5452-2545-2154</a>
-                                  </span>
-                                </div>
-
-                                <div class="payment-box mt-3">
-                                  <i data-feather="mail"></i>
-                                  <span class="font-sm title-color">
-                                    <a class="content-color fw-500" href="mailto:someone@example.com">someone@example.com</a>
-                                  </span>
-                                </div>
-                              </div>
-                              <!-- Contact End -->
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="order-data general-details">
-                          <!-- Address Section Start -->
-                          <div class="address-ordered p-0">
-                            <h5 class="cart-title">Order Address</h5>
-                            <div class="address">
-                              <h5 class="font-default title-color">Nadine Vogt <span class="badges badges-pill badges-theme">Home</span></h5>
-                              <p class="font-default content-color"><i data-feather="map-pin"></i> 1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States</p>
-                            </div>
-                          </div>
-                          <!-- Address Section End -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Order Detail Tab End -->
+               
 
                 <!-- Saved Address Tabs Start -->
                 <div class="tab-pane" id="savedAddress" role="tabpanel" aria-labelledby="savedAddress-tab">
@@ -576,120 +256,7 @@
                 </div>
                 <!-- Saved Address Tabs End -->
 
-                <!-- Payment Tabs Start -->
-                <div class="tab-pane" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                  <div class="payment-tab">
-                    <div class="d-flex align-items-start align-items-sm-center justify-content-between title-box3">
-                      <div>
-                        <h3>Your Saved Card</h3>
-                        <p>here is your saved card, from here you can easily add or modify your card</p>
-                      </div>
-                      <button class="btn btn-outline btn-sm white-space-no" data-bs-toggle="modal" data-bs-target="#addNewcard">Add Card</button>
-                    </div>
-
-                    <div class="payment-section">
-                      <div class="row g-3 g-xl-4">
-                        <div class="col-sm-6 col-xl-4">
-                          <div class="payment-card bg-theme-blue border-color-blue">
-                            <div class="bank-info">
-                              <img class="bank" src="../assets/icons/png/bank1.png" alt="bank1" />
-                              <div class="card-type">
-                                <img class="bank-card" src="../assets/icons/png/1.png" alt="card" />
-                              </div>
-                            </div>
-
-                            <div class="card-details">
-                              <span>Card Number</span>
-                              <h5>6458 50XX XXXX 0851</h5>
-                            </div>
-
-                            <div class="card-details-wrap">
-                              <div class="card-details">
-                                <span>Name On Card</span>
-                                <h5>Josephin water</h5>
-                              </div>
-
-                              <div class="text-center card-details">
-                                <span>Validity</span>
-                                <h5>XX/XX</h5>
-                              </div>
-                            </div>
-
-                            <div class="btn-box">
-                              <span data-bs-toggle="modal" data-bs-target="#editCard"> <i data-feather="edit"></i></span>
-                              <span data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-6 col-xl-4">
-                          <div class="payment-card bg-theme-orange border-color-orange">
-                            <div class="bank-info">
-                              <img class="bank" src="../assets/icons/png/bank2.png" alt="bank1" />
-                              <div class="card-type">
-                                <img class="bank-card" src="../assets/icons/png/2.png" alt="card" />
-                              </div>
-                            </div>
-
-                            <div class="card-details">
-                              <span>Card Number</span>
-                              <h5>2564 75XX XXXX 3545</h5>
-                            </div>
-
-                            <div class="card-details-wrap">
-                              <div class="card-details">
-                                <span>Name On Card</span>
-                                <h5>Josephin water</h5>
-                              </div>
-                              <div class="text-center card-details">
-                                <span>Validity</span>
-                                <h5>XX/XX</h5>
-                              </div>
-                            </div>
-
-                            <div class="btn-box">
-                              <span data-bs-toggle="modal" data-bs-target="#editCard"><i data-feather="edit"></i></span>
-                              <span data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-6 col-xl-4">
-                          <div class="payment-card bg-theme-yellow border-color-yellow">
-                            <div class="bank-info">
-                              <img class="bank" src="../assets/icons/png/bank3.png" alt="bank1" />
-                              <div class="card-type">
-                                <img class="bank-card" src="../assets/icons/png/5.png" alt="card" />
-                              </div>
-                            </div>
-
-                            <div class="card-details">
-                              <span>Card Number</span>
-                              <h5>8564 34XX XXXX 9564</h5>
-                            </div>
-
-                            <div class="card-details-wrap">
-                              <div class="card-details">
-                                <span>Name On Card</span>
-                                <h5>Josephin water</h5>
-                              </div>
-                              <div class="text-center card-details">
-                                <span>Validity</span>
-                                <h5>XX/XX</h5>
-                              </div>
-                            </div>
-
-                            <div class="btn-box">
-                              <span data-bs-toggle="modal" data-bs-target="#editCard"><i data-feather="edit"> </i></span>
-                              <span data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Payment Tabs End -->
+                
 
                 <!-- Profile Tabs Start -->
                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -851,12 +418,12 @@
     <!-- Main End -->
 
     <!-- Document Footer Start -->
-    <footer class="footer-document ratio_asos mb-xxl">
+    <footer class="footer-document footer-document2 ratio_asos mb-xxl">
       <div class="bg-footer-l">
-        <img src="../assets/images/fashion/banner/bg-footer-l.png" alt="banner" />
+        <img src="../assets/images/bag/banner/bg-footer-l.png" alt="banner" />
       </div>
       <div class="bg-footer-r">
-        <img src="../assets/images/fashion/banner/bg-footer-r.png" alt="banner" />
+        <img src="../assets/images/bag/banner/bg-footer-r.png" alt="banner" />
       </div>
       <div>
         <div class="container-lg">
@@ -866,12 +433,12 @@
                 <div class="content-box">
                   <img class="logo" src="../assets/images/logos/qpnetlogowhite.png" alt="logo-white" />
                   <ul>
-                    <li><i data-feather="map-pin"></i> <span> 1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States </span></li>
+                    <li><i data-feather="map-pin"></i> <span>Navas Nazar<br> Brototype <br> Dotespace, Vetturoad, Kazhakkuttam </span></li>
                     <li>
-                      <i data-feather="phone"></i><a class="nav" href="tel:185659635"><span> + 185659635 </span></a>
+                      <i data-feather="phone"></i><a class="nav" href="tel:+919567819494"><span> +91 9 5678 1 9494 </span></a>
                     </li>
                     <li>
-                      <i data-feather="mail"></i><a class="nav" href="mailto:fashion098@gmail.com"><span> fashion098@gmail.com </span></a>
+                      <i data-feather="mail"></i><a class="nav" href="mailto:navasnazar@gmail.com"><span> navasnazar@gmail.com </span></a>
                     </li>
                   </ul>
                 </div>
@@ -879,74 +446,52 @@
 
               <div class="nav-footer col-lg-2 col-md-4 order-md-3 order-lg-2">
                 <div class="nav content-box d-md-block">
-                  <h5 class="heading-footer">Shop By</h5>
+                  <h5 class="heading-footer line-style">Shop By</h5>
                   <ul>
-                    <li><a class="nav" href="shop-left-sidebar.html">New In </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Women </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Men </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Shoes</a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Bags & Accessories </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Top Brands </a></li>
+                    <li><a class="nav" href="/shop">Men</a></li>
+                    <li><a class="nav" href="/shop">Women </a></li>
+                    <li><a class="nav" href="/shop">Child </a></li>
+                    <li><a class="nav" href="/shop">Top all Brands </a></li>
                   </ul>
                 </div>
               </div>
 
               <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-4 order-lg-3">
                 <div class="nav d-md-block content-box">
-                  <h5 class="heading-footer">Information</h5>
+                  <h5 class="heading-footer line-style">Information</h5>
                   <ul>
-                    <li><a class="nav" href="index.html">Home </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Shop </a></li>
-                    <li><a class="nav" href="about-us.html">About Us</a></li>
-                    <li><a class="nav" href="blog-detail.html">Blog </a></li>
-                    <li><a class="nav" href="contact-us.html">Contact </a></li>
+                    <li><a class="nav" href="/">Home </a></li>
+                    <li><a class="nav" href="/shop">Shop </a></li>
+                    <li><a class="nav" href="/contact-us">Contact </a></li>
                   </ul>
                 </div>
               </div>
 
               <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-5 order-lg-4">
                 <div class="nav d-md-block content-box">
-                  <h5 class="heading-footer">Get Help</h5>
+                  <h5 class="heading-footer line-style">Get Help</h5>
                   <ul>
-                    <li><a class="nav" href="user-dashboard.html">Your Orders </a></li>
-                    <li><a class="nav" href="user-dashboard.html">Your Account </a></li>
-                    <li><a class="nav" href="user-dashboard.html">Track Order</a></li>
-                    <li><a class="nav" href="wishlist.html">Your Wishlist</a></li>
-                    <li><a class="nav" href="search.html">Search</a></li>
-                    <li><a class="nav" href="faqs.html">Faqs</a></li>
+                    <li><a class="nav" href="/orders">Your Orders</a></li>
+                    <li><a class="nav" href="/user_dashboard">Your Account </a></li>
+                    <li><a class="nav" href="/cart">Your Cart</a></li>
+                    <li><a class="nav" href="/wishlist">Your Wishlist</a></li>
                   </ul>
                 </div>
               </div>
 
               <div class="col-xl-3 col-md-6 col-lg-4 order-md-2 order-lg-5">
                 <div class="content-box">
-                  <h5 class="heading-footer">Follow Us</h5>
+                  <h5 class="heading-footer line-style">Follow Us</h5>
                   <div class="follow-wrap">
                     <ul>
                       <li>
-                        <a href="https://www.facebook.com/"> <img src="../assets/icons/svg/social/fb.svg" alt="fb" /> </a>
+                        <a href="https://www.facebook.com/me.NavasNazar/"> <img src="../assets/icons/svg/social/fb.svg" alt="fb" /> </a>
                       </li>
                       <li>
-                        <a href="https://www.instagram.com/accounts/login/?source=auth_switcher"> <img src="../assets/icons/svg/social/inta.svg" alt="fb" /> </a>
-                      </li>
-                      <li>
-                        <a href="https://twitter.com/i/flow/login"> <img src="../assets/icons/svg/social/tw.svg" alt="fb" /> </a>
-                      </li>
-                      <li>
-                        <a href="https://in.pinterest.com/"> <img src="../assets/icons/svg/social/pint.svg" alt="fb" /> </a>
+                        <a href="https://www.instagram.com/navas_nazar/"> <img src="../assets/icons/svg/social/inta.svg" alt="fb" /> </a>
                       </li>
                     </ul>
                   </div>
-
-                  <div class="subscribe-box">
-                    <h5>Newsletter Sign Up</h5>
-                    <p>Receive our latest updates about our products & promotions.</p>
-                  </div>
-
-                  <form action="javascript:void(0)" class="footer-form">
-                    <input required type="email" class="form-control" placeholder="Your email address" />
-                    <button type="submit" class="btn-solid">SUBMIT <i class="arrow"></i></button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -957,21 +502,18 @@
               <div class="col-md-6">
                 <ul>
                   <li>
-                    <a href="javascript:void(0)"> <img src="../assets/icons/png/1.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/cod.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"> <img src="../assets/icons/png/2.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/razorpay.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
                   </li>
                   <li>
                     <a href="javascript:void(0)"> <img src="../assets/icons/png/3.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
                   </li>
-                  <li>
-                    <a href="javascript:void(0)"> <img src="../assets/icons/png/4.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
-                  </li>
                 </ul>
               </div>
               <div class="col-md-6">
-                <p class="mb-0">© 2022, OSLO Template. Made with heart by Pixelstrap</p>
+                <p class="mb-0">Feel your best shopping experience by qpnet.in</p>
               </div>
             </div>
           </div>
@@ -985,7 +527,7 @@
     <footer class="mobile-menu-footer d-sm-none">
       <ul>
         <li>
-          <a href="/" class="active">
+          <a href="/" >
             <i data-feather="home"></i>
             <span>Home</span>
           </a>
@@ -1004,7 +546,7 @@
           </a>
         </li>
         <li>
-          <a href="/user_dashboard">
+          <a href="/user_dashboard" class="active">
             <i data-feather="user"></i>
             <span>Account</span>
           </a>
@@ -1127,111 +669,7 @@
       </div>
       <!-- Add New Address Modal End -->
 
-    <!-- Edit Address Modal Start -->
-    <div class="modal fade addnew-address" id="edditAddress" tabindex="-1" aria-labelledby="edditAddressLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="edditAddressLabel">Edit Address</h5>
-            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
-          </div>
-
-          <div class="modal-body full-grid-mobile">
-            <form action="javascript:void(0)" class="custom-form form-pill">
-              <div class="row g-3 g-md-4">
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="name2">Full Name</label>
-                    <input class="form-control" type="text" value="Nadine Vogt" required name="name2" id="name2" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="email3">Email</label>
-                    <input class="form-control" type="email" value="nadinevogt@roze.come" required name="email3" id="email3" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="mobile3">Mobile No:</label>
-                    <input maxlength="9" class="form-control" type="number" value="4237720570" required name="mobile3" id="mobile3" />
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="address5">Address1</label>
-                    <input class="form-control" type="text" value="385 Happy Hollow Road" required name="address5" id="address5" />
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="address6">Address2</label>
-                    <input class="form-control" type="text" value="Wilmington, NC 28412" required name="address6" id="address6" />
-                  </div>
-                </div>
-
-                <div class="col-6 col-sm-4">
-                  <div class="input-box">
-                    <label for="country2">Country</label>
-                    <select class="form-select form-control" id="country2">
-                      <option selected disabled value="">United State</option>
-                      <option>United States</option>
-                      <option>India</option>
-                      <option>America</option>
-                      <option>South America</option>
-                      <option>Dubai</option>
-                      <option>Hong Kong</option>
-                      <option>Indonesia</option>
-                      <option>Pakistan</option>
-                      <option>Saudi Arabia</option>
-                      <option>China</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-6 col-sm-4">
-                  <div class="input-box">
-                    <label for="city">City</label>
-                    <select class="form-select form-control" id="city">
-                      <option selected disabled value="">Los Angeles</option>
-                      <option>Almaty</option>
-                      <option>India</option>
-                      <option>America</option>
-                      <option>South America</option>
-                      <option>Dubai</option>
-                      <option>Hong Kong</option>
-                      <option>Indonesia</option>
-                      <option>Pakistan</option>
-                      <option>Saudi Arabia</option>
-                      <option>China</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-sm-4">
-                  <div class="input-box">
-                    <label for="zip2">Zip Code</label>
-                    <input maxlength="4" class="form-control" type="number" value="3252" required name="zip2" id="zip2" />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <div class="btn-box">
-              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
-              <button type="button" class="btn btn-solid line-none rounded-pill">Edit Address <i class="arrow"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Edit Address Modal End -->
+    
 
     <!-- Action Conformation Start -->
     <div class="modal fade action-conform" id="conformation" tabindex="-1" aria-labelledby="conformationLabel" aria-hidden="true">
@@ -1253,118 +691,7 @@
     </div>
     <!-- Action Conformation End -->
 
-    <!-- Add Card Modal Start -->
-    <div class="modal fade addnewcard" id="addNewcard" tabindex="-1" aria-labelledby="addNewcard" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addNewAddressLabel2">Add New Card</h5>
-            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
-          </div>
-
-          <div class="modal-body">
-            <form action="javascript:void(0)" class="custom-form form-pill">
-              <div class="row g-3 g-md-4">
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="name3">Card Holder Name</label>
-                    <input class="form-control" type="text" required name="name3" id="name3" />
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="card-number2">Card Number</label>
-                    <input maxlength="16" class="form-control" type="number" required name="card-number2" id="card-number2" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="ex-date">Expiry Date</label>
-                    <div class="icon-input">
-                      <input class="form-control" type="text" required name="ex-date" id="ex-date" />
-                      <i data-feather="calendar"></i>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="cv">CV</label>
-                    <input maxlength="3" class="form-control" type="number" required name="cv" id="cv" />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <div class="btn-box">
-              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
-              <button type="button" class="btn btn-solid line-none rounded-pill" data-bs-dismiss="modal" aria-label="Close">Add Card <i class="arrow"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Add Card Modal End -->
-
-    <!-- Edit Card Modal Start -->
-    <div class="modal fade addnewcard" id="editCard" tabindex="-1" aria-labelledby="editCard" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addNewAddressLabel3">Edit Card</h5>
-            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
-          </div>
-
-          <div class="modal-body">
-            <form action="javascript:void(0)" class="custom-form form-pill">
-              <div class="row g-3 g-md-4">
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="name4">Card Holder Name</label>
-                    <input value="Josephin water" class="form-control" type="text" required name="name4" id="name4" />
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="card-number">Card Number</label>
-                    <input value="6458502535450851" class="form-control" type="number" required name="card-number" id="card-number" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="ex-date2">Expiry Date</label>
-                    <div class="icon-input">
-                      <input value="05/30" class="form-control" type="text" required name="ex-date2" id="ex-date2" />
-                      <i data-feather="calendar"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="cv2">CV</label>
-                    <input value="456" class="form-control" type="number" required name="cv2" id="cv2" />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <div class="btn-box">
-              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">Close</button>
-              <button type="button" class="btn btn-solid line-none rounded-pill" data-bs-dismiss="modal" aria-label="Close">Edit Card <i class="arrow"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Edit Card Modal End -->
+    
 
     <!-- Tap To Top Button Start -->
     <div class="tap-to-top-box hide">

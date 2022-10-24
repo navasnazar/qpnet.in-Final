@@ -260,8 +260,8 @@ router.get('/downloads', verifyAdminLogin, (req, res)=>{
 
 router.post('/export_to_excel', downloads.OrderDetails)
 
-router.get('/logout',(req,res)=>{
-  session.destroy()
+router.post('/logout',(req,res)=>{
+  req.session.adminId = ""
   res.redirect('/admin/login')
 })
 

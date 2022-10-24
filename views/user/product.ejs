@@ -8,9 +8,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="oslo" />
-    <meta name="keywords" content="oslo" />
-    <meta name="author" content="oslo" />
     <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
     <link rel="manifest" href="./manifest.json" />
@@ -118,15 +115,15 @@
                     <div class="swiper mainslider2">
                       <div class="swiper-wrapper">
                         <div class="swiper-slide" >
-                            <img src="/assets/images/upload-images/<%= product[0].imageFront %>" data-zoom-image='/assets/images/upload-images/<%= product[0].imageFront %>' id="zoom1" >
+                            <img src="/assets/images/upload-images/<%= product[0].imageFront %>" data-zoom-image='/assets/images/upload-images/<%= product[0].imageFront %>'  >
                         </div>
 
                         <div class="swiper-slide" >
-                          <img src="/assets/images/upload-images/<%= product[0].imageSide %>" data-zoom-image='/assets/images/upload-images/<%= product[0].imageSide %>' id="zoom2" >
+                          <img src="/assets/images/upload-images/<%= product[0].imageSide %>" data-zoom-image='/assets/images/upload-images/<%= product[0].imageSide %>'  >
                         </div>
 
                         <div class="swiper-slide">
-                          <img src="/assets/images/upload-images/<%= product[0].imageTop %>" data-zoom-image='/assets/images/upload-images/<%= product[0].imageTop %>' id="zoom3" >
+                          <img src="/assets/images/upload-images/<%= product[0].imageTop %>" data-zoom-image='/assets/images/upload-images/<%= product[0].imageTop %>' >
                         </div>
                       </div>
                     </div>
@@ -140,30 +137,11 @@
                   <form action="/addToCart<%= product[0]._id %>" method="post">
                   <h2><%= product[0].pname %></h2>
                   <h3 class="color-theme"><%= product[0].category %></h3>
-                  <div class="option rating-option">
-                    <ul class="rating p-0">
-                      <li>
-                        <i class="fill" data-feather="star"></i>
-                      </li>
-                      <li>
-                        <i class="fill" data-feather="star"></i>
-                      </li>
-                      <li>
-                        <i class="fill" data-feather="star"></i>
-                      </li>
-                      <li>
-                        <i class="fill" data-feather="star"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star"></i>
-                      </li>
-                    </ul>
-                    <span>120 Rating</span>
-                  </div>
+                  
 
-                  <div class="option price"><span>₹<%= product[0].sellingPrice %></span>
+                  <div class="option price mt-3"><span>₹<%= product[0].sellingPrice %></span>
                     <% if(product[0].originalPrice != product[0].sellingPrice){ %> 
-                      <del>₹<%= product[0].originalPrice %></del>
+                      <del class="ml-3"> ₹<%= product[0].originalPrice %></del>
                     <% } %> 
                     
                     <% if(product[0].offer != 0){ %> 
@@ -180,20 +158,11 @@
                   <div class="option-side">
                     <div class="option">
                       <div class="title-box4">
-                        <h4 class="heading">Your Brand Color:<span class="bg-theme-blue"></span></h4>
+                        <h4 class="heading">Your Brand Color:</h4>
                       </div>
                       <ul class="filter-color">
                         <li class="active">
-                          <div class="color-box bg-theme-black me-4" ><%= product[0].color %></div>
-                        </li>
-                        <li >
-                          <div class="color-box bg-theme-yellow"></div>
-                        </li>
-                        <li>
-                          <div class="color-box bg-theme-orange"></div>
-                        </li>
-                        <li>
-                          <div class="color-box bg-theme-blue"></div>
+                          <div style="font-size: 20px;" class="me-4 " ><%= product[0].color %></div>
                         </li>
                       </ul>
                     </div>
@@ -215,10 +184,7 @@
                       <span class="size-chart" data-bs-toggle="modal" data-bs-target="#sizeChart">Size Chart</span>
                     </div>
                     <ul class="size-list">
-                      <li class="active">S</li>
-                      <li>M</li>
-                      <li>L</li>
-                      <li>XL</li>
+                      <li class="active"><%= product[0].size %></li>
                     </ul>
                   </div>
 
@@ -248,519 +214,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Tabs Start -->
-          <div class="description-box">
-            <div class="row gy-4">
-              <div class="col-12">
-                <!-- Tabs Filter Start -->
-                <ul class="nav nav-pills nav-tabs2 row-tab" id="pills-tab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="description-tab" data-bs-toggle="pill" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">
-                      Description
-                    </button>
-                  </li>
-
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="specification-tab" data-bs-toggle="pill" data-bs-target="#specification" type="button" role="tab" aria-controls="specification" aria-selected="false">
-                      Specification
-                    </button>
-                  </li>
-
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="seller-tab" data-bs-toggle="pill" data-bs-target="#seller" type="button" role="tab" aria-controls="seller" aria-selected="false">Seller</button>
-                  </li>
-
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="review-tab" data-bs-toggle="pill" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="false">
-                      Review <span>3</span>
-                    </button>
-                  </li>
-                </ul>
-                <!-- Tabs Filter End -->
-              </div>
-
-              <div class="col-12">
-                <!-- Tab Content Start -->
-                <div class="tab-content" id="pills-tabContent">
-                  <!-- Description Tab Content Start -->
-                  <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                    <div class="details-product">
-                      <p>
-                        The Model is wearing a white blouse from our stylist's collection, see the image for a mock-up of what the actual blouse would look like.it has text written on it in a black
-                        glass is a heady concoction of madness mixed with a hint of wicked along with several bursts of outrageousness and a tingling spiciness of twisted humour bottled up in
-                        intriguing grandeur cursive language which looks great on a white color.
-                      </p>
-
-                      <div class="title-box4 mb-3 mt-4">
-                        <h4 class="heading mt-0">Comfort: <span class="bg-theme-blue"></span></h4>
-                      </div>
-
-                      <p>
-                        Glass is a heady concoction of madness mixed with a hint of wicked along with several bursts of wicked along with several bursts outrageousness and a tingling spiciness of
-                        twisted humour bottled up in intriguing grandeur
-                      </p>
-
-                      <div class="row g-3 g-lg-4 ratio_landscape mb-3">
-                        <div class="col-md-4">
-                          <div class="frame-wrap">
-                            <video class="video-tag" loop autoplay muted>
-                              <source src="../assets/video/clothing.mp4" type="video/mp4" />
-                              <source src="../assets/video/clothing.ogg" type="video/ogg" />
-                              Your browser does not support the video tag.
-                            </video>
-                          </div>
-                        </div>
-                        <div class="col-md-8">
-                          <div class="speciation-summery">
-                            <ul class="general-summery">
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span> Madness mixed with a hint of wicked along</span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Tingling spiciness of twisted humour bottled up in intriguing grandeur</span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Comfortable and stylish all day long.Indigo shirt with western yoke</span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Intriguing grandeur cursive language which looks great on a white color.</span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Synthetic fibres like rayon. It's light in weight and is soft </span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Minima possums, pariah's sed, quasi provident dolorous molesting</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <p>
-                        Smart rich stretch viscose green yellow poly- blend fabric spaghetti straps figure-skimming fit. Tops shift shape rich fabric relaxed fitting size true black gold zip virgin
-                        wool. Stretch lining hemline above knee burgundy satin finish concealed zip small buttons rayon.
-                      </p>
-
-                      <div class="title-box4 mb-3 mt-4">
-                        <h4 class="heading mt-0">Material Details <span class="bg-theme-blue"></span></h4>
-                      </div>
-                      <p>
-                        Glass is a heady concoction of madness mixed with a hint of wicked along with several bursts of wicked along with several bursts outrageousness and a tingling spiciness of
-                        twisted humour bottled up in intriguing grandeur
-                      </p>
-                      <p>
-                        Structured chic panels power party flattering ultimate trim back pencil silhouette perfect look. Best seller signature waist cut pockets cotton-mix navy blue tailoring elegant
-                        cashmere. Stretch lining hemline above knee burgundy satin finish concealed zip small buttons rayon. Tops shift shape rich fabric relaxed fitting size true black gold zip
-                        virgin wool. Stretch lining hemline above knee burgundy satin finish concealed zip small buttons rayon.
-                      </p>
-                      <div class="row row g-3 g-lg-4">
-                        <div class="col-md-8 order-2 order-md-1">
-                          <div class="speciation-summery">
-                            <ul class="general-summery">
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Tingling spiciness of twisted humour bottled up in intriguing grandeur</span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Comfortable and stylish all day long.Indigo shirt with western yoke</span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Intriguing grandeur cursive language which looks great on a white color.</span>
-                              </li>
-                              <li>
-                                <i data-feather="check-circle"></i>
-                                <span>Synthetic fibres like rayon. It's light in weight and is soft </span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Description Tab Content End -->
-
-                  <!-- Specification Tab Content Start -->
-                  <div class="tab-pane fade" id="specification" role="tabpanel" aria-labelledby="specification-tab">
-                    <div class="specification-wrap">
-                      <p class="font-md content-color">
-                        The Model is wearing a white blouse from our stylist's collection, see the image for a mock-up of what the actual blouse would look like.it has text written on it in a black
-                        cursive language which looks great on a white color.
-                      </p>
-                      <div class="table-responsive">
-                        <table class="specification-table table striped">
-                          <tr>
-                            <th>Product Dimensions</th>
-                            <td>15 x 15 x 3 cm; 250 Grams</td>
-                          </tr>
-                          <tr>
-                            <th>Date First Available</th>
-                            <td>5 April 2021</td>
-                          </tr>
-                          <tr>
-                            <th>Manufacturer‏</th>
-                            <td>Aditya Birla Fashion and Retail Limited</td>
-                          </tr>
-                          <tr>
-                            <th>ASIN</th>
-                            <td>B06Y28LCDN</td>
-                          </tr>
-                          <tr>
-                            <th>Item model number</th>
-                            <td>AMKP317G04244</td>
-                          </tr>
-                          <tr>
-                            <th>Department</th>
-                            <td>Men</td>
-                          </tr>
-                          <tr>
-                            <th>Item Weight</th>
-                            <td>250 G</td>
-                          </tr>
-                          <tr>
-                            <th>Item Dimensions LxWxH</th>
-                            <td>15 x 15 x 3 Centimeters</td>
-                          </tr>
-                          <tr>
-                            <th>Net Quantity</th>
-                            <td>1 U</td>
-                          </tr>
-                          <tr>
-                            <th>Included Components‏</th>
-                            <td>1-T-shirt</td>
-                          </tr>
-                          <tr>
-                            <th>Generic Name</th>
-                            <td>T-shirt</td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Specification Tab Content End -->
-
-                  <!-- Seller Tab Content Start -->
-                  <div class="tab-pane fade" id="seller" role="tabpanel" aria-labelledby="seller-tab">
-                    <div class="seller-info">
-                      <div class="seller-details">
-                        <div class="seller-logo-wrap">
-                          <div class="img-box">
-                            <img src="../assets/icons/png/seller.png" alt="seller" />
-                          </div>
-                          <div class="seller-content">
-                            <h5>Supreme Seller</h5>
-                            <div class="rating-box">
-                              <ul class="rating p-0 mb">
-                                <li>
-                                  <i class="fill" data-feather="star"></i>
-                                </li>
-                                <li>
-                                  <i class="fill" data-feather="star"></i>
-                                </li>
-                                <li>
-                                  <i class="fill" data-feather="star"></i>
-                                </li>
-                                <li>
-                                  <i class="fill" data-feather="star"></i>
-                                </li>
-                                <li>
-                                  <i class="fill" data-feather="star"></i>
-                                </li>
-                              </ul>
-                              <span>(105 Rating)</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <ul class="review-rated">
-                          <li>
-                            <span>Delivery Time</span>
-                            <span>100%</span>
-                          </li>
-                          <li>
-                            <span>Response</span>
-                            <span>90%</span>
-                          </li>
-                          <li>
-                            <span>Rating</span>
-                            <span>95%</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div class="addres-box">
-                        <p>
-                          <span class="contact"><i data-feather="map-pin"></i>Address :</span> <span class="contact-info"> 1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States </span>
-                        </p>
-                        <p>
-                          <span class="contact"><i data-feather="phone"></i>Contact Number :</span> <span class="contact-info"> 2545-3566-4525-4525 </span>
-                        </p>
-
-                        <p class="info">
-                          Supreme Seller is the world famous seller for quality and service classified by and how they are connected residences and land. Connected residences owned by a single entity
-                          leased out, or owned separately with an agreement covering the either a single family or multifamily structure that is available for occupation or for non-business purposes.
-                          relationship between units and common areas. Different types of housing tenure can be used for the same physical type.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Seller Tab Content End -->
-
-                  <!-- Review Tab Content Start -->
-                  <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                    <div class="review-section">
-                      <div class="row gy-4 gy-md-5 g-4 g-xxl-5">
-                        <div class="col-md-8 col-xxl-7 order-2 order-md-1">
-                          <div class="review-left">
-                            <div class="title-box4">
-                              <h4 class="heading">Customers Q & A <span class="bg-theme-blue"></span></h4>
-                            </div>
-                            <div class="question-wrap">
-                              <div class="comment-box">
-                                <div class="img-box">
-                                  <img src="../assets/images/avatar/avatar.jpg" alt="avatar" />
-                                </div>
-                                <div class="avatar-content">
-                                  <div class="name-box">
-                                    <div class="user-info">
-                                      <h5><i data-feather="user"></i> Anne R. Allen</h5>
-                                      <span> <i data-feather="clock"></i> Aug 29, 2022</span>
-                                    </div>
-                                    <div class="action-box ms-auto">
-                                      <ul class="rating p-0 mb d-none d-xl-flex">
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                      </ul>
-                                      <a href="#replaySection" class="replay-btn"><i data-feather="corner-up-left"></i> Replay</a>
-                                    </div>
-                                  </div>
-                                  <p>
-                                    Khaki cotton blend military jacket flattering fit mock horn buttons and patch pockets showerproof black lightgrey. Printed lining patch pockets jersey blazer built
-                                    in pocket square wool casual quilted jacket without hood azure.
-                                  </p>
-                                </div>
-                              </div>
-
-                              <div class="comment-box replay-comment">
-                                <div class="img-box">
-                                  <img src="../assets/images/avatar/avatar2.jpg" alt="avatar" />
-                                </div>
-                                <div class="avatar-content">
-                                  <div class="name-box">
-                                    <div class="user-info">
-                                      <h5><i data-feather="user"></i> Francisco M. Clifton</h5>
-                                      <span> <i data-feather="clock"></i> July 15, 2022</span>
-                                    </div>
-                                    <div class="action-box ms-auto">
-                                      <ul class="rating p-0 mb d-none d-xl-flex">
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i data-feather="star"></i>
-                                        </li>
-                                      </ul>
-                                      <a href="#replaySection" class="replay-btn"><i data-feather="corner-up-left"></i> Replay</a>
-                                    </div>
-                                  </div>
-                                  <p>
-                                    Iconic style heritage brand outerwear collection lightweight showerproof material full zip fastening adjustable sleeves. Khaki cotton blend military jacket
-                                    flattering fit mock horn buttons and patch pockets showerproof black lightgrey.
-                                  </p>
-                                </div>
-                              </div>
-
-                              <div class="comment-box">
-                                <div class="img-box">
-                                  <img src="../assets/images/avatar/avatar4.jpg" alt="avatar" />
-                                </div>
-                                <div class="avatar-content">
-                                  <div class="name-box">
-                                    <div class="user-info">
-                                      <h5><i data-feather="user"></i> Jacquelyn R. Planet</h5>
-                                      <span> <i data-feather="clock"></i> August 20, 2022</span>
-                                    </div>
-                                    <div class="action-box ms-auto">
-                                      <ul class="rating p-0 mb d-none d-xl-flex">
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i class="fill" data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i data-feather="star"></i>
-                                        </li>
-                                        <li>
-                                          <i data-feather="star"></i>
-                                        </li>
-                                      </ul>
-                                      <a href="#replaySection" class="replay-btn"><i data-feather="corner-up-left"></i> Replay</a>
-                                    </div>
-                                  </div>
-                                  <p>Capsule wardrobe double breasted jacket chic lightweight contemporary luxury cotton-and-linen blend tucks at the back.</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Reply From Section Start -->
-                          <div class="replay-form round-wrap-content top-space" id="replaySection">
-                            <div class="title-box4">
-                              <h4 class="heading">Leave a Comment<span class="bg-theme-blue"></span></h4>
-                            </div>
-
-                            <form action="javascript:void(0)" class="custom-form form-pill">
-                              <div class="row g-3 g-sm-4">
-                                <div class="col-sm-6">
-                                  <div class="input-box">
-                                    <label for="name">Full Name</label>
-                                    <input name="name" id="name" type="text" class="form-control" />
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                  <div class="input-box">
-                                    <label for="email">Email Address</label>
-                                    <input name="email" id="email" type="email" class="form-control" />
-                                  </div>
-                                </div>
-
-                                <div class="col-12">
-                                  <div class="input-box">
-                                    <label for="comment">Comments</label>
-                                    <textarea class="form-control" id="comment" cols="30" rows="5"></textarea>
-                                  </div>
-                                </div>
-
-                                <div class="col-12 text-end">
-                                  <button class="post-button btn btn-solid btn-sm mb-line">Post Comment <i class="arrow"></i></button>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                          <!-- Reply From Section End -->
-                        </div>
-
-                        <div class="col-md-4 col-xxl-5 order-1 order-md-2">
-                          <div class="review-right sticky">
-                            <div class="customer-rating">
-                              <div class="title-box4">
-                                <h4 class="heading">Customers Review<span class="bg-theme-blue"></span></h4>
-                              </div>
-
-                              <div class="global-rating">
-                                <div>
-                                  <h5>4.5</h5>
-                                </div>
-
-                                <div>
-                                  <h6>Average Ratings</h6>
-                                  <ul class="rating p-0 mb">
-                                    <li>
-                                      <i class="fill" data-feather="star"></i>
-                                    </li>
-                                    <li>
-                                      <i class="fill" data-feather="star"></i>
-                                    </li>
-                                    <li>
-                                      <i class="fill" data-feather="star"></i>
-                                    </li>
-                                    <li>
-                                      <i class="fill" data-feather="star"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                    <li>
-                                      <span>(12)</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-
-                              <ul class="rating-progess">
-                                <li>
-                                  <h5>5 Star</h5>
-                                  <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 78%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                  <h5>78%</h5>
-                                </li>
-                                <li>
-                                  <h5>4 Star</h5>
-                                  <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 62%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                  <h5>62%</h5>
-                                </li>
-                                <li>
-                                  <h5>3 Star</h5>
-                                  <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 44%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                  <h5>44%</h5>
-                                </li>
-                                <li>
-                                  <h5>2 Star</h5>
-                                  <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                  <h5>30%</h5>
-                                </li>
-                                <li>
-                                  <h5>1 Star</h5>
-                                  <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 18%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                  <h5>18%</h5>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Review Tab Content End -->
-                </div>
-                <!-- Tab Content End -->
-              </div>
-            </div>
-          </div>
-          <!-- Tabs End -->
         </div>
       </section>
       <!-- Product Section End -->
@@ -844,12 +297,12 @@
     <!-- Main End -->
 
     <!-- Document Footer Start -->
-    <footer class="footer-document ratio_asos mb-xxl">
+    <footer class="footer-document footer-document2 ratio_asos mb-xxl">
       <div class="bg-footer-l">
-        <img src="../assets/images/fashion/banner/bg-footer-l.png" alt="banner" />
+        <img src="../assets/images/bag/banner/bg-footer-l.png" alt="banner" />
       </div>
       <div class="bg-footer-r">
-        <img src="../assets/images/fashion/banner/bg-footer-r.png" alt="banner" />
+        <img src="../assets/images/bag/banner/bg-footer-r.png" alt="banner" />
       </div>
       <div>
         <div class="container-lg">
@@ -859,12 +312,12 @@
                 <div class="content-box">
                   <img class="logo" src="../assets/images/logos/qpnetlogowhite.png" alt="logo-white" />
                   <ul>
-                    <li><i data-feather="map-pin"></i> <span> 1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States </span></li>
+                    <li><i data-feather="map-pin"></i> <span>Navas Nazar<br> Brototype <br> Dotespace, Vetturoad, Kazhakkuttam </span></li>
                     <li>
-                      <i data-feather="phone"></i><a class="nav" href="tel:185659635"><span> + 185659635 </span></a>
+                      <i data-feather="phone"></i><a class="nav" href="tel:+919567819494"><span> +91 9 5678 1 9494 </span></a>
                     </li>
                     <li>
-                      <i data-feather="mail"></i><a class="nav" href="mailto:fashion098@gmail.com"><span> fashion098@gmail.com </span></a>
+                      <i data-feather="mail"></i><a class="nav" href="mailto:navasnazar@gmail.com"><span> navasnazar@gmail.com </span></a>
                     </li>
                   </ul>
                 </div>
@@ -872,74 +325,52 @@
 
               <div class="nav-footer col-lg-2 col-md-4 order-md-3 order-lg-2">
                 <div class="nav content-box d-md-block">
-                  <h5 class="heading-footer">Shop By</h5>
+                  <h5 class="heading-footer line-style">Shop By</h5>
                   <ul>
-                    <li><a class="nav" href="shop-left-sidebar.html">New In </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Women </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Men </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Shoes</a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Bags & Accessories </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Top Brands </a></li>
+                    <li><a class="nav" href="/shop">Men</a></li>
+                    <li><a class="nav" href="/shop">Women </a></li>
+                    <li><a class="nav" href="/shop">Child </a></li>
+                    <li><a class="nav" href="/shop">Top all Brands </a></li>
                   </ul>
                 </div>
               </div>
 
               <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-4 order-lg-3">
                 <div class="nav d-md-block content-box">
-                  <h5 class="heading-footer">Information</h5>
+                  <h5 class="heading-footer line-style">Information</h5>
                   <ul>
-                    <li><a class="nav" href="index.html">Home </a></li>
-                    <li><a class="nav" href="shop-left-sidebar.html">Shop </a></li>
-                    <li><a class="nav" href="about-us.html">About Us</a></li>
-                    <li><a class="nav" href="blog-detail.html">Blog </a></li>
-                    <li><a class="nav" href="contact-us.html">Contact </a></li>
+                    <li><a class="nav" href="/">Home </a></li>
+                    <li><a class="nav" href="/shop">Shop </a></li>
+                    <li><a class="nav" href="/contact-us">Contact </a></li>
                   </ul>
                 </div>
               </div>
 
               <div class="nav-footer col-xl-2 col-lg-3 col-md-4 order-md-5 order-lg-4">
                 <div class="nav d-md-block content-box">
-                  <h5 class="heading-footer">Get Help</h5>
+                  <h5 class="heading-footer line-style">Get Help</h5>
                   <ul>
-                    <li><a class="nav" href="user-dashboard.html">Your Orders </a></li>
-                    <li><a class="nav" href="user-dashboard.html">Your Account </a></li>
-                    <li><a class="nav" href="user-dashboard.html">Track Order</a></li>
-                    <li><a class="nav" href="wishlist.html">Your Wishlist</a></li>
-                    <li><a class="nav" href="search.html">Search</a></li>
-                    <li><a class="nav" href="faqs.html">Faqs</a></li>
+                    <li><a class="nav" href="/orders">Your Orders</a></li>
+                    <li><a class="nav" href="/user_dashboard">Your Account </a></li>
+                    <li><a class="nav" href="/cart">Your Cart</a></li>
+                    <li><a class="nav" href="/wishlist">Your Wishlist</a></li>
                   </ul>
                 </div>
               </div>
 
               <div class="col-xl-3 col-md-6 col-lg-4 order-md-2 order-lg-5">
                 <div class="content-box">
-                  <h5 class="heading-footer">Follow Us</h5>
+                  <h5 class="heading-footer line-style">Follow Us</h5>
                   <div class="follow-wrap">
                     <ul>
                       <li>
-                        <a href="https://www.facebook.com/"> <img src="../assets/icons/svg/social/fb.svg" alt="fb" /> </a>
+                        <a href="https://www.facebook.com/me.NavasNazar/"> <img src="../assets/icons/svg/social/fb.svg" alt="fb" /> </a>
                       </li>
                       <li>
-                        <a href="https://www.instagram.com/accounts/login/?source=auth_switcher"> <img src="../assets/icons/svg/social/inta.svg" alt="fb" /> </a>
-                      </li>
-                      <li>
-                        <a href="https://twitter.com/i/flow/login"> <img src="../assets/icons/svg/social/tw.svg" alt="fb" /> </a>
-                      </li>
-                      <li>
-                        <a href="https://in.pinterest.com/"> <img src="../assets/icons/svg/social/pint.svg" alt="fb" /> </a>
+                        <a href="https://www.instagram.com/navas_nazar/"> <img src="../assets/icons/svg/social/inta.svg" alt="fb" /> </a>
                       </li>
                     </ul>
                   </div>
-
-                  <div class="subscribe-box">
-                    <h5>Newsletter Sign Up</h5>
-                    <p>Receive our latest updates about our products & promotions.</p>
-                  </div>
-
-                  <form action="javascript:void(0)" class="footer-form">
-                    <input required type="email" class="form-control" placeholder="Your email address" />
-                    <button type="submit" class="btn-solid">SUBMIT <i class="arrow"></i></button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -950,21 +381,18 @@
               <div class="col-md-6">
                 <ul>
                   <li>
-                    <a href="javascript:void(0)"> <img src="../assets/icons/png/1.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/cod.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"> <img src="../assets/icons/png/2.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
+                    <a href="javascript:void(0)"> <img src="../assets/icons/png/razorpay.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
                   </li>
                   <li>
                     <a href="javascript:void(0)"> <img src="../assets/icons/png/3.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
                   </li>
-                  <li>
-                    <a href="javascript:void(0)"> <img src="../assets/icons/png/4.png" class="img-fluid blur-up lazyload" alt="payment icon" /></a>
-                  </li>
                 </ul>
               </div>
               <div class="col-md-6">
-                <p class="mb-0">© 2022, OSLO Template. Made with heart by Pixelstrap</p>
+                <p class="mb-0">Feel your best shopping experience by qpnet.in</p>
               </div>
             </div>
           </div>
@@ -1028,121 +456,7 @@
     </div>
     <!-- Notification End -->
 
-    <!-- View Product Modal Start -->
-    <div class="modal view-product fade" id="viewModal" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body">
-            <span class="close-modal d-none d-md-block" data-bs-toggle="modal" data-bs-target="#viewModal"><i data-feather="x"></i></span>
-            <div class="row gy-4 g-md-0">
-              <div class="col-md-7">
-                <div class="slider-box">
-                  <span class="close-modal d-md-none" data-bs-toggle="modal" data-bs-target="#viewModal"><i data-feather="x"></i></span>
-                  <div class="row g-2">
-                    <div class="col-2">
-                      <div class="thumbnail-box">
-                        <div class="swiper thumbnail-img-box thumbnailSlider">
-                          <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                              <img src="../assets/images/fashion/product/front/7.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="../assets/images/fashion/product/front/7-1.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="../assets/images/fashion/product/front/7-2.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="../assets/images/fashion/product/front/7-3.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="../assets/images/fashion/product/front/7-1.jpg" alt="img" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-10 ratio_square">
-                      <div class="swiper mainslider">
-                        <div class="swiper-wrapper">
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="../assets/images/fashion/product/front/7.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="../assets/images/fashion/product/front/7-1.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="../assets/images/fashion/product/front/7-2.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="../assets/images/fashion/product/front/7-3.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="../assets/images/fashion/product/front/7.jpg" alt="img" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-5">
-                <div class="product-detail-box">
-                  <div class="product-option">
-                    <h4>Women’s long sleeve shirt</h4>
-                    <div class="option price">
-                      <h5>Price</h5>
-                      <span> $200.00 </span> <del>$300.00</del>
-                    </div>
-
-                    <div class="option">
-                      <h5>Product Description</h5>
-                      <p class="content-color">100% Cotton Indigo shirt with western yoke. Apt for casual outings, this shirt will keep you comfortable and stylish all day long.</p>
-                    </div>
-
-                    <div class="option">
-                      <h5>Your Brand Color:</h5>
-                      <ul class="color-list">
-                        <li class="bg-theme-p-1 active"></li>
-                        <li class="bg-theme-p-2"></li>
-                        <li class="bg-theme-p-3"></li>
-                      </ul>
-                    </div>
-
-                    <div class="option">
-                      <h5>Size:</h5>
-                      <ul class="size-list">
-                        <li class="active">S</li>
-                        <li>M</li>
-                        <li>L</li>
-                        <li>XL</li>
-                      </ul>
-                    </div>
-
-                    <div class="option">
-                      <h5>Quantity:</h5>
-                      <div class="plus-minus">
-                        <i class="sub" data-feather="minus"></i>
-                        <input type="number" value="1" min="1" max="10" />
-                        <i class="add" data-feather="plus"></i>
-                      </div>
-                    </div>
-
-                    <div class="btn-group">
-                      <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal" class="btn-solid btn-sm addtocart-btn">Add To Cart </a>
-                      <a href="product.html" class="btn-outline btn-sm">View Full</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- View Product Modal End -->
+    
 
     <!-- Size Chart Modal Start -->
     <div class="modal sizeChart fade" id="sizeChart" tabindex="-1" aria-labelledby="sizeChart" aria-hidden="true">

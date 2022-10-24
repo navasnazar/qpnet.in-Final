@@ -174,10 +174,10 @@ router.get('/product:id', (req, res)=>{
   })
 
 
-router.get('/signup', verifyLogin,(req, res)=>{
+router.get('/signup',(req, res)=>{
   sessions=req.session
   if(sessions.userid){
-    res.redirect('/')
+    res.redirect('/')   
   }else{
     if(validation){
       res.render('user/user-register',{validation})
@@ -359,7 +359,7 @@ router.post('/changeQuantity', (req, res)=>{
   })
 })
 
-router.get('/deleteCart:id',verifyLogin,(req, res)=>{
+router.post('/deleteCart:id',(req, res)=>{
   userId = sessions.userid
   prodId = req.params.id
   productHandles.deleteCartProd(userId, prodId).then(()=>{
@@ -537,7 +537,7 @@ router.post('/saveProfile',(req, res)=>{
 
 
 router.get('/logout',(req,res)=>{
-  sessions.destroy()
+  req.session.userid= ""
   res.redirect('/login')
 })
 
