@@ -84,6 +84,7 @@ router.post('/login',(req, res)=>{
   sessions=req.session
   console.log('Mob Number', req.body.mobileNo)
   let mobNo = req.body.mobileNo
+  sessions.mobNo = mobNo
   if(mobNo){
     userHandles.mobNoChecking(mobNo).then((response)=>{
       if(response.blockStatus){
@@ -129,9 +130,15 @@ router.post('/login',(req, res)=>{
 
 
 router.post('/otp', (req, res)=>{
+  console.log("ggjskhbjha:", req.body);
   otpHandles.otpVerification(req.body).then((resp)=>{
     if(resp.valid){
-      res.redirect('/')
+      mobNo = sessions.mobNo
+      userHandles.userFindwithMob(mobNo).then((response)=>{
+        req.session.userid = response.email
+        sessions.mobNo = ""
+        res.redirect('/')
+      })
     }else{
       console.log('incorrect OTP')
       validation.otpErr=true

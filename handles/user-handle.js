@@ -469,5 +469,13 @@ module.exports={
                     })
                     resolve()
         })
+    },
+    userFindwithMob:(mobNo)=>{
+        return new Promise((resolve, reject)=>{
+            userdb.findOne({mobileNo: mobNo }).then((res)=>{
+                console.log(res);
+                resolve(res)
+            })
+        })
     }
 }
