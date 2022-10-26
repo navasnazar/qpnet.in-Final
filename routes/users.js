@@ -302,7 +302,6 @@ router.get('/cart', verifyLogin,(req, res)=>{
 })
 
 
-
 router.get('/wishlist',verifyLogin, (req, res)=>{
   userID = sessions.userid
   productHandles.getCart2(userID).then((cartProd)=>{
@@ -381,7 +380,7 @@ router.post('/changeQuantity', (req, res)=>{
         res.send(response)
       })
   })
-})
+})   
 
 router.post('/deleteCart:id',(req, res)=>{
   userId = sessions.userid

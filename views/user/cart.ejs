@@ -132,9 +132,9 @@
                                       <span class="size gap-2 d-flex">Size : <span><%= cartProd[i].prodSize %></span> </span>
                                       <span class="size gap-2 d-flex d-sm-none">Price : <span><%= cartProd[i].prodPrice %></span> </span>
                                       <div class="plus-minus mt-2 d-inline-flex d-lg-none">
-                                    <i class="sub" data-feather="minus"></i>
-                                    <input type="number" value="1" min="1" max="10" />
-                                    <i class="add" data-feather="plus"></i>
+                                        <i class="sub" data-feather="minus" onclick="prodQtyChange('<%= userID %>', '<%= cartProd[i].prodId %>', '<%= cartProd[i].prodQty %>',  -1)"></i>
+                                        <input type="number" value="<%= cartProd[i].prodQty %>" min="1" max="100" />
+                                        <i class="add" data-feather="plus" onclick="prodQtyChange('<%= userID %>', '<%= cartProd[i].prodId %>','<%= cartProd[i].prodQty %>', 1)"></i>
                                     </div>
                                     </div>
                                     </div>
@@ -153,7 +153,7 @@
                                     <form action="/deleteCart<%= cartProd[i].prodId %>"  method="post"> 
                                       <button class="delete-button"><i data-feather="x"></i></button>
                                     </form>
-                                    </td>
+                                  </td>
                                 </tr>
                               <% }%> 
                   </tbody>
@@ -422,7 +422,6 @@
           }
         })
       }
-
     </script>
 
     <script>
