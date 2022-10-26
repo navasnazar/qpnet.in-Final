@@ -63,7 +63,7 @@
 
     <!-- Header End -->
 
-    <!-- Main Start -->
+    <!-- Main Start --> 
     <main class="main">
       <!-- Breadcrumb Start -->
       <div class="breadcrumb-wrap">
@@ -403,6 +403,7 @@
         count = parseInt(count)
         $.ajax({
           url:'/changeQuantity',
+          enctype: 'multipart/form-data',
           data:{
             user: userID,
             product: ProdId,

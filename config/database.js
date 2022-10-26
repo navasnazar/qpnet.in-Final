@@ -1,8 +1,10 @@
+let dotenv = require('dotenv')
+dotenv.config({ path: "config.env" })
+
 const mongoose = require('mongoose'),
       Schema = mongoose.Schema
 
-
-const URI = 'mongodb://localhost:27017/NaNaShoppi'
+const URI = process.env.MONGO_URI
 
 mongoose.connect(URI, {
     useNewUrlParser: true, 
