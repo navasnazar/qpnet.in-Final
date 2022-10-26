@@ -22,9 +22,11 @@ let validation =
     couponUserErr: false,
     couponAmtErr: false,
     couponDateErr: false,
+    cartEmpty: false,
   }
 
 let couponValue = 0; 
+let deliveryCost = 0;
 let login ={user: false, guest: false}
 
 let sessions;
@@ -280,7 +282,11 @@ router.get('/cart', verifyLogin,(req, res)=>{
   userID = sessions.userid
     productHandles.getCart2(userID).then((cartProd)=>{
       productHandles.finalAmountCal(cartProd).then((finalAmount)=>{
-        let deliveryCost = 50;
+        if(cartProd.length != 0){
+        deliveryCost = 50;
+        }else{
+        deliveryCost = 0;
+        }
         var checkoutAmount = finalAmount+deliveryCost-couponValue;
         let cartLength = cartProd.length
         console.log('chq amnt:',checkoutAmount);
@@ -306,6 +312,15 @@ router.get('/wishlist',verifyLogin, (req, res)=>{
   })
 })
 
+router.post('/removetoWishlist:id',(req, res)=>{
+  prodId = req.params.id
+  userID = sessions.userid
+  console.log(prodId);
+  productHandles.removeToWishlist(userID, prodId).then(()=>{
+    res.redirect('/wishlist')
+  })
+})
+
 
 router.post('/applycoupon',(req, res)=>{
   userID = sessions.userid
@@ -316,7 +331,6 @@ router.post('/applycoupon',(req, res)=>{
       response.change=true
       validation.couponErr=true;
       res.send(response)
-
     }else if(response.userErr){
       response.change=true
       validation.couponUserErr=true;
@@ -383,7 +397,14 @@ router.get('/address',verifyLogin, (req, res)=>{
     productHandles.getCart3(userId).then((userCart)=>{
       userHandles.getUserAddress(userId).then((address)=>{
         let cartLength = cartProd.length
-        res.render('user/address',{cartProd, userCart, address, cartLength})
+        if(cartLength == 0){
+          deliveryCost = 0;
+          validation.cartEmpty = true
+        res.redirect('/cart')
+        }else{
+          validation.cartEmpty = false
+          res.render('user/address',{cartProd, userCart, address, cartLength})
+        }
       })
     }) 
   })

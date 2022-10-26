@@ -106,6 +106,9 @@
                   <% if(validation.qtyZeroErr) { %> 
                     <p style="color: red;">! Below Zero is not possible </p>
                   <% } %> 
+                  <% if(validation.cartEmpty){ %> 
+                    <p style="color: red;">! Your Cart is Empty</p>
+                  <% } %> 
                   <thead>
                     <tr>
                         <th class="d-none d-sm-table-cell">PRODUCT</th>
@@ -181,6 +184,7 @@
                 <% if(validation.couponDateErr){ %> 
                   <p style="color: red;">! Coupon date doesn't match</p>
                 <% } %> 
+                
               </form>
               </div>
               <div class="cart-wrap grand-total-wrap">

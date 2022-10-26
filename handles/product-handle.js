@@ -334,6 +334,18 @@ module.exports={
             }
         })
     },
+    removeToWishlist:(userID, prodId)=>{
+        return new Promise(async (resolve, reject)=>{
+            await wishlistShema.updateOne({userId:userID},
+            {
+                $pull: {products: {prodId: prodId}}
+            }).then(()=>{
+                resolve()
+            }).catch((e)=>{
+                console.log(e);
+            })
+        })
+    },
     deleteWishlistProd:(userId, prodId)=>{
         return new Promise(async (resolve, reject)=>{
             await wishlistShema.updateOne({userId:userId},

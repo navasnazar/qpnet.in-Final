@@ -137,7 +137,9 @@
                             <i class="add" data-feather="plus"></i>
                           </div> -->
                         </div>
-                        <a href="/deleteCart<%= cartProd[i].prodId %>"><button class="remove-cart"><i data-feather="x"></i></button></a>
+                        <form action="/deleteCart<%= cartProd[i].prodId %>" method="post">
+                        <button class="remove-cart" type="submit"><i data-feather="x"></i></button>
+                        </form>
                       </div>
                      <% }%> 
                      <% }else{%> 
