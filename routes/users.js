@@ -136,12 +136,12 @@ router.post('/otp', (req, res)=>{
     if(resp.valid){
       mobNo = sessions.mobNo
       userHandles.userFindwithMob(mobNo).then((response)=>{
-        if(response.email){
+        if(response){
           req.session.userid = response.email
           sessions.mobNo = ""
           res.redirect('/')
         }else{
-          res.redirect('/')
+          res.redirect('/login')
         }
       })
     }else{

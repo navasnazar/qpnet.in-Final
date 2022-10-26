@@ -474,12 +474,8 @@ module.exports={
         return new Promise((resolve, reject)=>{
             userdb.findOne({mobileNo: mobNo}).then((response)=>{
                 console.log('sss',response);
-                if(response){
                 resolve(response)
-                }else{
-                    response.email=false
-                    resolve(response)
-                }
+
             }).catch((e)=>{
                 console.log(e);
             })
