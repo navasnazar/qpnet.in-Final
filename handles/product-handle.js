@@ -153,7 +153,7 @@ module.exports={
     productDetails:(proId)=>{
         let product ={}
         return new Promise(async (resolve, reject)=>{
-            product = await productdb.findOne({_id:objectId(proId)})
+            product = await productdb.find({_id:objectId(proId)})
                 resolve(product)  
         })
     },
@@ -244,8 +244,8 @@ module.exports={
     },
     CartProdQtyChange:(userId, prodId, qty, qtyNow, product)=>{
         return new Promise(async (resolve, reject)=>{
-            console.log(product.quantity)
-            if(qtyNow >= product.quantity && qty == 1){
+            console.log(product[0].quantity)
+            if(qtyNow >= product[0].quantity && qty == 1){
               console.log('out of stock')
                     let response={}
                     response.change = true
