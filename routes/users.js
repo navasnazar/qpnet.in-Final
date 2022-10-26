@@ -130,14 +130,17 @@ router.post('/login',(req, res)=>{
 
 
 router.post('/otp', (req, res)=>{
-  console.log("ggjskhbjha:", req.body);
   otpHandles.otpVerification(req.body).then((resp)=>{
     if(resp.valid){
       mobNo = sessions.mobNo
       userHandles.userFindwithMob(mobNo).then((response)=>{
-        req.session.userid = response.email
-        sessions.mobNo = ""
-        res.redirect('/')
+        if(response.email){
+          req.session.userid = response.email
+          sessions.mobNo = ""
+          res.redirect('/')
+        }else{
+          res.redirect('/')
+        }
       })
     }else{
       console.log('incorrect OTP')
